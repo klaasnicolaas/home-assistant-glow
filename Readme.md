@@ -2,18 +2,37 @@
 
 During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in your house and how you can collect all energy data and display it in a dashboard.
 
-Home Assistant Glow makes it possible to read a (not so) smart meter that is not equipped with a P1 port, using the pulse LED that is always present in most cases.  In this repository you will find all the information you need to get started yourself.
+<div style="text-align: center;">
+    <img src="https://student-techlife.com/wp-content/uploads/2021/07/glow_sensor_testing.gif" alt="Glow testing" style="height: 35rem;"/>
+    <img src="https://student-techlife.com/wp-content/uploads/2021/07/glow_in_action.gif" alt="Glow in action" style="height: 35rem;"/>
+</div>
+
+Home Assistant Glow makes it possible to read a (not so) smart meter that is not equipped with a P1 port, reading the pulse LED that is always present in most cases and it works with [ESPHome][esphome]! To neatly hide it all in your meter cupboard, a case has been designed that you can 3D print yourself.
 
 ## Hardware
 
-- ESP32
-- Dupond cables
-- 3D printed case
-- Photodiode
+First, fill your 🛒 or see if you already have the components below.
 
-## Software
+- [ESP32](https://banggood.app.link/Lsoq6aHIgib)
+- [Dupont Jumpers](https://banggood.app.link/It6c1WPIgib)
+- 3D printed case (see the case folder)
+- [Photodiode](https://banggood.app.link/2OqdFiWIgib) (make sure that you do not accidentally order or receive an LDR)
+- [LED RGB 5mm 4 pin kathode](https://banggood.app.link/cmAcKpuKgib)
 
-- ESPHome
+### LED diagram
+
+How the status led is connected to the ESP32. For each measured pulse, the LED will briefly flash red and in case of no WiFi connection, the LED will continue to flash blue.
+
+| LED    | ESP32      |
+|--------|------------|
+| RED    | D2 (GPIO2) |
+| GREEN  | D4 (GPIO4) |
+| BLUE   | D5 (GPIO5) |
+| GND    | GND        |
+
+## ESPHome
+
+In this repository you will find the file [home_assistant_glow.yaml][file] which you can copy into the `esphome` folder of your Home Assistant config, then go through the installation wizard of ESPHome and flash the ESP32.
 
 ## License
 
@@ -39,4 +58,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+[file]: /home_assistant_glow.yaml
+[esphome]: https://esphome.io
 [nc]: https://www.nabucasa.com
