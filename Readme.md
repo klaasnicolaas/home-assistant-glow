@@ -1,6 +1,6 @@
 ## Home Assistant Glow 🌟
 
-During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in your house and how you can collect all energy data and display it in a dashboard.
+During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in your house and how you can collect all energy data and display it in a dashboard. From core release **2021.8** you can now also get started with the energy dashboard in Home Assistant!
 
 <p align="center">
     <img src="images/glow_sensor_testing.gif" alt="Glow testing" width="35%"/><img src="images/glow_in_action.gif" alt="Glow in action" width="35%"/>
@@ -14,7 +14,7 @@ First, fill your 🛒 or see if you already have the components below.
 
 - [ESP32](https://banggood.app.link/Lsoq6aHIgib)
 - [Dupont Jumpers](https://banggood.app.link/It6c1WPIgib)
-- 3D printed case (see the case folder)
+- 3D printed case (see the [case](/case) folder)
 - [Photodiode](https://banggood.app.link/2OqdFiWIgib) (make sure that you do not accidentally order or receive an LDR)
 - [LED RGB 5mm 4 pin kathode](https://banggood.app.link/cmAcKpuKgib)
 
