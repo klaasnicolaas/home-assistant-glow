@@ -3,8 +3,16 @@
 During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in your house and how you can collect all energy data and display it in a dashboard. From core release **2021.8** you can now also get started with the energy dashboard in Home Assistant!
 
 <p align="center">
-    <img src="images/glow_sensor_testing.gif" alt="Glow testing" width="35%"/><img src="images/glow_in_action.gif" alt="Glow in action" width="35%"/>
+  <img width="80%" src="images/home-assistant-glow.jpg">
 </p>
+
+<details>
+  <summary>Click here to see the Home Assistant Glow in action!</summary>
+
+  <p align="center">
+    <img src="images/glow_sensor_testing.gif" alt="Glow testing" width="40%"/><img src="images/glow_in_action.gif" alt="Glow in action" width="40%"/>
+  </p>
+</details><br>
 
 Home Assistant Glow makes it possible to read a (not so) smart meter that is not equipped with a P1 port, reading the pulse LED that is always present in most cases and it works with [ESPHome][esphome]! To neatly hide it all in your meter cupboard, a case has been designed that you can 3D print yourself.
 
@@ -60,3 +68,4 @@ SOFTWARE.
 [file]: /home_assistant_glow.yaml
 [esphome]: https://esphome.io
 [nc]: https://www.nabucasa.com
+[energy]: https://home-assistant.io/docs/energy/
