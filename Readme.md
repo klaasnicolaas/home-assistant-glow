@@ -12,7 +12,7 @@ During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on 
   <p align="center">
     <img src="images/glow_sensor_testing.gif" alt="Glow testing" width="40%"/><img src="images/glow_in_action.gif" alt="Glow in action" width="40%"/>
   </p>
-</details><br>
+</details>
 
 Home Assistant Glow makes it possible to read a (not so) smart meter that is not equipped with a P1 port, reading the pulse LED that is always present in most cases and it works with [ESPHome][esphome]! To neatly hide it all in your meter cupboard, a case has been designed that you can 3D print yourself.
 
