@@ -1,0 +1,106 @@
+---
+#
+substitutions:
+  device_name: home_assistant_glow
+  friendly_name: House
+  device_description: "Measure your energy consumption with the pulse LED on your smart meter"
+  pulse_pin: '12'
+  status_led: GPIO5
+
+esphome:
+  name: '${device_name}'
+  comment: '${device_description}'
+  project:
+    name: "klaasnicolaas.home_assistant_glow"
+    version: "1.0.0"
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: '${device_name}'
+    password: !secret fallback_password
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret esphome_api_password
+
+ota:
+  safe_mode: true
+  reboot_timeout: 10min
+  num_attempts: 5
+
+web_server:
+  port: 80
+  auth:
+    username: !secret esphome_web_username
+    password: !secret esphome_web_password
+
+output:
+  # - platform: gpio
+  #   pin: GPIO5
+  #   id: output_blue
+  - platform: gpio
+    pin: GPIO2
+    id: output_red
+  - platform: gpio
+    pin: GPIO4
+    id: output_green
+
+light:
+  - platform: binary
+    internal: true
+    id: led_red
+    name: Red
+    output: output_red
+
+# Status LED for connection
+status_led:
+  pin:
+    # Blue LED
+    number: ${status_led}
+
+# Sensors for ESP version and WIFI information
+text_sensor:
+  - platform: version
+    hide_timestamp: true
+    name: "${friendly_name} - ESPHome Version"
+  - platform: wifi_info
+    ip_address:
+      name: "${friendly_name} - IP Address"
+      icon: mdi:wifi
+    ssid:
+      name: "${friendly_name} - Connected SSID"
+      icon: mdi:wifi-strength-2
+
+sensor:
+  - platform: pulse_meter
+    name: '${friendly_name} - Electricity usage'
+    unit_of_measurement: 'Watt'
+    icon: mdi:flash-outline
+    accuracy_decimals: 0
+    pin: ${pulse_pin}
+    on_value:
+      then:
+        - light.turn_on:
+            id: led_red
+            flash_length: 400ms
+    filters:
+      # multiply value = (60 / imp value) * 1000
+      - multiply: 60
+    total:
+      name: '${friendly_name} - Analog total energy'
+      unit_of_measurement: 'kWh'
+      icon: mdi:circle-slice-3
+      accuracy_decimals: 3
+      filters:
+        - multiply: 0.001
