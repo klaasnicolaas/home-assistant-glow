@@ -2,15 +2,15 @@
 
 <!-- PROJECT SHIELDS -->
 ![Project Maintenance][maintenance-shield]
-[![License][license-shield]](LICENSE.md)
-
-[![GitHub Activity][commits-shield]][commits]
-[![GitHub Last Commit][last-commit-shield]][commits]
-[![Contributors][contributors-shield]][contributors-url]
+[![License][license-shield]](LICENSE)
 
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+
+[![GitHub Activity][commits-shield]][commits]
+[![GitHub Last Commit][last-commit-shield]][commits]
+[![Contributors][contributors-shield]][contributors-url]
 
 During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in your house and how you can collect all energy data and display it in a dashboard. From core release **2021.8** you can now also get started with the energy dashboard in Home Assistant!
 
