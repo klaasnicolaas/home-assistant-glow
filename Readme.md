@@ -1,5 +1,17 @@
 ## Home Assistant Glow 🌟
 
+<!-- PROJECT SHIELDS -->
+![Project Maintenance][maintenance-shield]
+[![License][license-shield]](LICENSE.md)
+
+[![GitHub Activity][commits-shield]][commits]
+[![GitHub Last Commit][last-commit-shield]][commits]
+[![Contributors][contributors-shield]][contributors-url]
+
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
 During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in your house and how you can collect all energy data and display it in a dashboard. From core release **2021.8** you can now also get started with the energy dashboard in Home Assistant!
 
 <p align="center">
@@ -78,7 +90,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+<!-- MARKDOWN LINKS & IMAGES -->
 [file]: /home_assistant_glow.yaml
 [esphome]: https://esphome.io
 [nc]: https://www.nabucasa.com
 [energy]: https://home-assistant.io/docs/energy/
+
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg
+[contributors-shield]: https://img.shields.io/github/contributors/klaasnicolaas/home-assistant-glow.svg
+[contributors-url]: https://github.com/klaasnicolaas/home-assistant-glow/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/home-assistant-glow.svg
+[forks-url]: https://github.com/klaasnicolaas/home-assistant-glow/network/members
+[stars-shield]: https://img.shields.io/github/stars/klaasnicolaas/home-assistant-glow.svg
+[stars-url]: https://github.com/klaasnicolaas/home-assistant-glow/stargazers
+[issues-shield]: https://img.shields.io/github/issues/klaasnicolaas/home-assistant-glow.svg
+[issues-url]: https://github.com/klaasnicolaas/home-assistant-glow/issues
+[license-shield]: https://img.shields.io/github/license/klaasnicolaas/home-assistant-glow.svg
+[commits-shield]: https://img.shields.io/github/commit-activity/y/klaasnicolaas/home-assistant-glow.svg
+[commits]: https://github.com/klaasnicolaas/home-assistant-glow/commits/master
+[last-commit-shield]: https://img.shields.io/github/last-commit/klaasnicolaas/home-assistant-glow.svg
