@@ -4,7 +4,7 @@ substitutions:
   device_name: home_assistant_glow
   friendly_name: House
   device_description: "Measure your energy consumption with the pulse LED on your smart meter"
-  pulse_pin: '12'
+  pulse_pin: GPIO12
   status_led: GPIO5
 
 esphome:
@@ -12,7 +12,7 @@ esphome:
   comment: '${device_description}'
   project:
     name: "klaasnicolaas.home_assistant_glow"
-    version: "1.0.0"
+    version: "1.1.0"
   platform: ESP32
   board: nodemcu-32s
 
@@ -101,6 +101,9 @@ sensor:
       name: '${friendly_name} - Analog total energy'
       unit_of_measurement: 'kWh'
       icon: mdi:circle-slice-3
+      last_reset_type: auto
+      state_class: measurement
+      device_class: energy
       accuracy_decimals: 3
       filters:
         - multiply: 0.001
