@@ -26,7 +26,20 @@ First, fill your 🛒 or see if you already have the components below.
 - [Photodiode](https://banggood.app.link/2OqdFiWIgib) (make sure that you do not accidentally order or receive an LDR)
 - [LED RGB 5mm 4 pin kathode](https://banggood.app.link/cmAcKpuKgib)
 
-### LED diagram
+### Diagrams
+
+How everything is connected together.
+
+#### Photodiode
+
+| PHOTODIODE | ESP32        |
+|------------|--------------|
+| A0         | NOT USING    |
+| DO         | D12 (GPIO12) |
+| VCC        | 3V3          |
+| GND        | GND          |
+
+#### LED
 
 How the status led is connected to the ESP32. For each measured pulse, the LED will briefly flash red and in case of no WiFi connection, the LED will continue to flash blue.
 
