@@ -12,7 +12,7 @@ esphome:
   comment: '${device_description}'
   project:
     name: "klaasnicolaas.home_assistant_glow"
-    version: "1.1.0"
+    version: "1.1.1"
   platform: ESP32
   board: nodemcu-32s
 
@@ -98,7 +98,7 @@ sensor:
       # multiply value = (60 / imp value) * 1000
       - multiply: 60
     total:
-      name: '${friendly_name} - Analog total energy'
+      name: '${friendly_name} - Total energy'
       unit_of_measurement: 'kWh'
       icon: mdi:circle-slice-3
       last_reset_type: auto
