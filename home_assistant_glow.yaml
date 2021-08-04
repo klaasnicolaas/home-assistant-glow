@@ -84,7 +84,7 @@ text_sensor:
 
 sensor:
   - platform: pulse_meter
-    name: '${friendly_name} - Electricity usage'
+    name: '${friendly_name} - Power consumption'
     unit_of_measurement: 'Watt'
     icon: mdi:flash-outline
     accuracy_decimals: 0
