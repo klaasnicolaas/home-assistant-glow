@@ -108,4 +108,5 @@ sensor:
       device_class: energy
       accuracy_decimals: 3
       filters:
+        # multiply value = 1 / imp value
         - multiply: 0.001
