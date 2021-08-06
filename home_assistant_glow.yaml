@@ -12,7 +12,7 @@ esphome:
   comment: '${device_description}'
   project:
     name: "klaasnicolaas.home_assistant_glow"
-    version: "1.1.1"
+    version: "1.1.2"
   platform: ESP32
   board: nodemcu-32s
 
@@ -85,7 +85,9 @@ text_sensor:
 sensor:
   - platform: pulse_meter
     name: '${friendly_name} - Power consumption'
-    unit_of_measurement: 'Watt'
+    unit_of_measurement: 'W'
+    state_class: measurement
+    device_class: power
     icon: mdi:flash-outline
     accuracy_decimals: 0
     pin: ${pulse_pin}
@@ -106,4 +108,5 @@ sensor:
       device_class: energy
       accuracy_decimals: 3
       filters:
+        # multiply value = 1 / imp value
         - multiply: 0.001
