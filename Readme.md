@@ -11,7 +11,7 @@
 [![GitHub Last Commit][last-commit-shield]][commits]
 [![Contributors][contributors-shield]][contributors-url]
 
-During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in your house and how you can collect all energy data and display it in a dashboard. From core release **2021.8** you can now also get started with the energy dashboard in Home Assistant!
+During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in your house and how you can collect all energy data and display it in a dashboard. From core release **2021.8** you can now also get started with the [energy dashboard][energy] in Home Assistant!
 
 <p align="center">
   <img width="80%" src="images/home-assistant-glow.jpg">
@@ -26,6 +26,14 @@ During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on 
 </details>
 
 Home Assistant Glow makes it possible to read a (not so) smart meter that is not equipped with a P1 port, reading the pulse LED that is always present in most cases and it works with [ESPHome][esphome]! To neatly hide it all in your meter cupboard, a case has been designed that you can 3D print yourself.
+
+### How do I know if my meter is supported
+
+To make sure your meter will work with the Glow you have to look for the pulse LED (as in the picture), have you found it? Then also look for the **imp/Kwh** rate, because you will need this value at a later stage for configuring the yaml file.
+
+<p align="center">
+  <img width="60%" src="images/pulse_rate.png">
+</p>
 
 ## Hardware
 
@@ -61,9 +69,9 @@ How the status led is connected to the ESP32. For each measured pulse, the LED w
 | BLUE   | D5 (GPIO5) |
 | GND    | GND        |
 
-## ESPHome
+## Get started
 
-In this repository you will find the file [home_assistant_glow.yaml][file] which you can copy into the `esphome` folder of your Home Assistant config, then go through the installation wizard of ESPHome and flash the ESP32.
+Once you've connected all the hardware, we'll get started with the configuration for ESPHome. In this repository you will find the file [home_assistant_glow.yaml][file], which you can copy into the `esphome` folder of your Home Assistant config. Adjust the value `pulse_rate` under **substitutions** to the value on your meter ([how do I find my imp/kWh rate?](#faq)), by default the value `1000` is used in the yaml file. Then go through the installation wizard of ESPHome and flash the ESP32/8266.
 
 ## License
 
