@@ -29,7 +29,7 @@ Home Assistant Glow makes it possible to read a (not so) smart meter that is not
 
 ### How do I know if my meter is supported
 
-To make sure your meter will work with the Home Assistant Glow you have to look for the **imp/Kwh** rate (as in the picture), have you found it? Then make a note of it, because you will need this value at a later stage for configuring the yaml file.
+To make sure your meter will work with the Home Assistant Glow, you have to look for the **imp/kWh** rate (see picture). Make a note of it, because you will need this value at a later stage for configuring the yaml file.
 
 <p align="center">
   <img width="60%" src="images/pulse_rate.png">
