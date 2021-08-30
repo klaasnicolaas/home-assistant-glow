@@ -5,7 +5,7 @@
 # meter, useful if you do not have a serial port (P1).
 #
 substitutions:
-  device_name: home_assistant_glow
+  device_name: home-assistant-glow
   friendly_name: House
   device_description: "Measure your energy consumption with the pulse LED on your smart meter"
   pulse_pin: GPIO12
