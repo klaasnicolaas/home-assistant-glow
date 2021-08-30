@@ -101,7 +101,9 @@ sensor:
       then:
         - light.turn_on:
             id: led_red
-            flash_length: 400ms
+        - delay: 0.5s
+        - light.turn_off:
+            id: led_red
     filters:
       # multiply value = (60 / imp value) * 1000
       # - multiply: 60
