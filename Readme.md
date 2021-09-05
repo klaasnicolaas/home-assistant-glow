@@ -58,6 +58,10 @@ How everything is connected together.
 | VCC        | 3V3          |
 | GND        | GND          |
 
+A number of users have reported receiving the recommended diode board from various sources only to find the diode has been soldered to the board the wrong way round. [Here is an example of a board with an INCORRECTLY wired diode.](images/incorrect_diode.jpg 'Incorrectly orientated diode')
+
+The large triangular part of the diode should be soldered to the positive side of the board not the negative. If yours is orientated as above you should desolder the photodiode invert it and resolder so the larger triangular part of the diode is connected to positive.
+
 #### LED
 
 How the status led is connected to the ESP32. For each measured pulse, the LED will briefly flash red and in case of no WiFi connection, the LED will continue to flash blue.
