@@ -81,7 +81,7 @@ The answers to the most common problems raised in the issues.
 
 ### Wrong soldered diode
 
-Issue: #34
+Issue: [#34](issues/34)
 
 A number of users have reported receiving the recommended diode board from various sources, only to find the diode has been soldered to the board the wrong way round. This can cause that your pulse LED is not measured regardless of the sensitivity you set for the diode.
 
