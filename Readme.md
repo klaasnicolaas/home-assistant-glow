@@ -18,7 +18,7 @@ During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on 
 </p>
 
 <details>
-  <summary>Click here to see the Home Assistant Glow in action!</summary>
+  <summary>CLICK HERE! To see the Home Assistant Glow in action.</summary>
 
   <p align="center">
     <img src="images/glow_sensor_testing.gif" alt="Glow testing" width="40%"/><img src="images/glow_in_action.gif" alt="Glow in action" width="40%"/>
@@ -58,9 +58,7 @@ How everything is connected together.
 | VCC        | 3V3          |
 | GND        | GND          |
 
-A number of users have reported receiving the recommended diode board from various sources only to find the diode has been soldered to the board the wrong way round. [Here is an example of a board with an INCORRECTLY wired diode.](images/incorrect_diode.jpg 'Incorrectly orientated diode')
-
-The large triangular part of the diode should be soldered to the positive side of the board not the negative. If yours is orientated as above you should desolder the photodiode invert it and resolder so the larger triangular part of the diode is connected to positive.
+For problems with the measurements, see the [FAQ part](#faq) further down.
 
 #### LED
 
@@ -76,6 +74,22 @@ How the status led is connected to the ESP32. For each measured pulse, the LED w
 ## Get started
 
 Once you've connected all the hardware, we'll get started with the configuration for ESPHome. In this repository you will find the file [home_assistant_glow.yaml][file], which you can copy into the `esphome` folder of your Home Assistant config. Adjust the value `pulse_rate` under **substitutions** to the value on your meter ([how do I find my imp/kWh rate?](#how-do-i-know-if-my-meter-is-supported)), by default the value `1000` is used in the yaml file. Finally go through the installation wizard of ESPHome and flash the ESP32/8266.
+
+## FAQ
+
+The answers to the most common problems raised in the issues.
+
+### Wrong soldered diode
+
+Issue: [#34][issue_34]
+
+A number of users have reported receiving the recommended diode board from various sources, only to find the diode has been soldered to the board the wrong way round. This can cause that your pulse LED is not measured regardless of the sensitivity you set for the diode.
+
+<p align="center">
+  <img src="images/correct_board.png">
+</p>
+
+The large triangular part of the diode, should be soldered to the positive side of the board not the negative. If yours is orientated as above, you should desolder the photodiode invert it and resolder so the larger triangular part of the diode is connected to positive.
 
 ## License
 
@@ -106,6 +120,7 @@ SOFTWARE.
 [esphome]: https://esphome.io
 [nc]: https://www.nabucasa.com
 [energy]: https://home-assistant.io/docs/energy/
+[issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
 
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg
 [contributors-shield]: https://img.shields.io/github/contributors/klaasnicolaas/home-assistant-glow.svg

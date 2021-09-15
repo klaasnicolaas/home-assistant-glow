@@ -97,6 +97,7 @@ sensor:
     icon: mdi:flash-outline
     accuracy_decimals: 0
     pin: ${pulse_pin}
+    # internal_filter: 100ms
     on_value:
       then:
         - light.turn_on:
