@@ -81,7 +81,7 @@ The answers to the most common problems raised in the issues.
 
 ### Wrong soldered diode
 
-Issue: [#34](./issues/34)
+Issue: [#34][issue_34]
 
 A number of users have reported receiving the recommended diode board from various sources, only to find the diode has been soldered to the board the wrong way round. This can cause that your pulse LED is not measured regardless of the sensitivity you set for the diode.
 
@@ -120,6 +120,7 @@ SOFTWARE.
 [esphome]: https://esphome.io
 [nc]: https://www.nabucasa.com
 [energy]: https://home-assistant.io/docs/energy/
+[issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
 
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg
 [contributors-shield]: https://img.shields.io/github/contributors/klaasnicolaas/home-assistant-glow.svg
