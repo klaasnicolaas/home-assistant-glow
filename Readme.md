@@ -51,12 +51,12 @@ How everything is connected together.
 
 #### Photodiode
 
-| PHOTODIODE | ESP32        |
-|------------|--------------|
-| A0         | NOT USING    |
-| DO         | D12 (GPIO12) |
-| VCC        | 3V3          |
-| GND        | GND          |
+| PHOTODIODE | ESP32        | D1 mini / ESP8266 |
+|------------|--------------|-------------------|
+| A0         | NOT USING    | NOT USING         |
+| DO         | D12 (GPIO12) | D6 (GPIO12)       |
+| VCC        | 3V3          | 3V3               |
+| GND        | GND          | GND               |
 
 For problems with the measurements, see the [FAQ part](#faq) further down.
 
@@ -64,12 +64,12 @@ For problems with the measurements, see the [FAQ part](#faq) further down.
 
 How the status led is connected to the ESP32. For each measured pulse, the LED will briefly flash red and in case of no WiFi connection, the LED will continue to flash blue.
 
-| LED    | ESP32      |
-|--------|------------|
-| RED    | D2 (GPIO2) |
-| GREEN  | D4 (GPIO4) |
-| BLUE   | D5 (GPIO5) |
-| GND    | GND        |
+| LED    | ESP32      | D1 mini / ESP8266 |
+|--------|------------|-------------------|
+| RED    | D2 (GPIO2) | D4 (GPIO2)        |      
+| GREEN  | D4 (GPIO4) | D2 (GPIO4)        |
+| BLUE   | D5 (GPIO5) | D1 (GPIO5)        |
+| GND    | GND        | GND               |
 
 ## Get started
 
