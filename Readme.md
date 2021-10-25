@@ -26,7 +26,7 @@ During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on 
   </p>
 </details>
 
-Home Assistant Glow makes a *(not so)* smart meter without a P1 port easily readable, reading the pulse LED that is always present in most cases and it works with [ESPHome][esphome]!!   To neatly hide it all in your meter cupboard, a case has been designed that you can 3D print yourself.
+Home Assistant Glow makes a *(not so)* smart meter without a P1 port easily readable, reading the pulse LED that is always present in most cases and it works with [ESPHome][esphome]! To neatly hide it all in your meter cupboard, a case has been designed that you can 3D print yourself.
 
 ### How do I know if my meter is supported?
 
