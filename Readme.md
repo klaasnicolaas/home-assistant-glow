@@ -44,7 +44,7 @@ First, fill your 🛒 or see if you already have the components below.
 - [Dupont Jumpers](https://banggood.app.link/It6c1WPIgib)
 - 3D printed case (see the [case](/case) folder)
 - Photodiode - [Banggood](https://banggood.app.link/2OqdFiWIgib) or [AliExpress](https://nl.aliexpress.com/item/1005001640685908.html) (make sure that you do not accidentally order or receive an LDR)
-- [LED RGB 5mm 4 pin Kathode](https://banggood.app.link/cmAcKpuKgib)
+- [LED RGB 5mm 4 pin - kathode](https://banggood.app.link/cmAcKpuKgib)
 
 ### Diagrams
 
