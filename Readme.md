@@ -1,6 +1,5 @@
 # Home Assistant Glow 🌟
 
-
 <!-- PROJECT SHIELDS -->
 ![Project Maintenance][maintenance-shield]
 [![License][license-shield]](LICENSE)
@@ -89,6 +88,7 @@ A number of users have reported receiving the recommended diode board from vario
 <p align="center">
   <img src="images/correct_board.png">
 </p>
+
 The large triangular part of the diode, should be soldered to the positive side of the board not the negative. If yours is orientated as above, you should desolder the photodiode invert it and resolder so the larger triangular part of the diode is connected to positive.
 
 ## License
