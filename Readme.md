@@ -78,7 +78,7 @@ Once you are done connecting all the hardware, we'll get started with the config
 
 ## FAQ
 
-Anwers to some of the most frequently asked questions in issues:
+Anwers to some of the most frequently asked questions:
 
 ### Wrong soldered diode
 
