@@ -44,7 +44,7 @@ api:
     then:
       - pulse_meter.set_total_pulses:
           id: energy_pulse_meter
-            value: 0
+          value: 0
 
 ota:
   safe_mode: true
