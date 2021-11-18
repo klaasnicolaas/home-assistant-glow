@@ -24,8 +24,6 @@ esphome:
     version: "2.1.0"
   platform: ESP32
   board: nodemcu-32s
-  
-
 
 wifi:
   ssid: !secret wifi_ssid
@@ -41,8 +39,9 @@ captive_portal:
 # Enable logging
 logger:
 
+# Enable improv over serial
+improv_serial:
 
-improv_serial: 
 # Enable Home Assistant API
 api:
   password: !secret esphome_api_password
