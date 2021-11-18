@@ -12,6 +12,9 @@ substitutions:
   status_led: GPIO5
   # imp/kWh rate ⬇ #
   pulse_rate: '1000'
+  
+dashboard_import:
+  package_import_url: github://klaasnicolaas/home-assistant-glow/home_assistant_glow.yaml
 
 esphome:
   name: '${device_name}'
@@ -21,6 +24,8 @@ esphome:
     version: "2.1.0"
   platform: ESP32
   board: nodemcu-32s
+  
+
 
 wifi:
   ssid: !secret wifi_ssid
@@ -36,6 +41,8 @@ captive_portal:
 # Enable logging
 logger:
 
+
+improv_serial: 
 # Enable Home Assistant API
 api:
   password: !secret esphome_api_password
@@ -86,13 +93,16 @@ text_sensor:
   - platform: version
     hide_timestamp: true
     name: "${friendly_name} - ESPHome Version"
+    entity_category: diagnostic 
   - platform: wifi_info
     ip_address:
       name: "${friendly_name} - IP Address"
       icon: mdi:wifi
+      entity_category: diagnostic 
     ssid:
       name: "${friendly_name} - Connected SSID"
       icon: mdi:wifi-strength-2
+      entity_category: diagnostic 
 
 sensor:
   - platform: pulse_meter
