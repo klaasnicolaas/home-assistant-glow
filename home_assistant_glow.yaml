@@ -14,10 +14,6 @@ substitutions:
   # imp/kWh rate ⬇ #
   pulse_rate: '1000'
 
-  # WiFi credentials ⬇ #
-  wifi_ssid: 'CHANGEME'
-  wifi_password: 'CHANGEME'
-
   # Webserver credentials ⬇ #
   web_username: 'glow'
   web_password: 'esphome'
@@ -34,9 +30,10 @@ esphome:
   platform: ESP32
   board: nodemcu-32s
 
+# WiFi credentials #
 wifi:
-  ssid: '${wifi_ssid}'
-  password: '${wifi_password}'
+  # ssid: 'CHANGEME'       # Enter your WiFi SSID here. Example: `ssid: 'your_network_name'`
+  # password: 'CHANGEME'   # Enter your wifi password here. Example: `password: 'abcde123456'`
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
