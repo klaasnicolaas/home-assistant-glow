@@ -1,13 +1,18 @@
-name: CI
+---
+# Can we build firmware check
+name: ESPHome CI
 
 on:
   pull_request:
 
 jobs:
   ci:
+    name: "🛠️ ESPHome build check"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: esphome/build-action@v1.0.1
+      - name: ⤵️ Check out files from GitHub
+        uses: actions/checkout@v2
+      - name: Test firmware build
+        uses: esphome/build-action@v1.0.1
         with:
           yaml_file: home_assistant_glow.yaml
