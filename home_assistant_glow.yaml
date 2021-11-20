@@ -10,9 +10,14 @@ substitutions:
   device_description: "Measure your energy consumption with the pulse LED on your smart meter"
   pulse_pin: GPIO12
   status_led: GPIO5
+
   # imp/kWh rate ⬇ #
   pulse_rate: '1000'
-  
+
+  # Webserver credentials ⬇ #
+  web_username: 'glow'
+  web_password: 'esphome'
+
 dashboard_import:
   package_import_url: github://klaasnicolaas/home-assistant-glow/home_assistant_glow.yaml
 
@@ -25,14 +30,14 @@ esphome:
   platform: ESP32
   board: nodemcu-32s
 
+# WiFi credentials #
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
+  # ssid: 'CHANGEME'       # Enter your WiFi SSID here. Example: `ssid: 'your_network_name'`
+  # password: 'CHANGEME'   # Enter your wifi password here. Example: `password: 'abcde123456'`
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: '${device_name}'
-    password: !secret fallback_password
 
 captive_portal:
 
@@ -44,7 +49,6 @@ improv_serial:
 
 # Enable Home Assistant API
 api:
-  password: !secret esphome_api_password
   services:
   - service: reset_total
     then:
@@ -60,8 +64,8 @@ ota:
 web_server:
   port: 80
   auth:
-    username: !secret esphome_web_username
-    password: !secret esphome_web_password
+    username: '${web_username}'
+    password: '${web_password}'
 
 output:
   # - platform: gpio
@@ -91,13 +95,13 @@ status_led:
 text_sensor:
   - platform: version
     hide_timestamp: true
-    name: "${friendly_name} - ESPHome Version"
+    name: '${friendly_name} - ESPHome Version'
   - platform: wifi_info
     ip_address:
-      name: "${friendly_name} - IP Address"
+      name: '${friendly_name} - IP Address'
       icon: mdi:wifi
     ssid:
-      name: "${friendly_name} - Connected SSID"
+      name: '${friendly_name} - Connected SSID'
       icon: mdi:wifi-strength-2
 
 sensor:
