@@ -42,8 +42,8 @@ First, fill your 🛒 or see if you already have the components below.
 - [ESP32][esp32-shop]
 - [Dupont Jumpers][dupont-jumpers-shop]
 - 3D printed case (see the [case](/case) folder)
-- Photodiode - [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (make sure that you do not accidentally order or receive an LDR)
-- [LED RGB 5mm 4 pin - kathode][rgb-led-shop]
+- Photodiode: [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (make sure that you do not accidentally order or receive an LDR)
+- LED RGB 5mm 4 pin - kathode: [Banggood][rgbled-bg-shop] or [AliExpress][rgbled-ali-shop]
 
 ### Diagrams
 
@@ -142,4 +142,5 @@ SOFTWARE.
 [dupont-jumpers-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F120pcs-20cm-Male-To-Female-Female-To-Female-Male-To-Male-Color-Breadboard-Jumper-Cable-Dupont-Wire-p-974006.html%3Futm_source%3Dadwords%26utm_medium%3Dorganic%26utm_content%3D-%26utm_campaign%3Dnone_pps_copy%26_branch_match_id%3D791437124706440886%26_branch_referrer%3DH4sIAAAAAAAAA8soKSkottLXT0rMS0%252FPz0%252FRSywo0MvJzMvW9ywxSzYMD%252FBMz0wCAKK%252BdgElAAAA%26cur_warehouse%3DCN
 [photodiode-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F4Pin-Photodiode-Sensor-Controller-Module-Measure-Module-p-1416445.html%3Futm_source%3Dadwords%26utm_medium%3Dorganic%26utm_content%3D-%26utm_campaign%3Dnone_pps_copy%26_branch_match_id%3D791437124706440886%26_branch_referrer%3DH4sIAAAAAAAAA8soKSkottLXT0rMS0%252FPz0%252FRSywo0MvJzMvWN%252FIvTHHLDPdMz0wCAGUhz1klAAAA%26cur_warehouse%3DCN%26ID%3D522225
 [photodiode-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F1005001640685908.html
-[rgb-led-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F50pcs-LED-RGB-Common-Cathode-4-Pin-F5-5MM-Diode-p-1016398.html%3Futm_source%3Dadwords%26utm_medium%3Dorganic%26utm_content%3D-%26utm_campaign%3Dnone_pps_copy%26_branch_match_id%3D791437124706440886%26_branch_referrer%3DH4sIAAAAAAAAA8soKSkottLXT0rMS0%252FPz0%252FRSywo0MvJzMvWT851TPYuKPVOz0wCANu%252FpdslAAAA%26cur_warehouse%3DCN
+[rgbled-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F50pcs-LED-RGB-Common-Cathode-4-Pin-F5-5MM-Diode-p-1016398.html%3Futm_source%3Dadwords%26utm_medium%3Dorganic%26utm_content%3D-%26utm_campaign%3Dnone_pps_copy%26_branch_match_id%3D791437124706440886%26_branch_referrer%3DH4sIAAAAAAAAA8soKSkottLXT0rMS0%252FPz0%252FRSywo0MvJzMvWT851TPYuKPVOz0wCANu%252FpdslAAAA%26cur_warehouse%3DCN
+[rgbled-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F4000225253691.html
