@@ -176,10 +176,10 @@ sensor:
       # - multiply: 60
       - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
 
-      # Enable this if you want to limit the amount of data
-      # this sensor writes to the HA recorder database. Instead
-      # of writing a state change for each blink of the LED,
-      # the sensor will return an average every 10th second.
+      # Update the sensor with an average every 10th second. See
+      # https://github.com/klaasnicolaas/home-assistant-glowReadme.md#reduce-the-amount-of-data-the-sensors-produce
+      # for more information.
+      #
       #- throttle_average: 10s
 
     total:
@@ -195,12 +195,9 @@ sensor:
         # - multiply: 0.001
         - lambda: return x * (1.0 / id(select_pulse_rate).state);
 
-        # Enable these two filters if you want to limit the
-        # amount of data this sensor writes to the HA recorder
-        # database. Instead of writing a state change for each
-        # blink of the LED, the sensor will only be updated
-        # once per 0.1 kWh consumed, or every 5th minute,
-        # whichever happens sooner.
+        # Update the sensor once per 0.1 kWh consumed, or every 5th minute,
+        # whichever happens sooner. See https://github.com/klaasnicolaas/home-assistant-glowReadme.md#reduce-the-amount-of-data-the-sensors-produce
+        # for more information.
         #- delta: 0.1
         #- heartbeat: 300s
 
