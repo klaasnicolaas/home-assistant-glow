@@ -117,6 +117,10 @@ A number of users have reported receiving the recommended diode board from vario
 
 The large triangular part of the diode, should be soldered to the positive side of the board not the negative. If yours is orientated as above, you should desolder the photodiode invert it and resolder so the larger triangular part of the diode is connected to positive.
 
+### Reduce the amount of data the sensors produce
+
+Depending on the `pulse_rate` variable, the type of house/apartment and the heating system in use, the sensors that are exposed to Home Assistant may produce a lot of data. For example, with the default `pulse_rate` in the file, 1000, a power consumption of 3600 W means that the sensors produce 2 HA state changes per second (which means 7200 state changes per hour). If you don't need that kind of granularity, you can use [ESPHome sensor filters](https://esphome.io/components/sensor/index.html#sensor-filters) filters to reduce the rate of updates written to Home Assistant. With the commented-out filters in [home_assistant_glow.yaml][file] enabled, only 396 state changes will be produced per hour.
+
 ### My Daily Energy won't reset
 
 Issue: [#140][issue_140]
