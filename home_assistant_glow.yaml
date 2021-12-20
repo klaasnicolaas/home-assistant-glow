@@ -198,7 +198,7 @@ sensor:
         # Update the sensor once per 0.1 kWh consumed, or every 5th minute,
         # whichever happens sooner. See https://github.com/klaasnicolaas/home-assistant-glowReadme.md#reduce-the-amount-of-data-the-sensors-produce
         # for more information.
-        #- delta: 0.1
+        #- delta: 0.01
         #- heartbeat: 300s
 
   # Total day usage
