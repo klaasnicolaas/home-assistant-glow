@@ -26,7 +26,7 @@ esphome:
   comment: '${device_description}'
   project:
     name: "klaasnicolaas.home_assistant_glow"
-    version: "2.2.0"
+    version: "2.3.0"
   platform: ESP32
   board: nodemcu-32s
 
