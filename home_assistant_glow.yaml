@@ -53,7 +53,7 @@ api:
   - service: reset_total
     then:
       - pulse_meter.set_total_pulses:
-          id: energy_pulse_meter
+          id: sensor_energy_pulse_meter
           value: 0
 
 ota:
@@ -105,9 +105,10 @@ text_sensor:
       icon: mdi:wifi-strength-2
 
 sensor:
+  # Pulse meter
   - platform: pulse_meter
-    id: energy_pulse_meter
-    name: '${friendly_name} - Power consumption'
+    name: '${friendly_name} - Power Consumption'
+    id: sensor_energy_pulse_meter
     unit_of_measurement: 'W'
     state_class: measurement
     device_class: power
@@ -127,7 +128,8 @@ sensor:
       # - multiply: 60
       - lambda: return x * ((60.0 / ${pulse_rate}) * 1000.0);
     total:
-      name: '${friendly_name} - Total energy'
+      name: '${friendly_name} - Total Energy'
+      id: sensor_total_energy
       unit_of_measurement: 'kWh'
       icon: mdi:circle-slice-3
       state_class: total_increasing
