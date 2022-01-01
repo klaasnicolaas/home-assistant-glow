@@ -26,7 +26,7 @@ esphome:
   comment: '${device_description}'
   project:
     name: "klaasnicolaas.home_assistant_glow"
-    version: "2.2.0"
+    version: "2.3.0"
   platform: ESP32
   board: nodemcu-32s
 
@@ -53,7 +53,7 @@ api:
   - service: reset_total
     then:
       - pulse_meter.set_total_pulses:
-          id: energy_pulse_meter
+          id: sensor_energy_pulse_meter
           value: 0
 
 ota:
@@ -105,9 +105,10 @@ text_sensor:
       icon: mdi:wifi-strength-2
 
 sensor:
+  # Pulse meter
   - platform: pulse_meter
-    id: energy_pulse_meter
-    name: '${friendly_name} - Power consumption'
+    name: '${friendly_name} - Power Consumption'
+    id: sensor_energy_pulse_meter
     unit_of_measurement: 'W'
     state_class: measurement
     device_class: power
@@ -127,7 +128,8 @@ sensor:
       # - multiply: 60
       - lambda: return x * ((60.0 / ${pulse_rate}) * 1000.0);
     total:
-      name: '${friendly_name} - Total energy'
+      name: '${friendly_name} - Total Energy'
+      id: sensor_total_energy
       unit_of_measurement: 'kWh'
       icon: mdi:circle-slice-3
       state_class: total_increasing
@@ -137,3 +139,21 @@ sensor:
         # multiply value = 1 / imp value
         # - multiply: 0.001
         - lambda: return x * (1.0 / ${pulse_rate});
+  # Total day useage
+  - platform: total_daily_energy
+    name: '${friendly_name} - Daily Energy'
+    id: sensor_total_daily_energy
+    power_id: sensor_energy_pulse_meter
+    unit_of_measurement: 'kWh'
+    icon: mdi:circle-slice-3
+    state_class: total_increasing
+    device_class: energy
+    accuracy_decimals: 3
+    filters:
+      # Multiplication factor from W to kW is 0.001
+      - multiply: 0.001
+
+# Enable time component to reset energy at midnight
+time:
+  - platform: sntp
+    id: my_time
