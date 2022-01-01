@@ -115,6 +115,11 @@ text_sensor:
       icon: mdi:wifi-strength-2
 
 sensor:
+  # WiFi signal
+  - platform: wifi_signal
+    name: "${friendly_name} - WiFi Signal"
+    update_interval: 120s
+
   # Pulse meter
   - platform: pulse_meter
     name: '${friendly_name} - Power Consumption'
