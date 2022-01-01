@@ -123,7 +123,7 @@ SOFTWARE.
 [issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
 
 <!-- Shields -->
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
 [contributors-shield]: https://img.shields.io/github/contributors/klaasnicolaas/home-assistant-glow.svg
 [contributors-url]: https://github.com/klaasnicolaas/home-assistant-glow/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/home-assistant-glow.svg
