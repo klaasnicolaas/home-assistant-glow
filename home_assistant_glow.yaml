@@ -50,11 +50,10 @@ improv_serial:
 # Enable Home Assistant API
 api:
   services:
-  - service: reset_total
-    then:
-      - pulse_meter.set_total_pulses:
-          id: sensor_energy_pulse_meter
-          value: 0
+    - service: reset_total_energy
+      then:
+        - button.press:
+            id: button_reset_total
 
 ota:
   safe_mode: true
