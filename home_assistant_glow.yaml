@@ -91,6 +91,17 @@ status_led:
     # Blue LED
     number: ${status_led}
 
+button:
+  - platform: restart
+    name: "Restart - Glow"
+  - platform: template
+    name: "Reset - Total Energy"
+    id: button_reset_total
+    on_press:
+      - pulse_meter.set_total_pulses:
+          id: sensor_energy_pulse_meter
+          value: 0
+
 # Sensors for ESP version and WIFI information
 text_sensor:
   - platform: version
