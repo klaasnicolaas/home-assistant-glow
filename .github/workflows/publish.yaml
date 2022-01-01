@@ -1,19 +1,18 @@
 ---
 # Build the ESPHome binary firmware
 # And deploy it to Github Pages.
-name: Build firmware
+name: Publish firmware
 
 on:
+  workflow_dispatch:
   release:
     types:
       - published
-  workflow_dispatch:
 
 jobs:
-  build:
+  publish:
     name: "🛠️ ESPHome firmware"
-    uses: esphome/workflows/.github/workflows/build.yml@main
+    uses: esphome/workflows/.github/workflows/publish.yml@main
     with:
       files: home_assistant_glow.yaml
-    secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      name: Home Assistant Glow
