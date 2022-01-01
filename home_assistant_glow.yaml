@@ -50,11 +50,10 @@ improv_serial:
 # Enable Home Assistant API
 api:
   services:
-  - service: reset_total
-    then:
-      - pulse_meter.set_total_pulses:
-          id: sensor_energy_pulse_meter
-          value: 0
+    - service: reset_total_energy
+      then:
+        - button.press:
+            id: button_reset_total
 
 ota:
   safe_mode: true
@@ -91,6 +90,17 @@ status_led:
     # Blue LED
     number: ${status_led}
 
+button:
+  - platform: restart
+    name: "Restart - Glow"
+  - platform: template
+    name: "Reset - Total Energy"
+    id: button_reset_total
+    on_press:
+      - pulse_meter.set_total_pulses:
+          id: sensor_energy_pulse_meter
+          value: 0
+
 # Sensors for ESP version and WIFI information
 text_sensor:
   - platform: version
@@ -105,6 +115,11 @@ text_sensor:
       icon: mdi:wifi-strength-2
 
 sensor:
+  # WiFi signal
+  - platform: wifi_signal
+    name: "${friendly_name} - WiFi Signal"
+    update_interval: 120s
+
   # Pulse meter
   - platform: pulse_meter
     name: '${friendly_name} - Power Consumption'
