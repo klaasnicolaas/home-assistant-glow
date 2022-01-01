@@ -91,6 +91,16 @@ A number of users have reported receiving the recommended diode board from vario
 
 The large triangular part of the diode, should be soldered to the positive side of the board not the negative. If yours is orientated as above, you should desolder the photodiode invert it and resolder so the larger triangular part of the diode is connected to positive.
 
+## Contributing
+
+This is an active open-source project. We are always open to people who want to
+use the code or contribute to it.
+
+We've set up a separate document for our
+[contribution guidelines](CONTRIBUTING.md).
+
+Thank you for being involved! :heart_eyes:
+
 ## License
 
 MIT License
@@ -123,7 +133,7 @@ SOFTWARE.
 [issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
 
 <!-- Shields -->
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
 [contributors-shield]: https://img.shields.io/github/contributors/klaasnicolaas/home-assistant-glow.svg
 [contributors-url]: https://github.com/klaasnicolaas/home-assistant-glow/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/home-assistant-glow.svg
