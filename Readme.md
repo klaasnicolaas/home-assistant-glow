@@ -107,7 +107,7 @@ Thank you for being involved! :heart_eyes:
 
 MIT License
 
-Copyright (c) 2021 Klaas Schoute
+Copyright (c) 2021-2022 Klaas Schoute
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -135,7 +135,7 @@ SOFTWARE.
 [issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
 
 <!-- Shields -->
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
 [contributors-shield]: https://img.shields.io/github/contributors/klaasnicolaas/home-assistant-glow.svg
 [contributors-url]: https://github.com/klaasnicolaas/home-assistant-glow/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/home-assistant-glow.svg
