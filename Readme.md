@@ -47,9 +47,11 @@ First, fill your 🛒 or see if you already have the components below.
 
 ### Diagrams
 
-How everything is connected together.
+In the tables below you will find more information, about how to connect the various components.
 
 #### Photodiode
+
+How the photodiode is connected to the ESP board of your choice.
 
 | PHOTODIODE | ESP32        | D1 mini / ESP8266 |
 |------------|--------------|-------------------|
@@ -62,11 +64,11 @@ For problems with the measurements, see the [FAQ part](#faq) further down.
 
 #### LED
 
-How the status led is connected to the ESP32. For each measured pulse, the LED will briefly flash red and in case of no WiFi connection, the LED will continue to flash blue.
+How the status LED is connected to the ESP board of your choice. For each measured pulse, the LED will briefly flash <span style="color:red">*red*</span> and in case of no WiFi connection, the LED will continue to flash <span style="color:blue">*blue*</span>.
 
 | LED    | ESP32      | D1 mini / ESP8266 |
 |--------|------------|-------------------|
-| RED    | D2 (GPIO2) | D4 (GPIO2)        |      
+| RED    | D2 (GPIO2) | D4 (GPIO2)        |
 | GREEN  | D4 (GPIO4) | D2 (GPIO4)        |
 | BLUE   | D5 (GPIO5) | D1 (GPIO5)        |
 | GND    | GND        | GND               |
@@ -133,7 +135,7 @@ SOFTWARE.
 [issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
 
 <!-- Shields -->
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg
 [contributors-shield]: https://img.shields.io/github/contributors/klaasnicolaas/home-assistant-glow.svg
 [contributors-url]: https://github.com/klaasnicolaas/home-assistant-glow/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/home-assistant-glow.svg
