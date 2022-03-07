@@ -113,6 +113,10 @@ text_sensor:
     ssid:
       name: '${friendly_name} - Connected SSID'
       icon: mdi:wifi-strength-2
+  - platform: template
+    name: Uptime Human Readable
+    id: uptime_human
+    icon: mdi:clock-start
 
 sensor:
   # WiFi signal
@@ -167,6 +171,28 @@ sensor:
     filters:
       # Multiplication factor from W to kW is 0.001
       - multiply: 0.001
+  - platform: uptime
+    name: Uptime Sensor
+    id: uptime_sensor
+    update_interval: 60s
+    on_raw_value:
+      then:
+        - text_sensor.template.publish:
+            id: uptime_human
+            state: !lambda |-
+              int seconds = round(id(uptime_sensor).raw_state);
+              int days = seconds / (24 * 3600);
+              seconds = seconds % (24 * 3600);
+              int hours = seconds / 3600;
+              seconds = seconds % 3600;
+              int minutes = seconds /  60;
+              seconds = seconds % 60;
+              return (
+                (days ? to_string(days) + "d " : "") +
+                (hours ? to_string(hours) + "h " : "") +
+                (minutes ? to_string(minutes) + "m " : "") +
+                (to_string(seconds) + "s")
+              ).c_str();
 
 # Enable time component to reset energy at midnight
 time:
