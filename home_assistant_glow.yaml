@@ -28,7 +28,11 @@ esphome:
   project:
     name: "klaasnicolaas.home-assistant-glow"
     version: "${project_version}"
-  platform: ESP32
+
+# Choose the right Platform
+# esp32: https://esphome.io/components/esp32.html
+# esp8266: https://esphome.io/components/esp8266.html
+esp32:
   board: nodemcu-32s
 
 # WiFi credentials #
