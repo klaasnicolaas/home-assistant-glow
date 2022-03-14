@@ -93,6 +93,18 @@ A number of users have reported receiving the recommended diode board from vario
 
 The large triangular part of the diode, should be soldered to the positive side of the board not the negative. If yours is orientated as above, you should desolder the photodiode invert it and resolder so the larger triangular part of the diode is connected to positive.
 
+### My Daily Energy won't reset
+
+Issue: [#140][issue_140]
+
+By default, the Home Assistant Glow uses the `homeassistant` [time platform][time-platform], which synchronizes the current time via the native API from your home assistant config. If this doesn't work, you could consider using the `sntp` time platform, as in the example below:
+
+```yaml
+time:
+  - platform: sntp
+    id: sntp_time
+```
+
 ## Contributing
 
 This is an active open-source project. We are always open to people who want to
@@ -133,6 +145,8 @@ SOFTWARE.
 [nc]: https://www.nabucasa.com
 [energy]: https://home-assistant.io/docs/energy/
 [issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
+[issue_140]: https://github.com/klaasnicolaas/home-assistant-glow/issues/140
+[time-platform]: https://esphome.io/components/time.html#home-assistant-time-source
 
 <!-- Shields -->
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
