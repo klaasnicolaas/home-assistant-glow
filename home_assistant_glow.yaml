@@ -181,6 +181,7 @@ sensor:
       # for more information.
       #
       #- throttle_average: 10s
+      #- filter_out: NaN
 
     total:
       name: '${friendly_name} - Total Energy'
