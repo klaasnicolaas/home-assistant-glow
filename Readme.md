@@ -118,6 +118,10 @@ We've set up a separate document for our
 
 Thank you for being involved! :heart_eyes:
 
+## Disclamer
+
+We use aliexpress / banggood affiliate links for the components and the tools. Some Ad-blockers might block these links an thus they seem to appear broken. You will have to temporarely disable ad-blocker to open these links.
+
 ## License
 
 MIT License
