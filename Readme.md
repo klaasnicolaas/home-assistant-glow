@@ -39,7 +39,10 @@ To make sure your meter will work with the Home Assistant Glow, you have to look
 
 First, fill your 🛒 or see if you already have the components below.
 
-- [ESP32][esp32-shop]
+- One of these microcontrollers
+  - ESP32 (recommended) - [Banggood][esp32-bg-shop] or [AliExpress][esp32-ali-shop]
+  - ESP8266 - [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
+  - Wemos D1 - [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
 - [Dupont Jumpers][dupont-jumpers-shop]
 - 3D printed case (see the [case](/case) folder)
 - Photodiode: [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (make sure that you do not accidentally order or receive an LDR)
@@ -53,12 +56,12 @@ In the tables below you will find more information, about how to connect the var
 
 How the photodiode is connected to the ESP board of your choice.
 
-| PHOTODIODE | ESP32        | D1 mini / ESP8266 |
-|------------|--------------|-------------------|
-| A0         | NOT USING    | NOT USING         |
-| DO         | D12 (GPIO12) | D6 (GPIO12)       |
-| VCC        | 3V3          | 3V3               |
-| GND        | GND          | GND               |
+| PHOTODIODE | ESP32        | Wemos D1 / ESP8266 |
+|------------|--------------|--------------------|
+| A0         | NOT USING    | NOT USING          |
+| DO         | D12 (GPIO12) | D6 (GPIO12)        |
+| VCC        | 3V3          | 3V3                |
+| GND        | GND          | GND                |
 
 For problems with the measurements, see the [FAQ part](#faq) further down.
 
@@ -164,9 +167,14 @@ SOFTWARE.
 [last-commit-shield]: https://img.shields.io/github/last-commit/klaasnicolaas/home-assistant-glow.svg
 
 <!-- Hardware -->
-[esp32-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2FGeekcreit-ESP32-WiFi%2Bbluetooth-Development-Board-Ultra-Low-Power-Consumption-Dual-Cores-Pins-Unsoldered-p-1214159.html%3Futm_source%3Dgoogle%26utm_medium%3Dorganic%26utm_content%3D-%26utm_campaign%3Dnone_pps_copy%26_branch_match_id%3D791437124706440886%26_branch_referrer%3DH4sIAAAAAAAAA8soKSkottLXT0rMS0%2FPz0%2FRSywo0MvJzMvW9ynOLzRL9PBMz0wCAJ%2FOhjUlAAAA%26cur_warehouse%3DCZ%26DCC%3DNL%26currency%3DEUR
-[dupont-jumpers-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F120pcs-20cm-Male-To-Female-Female-To-Female-Male-To-Male-Color-Breadboard-Jumper-Cable-Dupont-Wire-p-974006.html%3Futm_source%3Dadwords%26utm_medium%3Dorganic%26utm_content%3D-%26utm_campaign%3Dnone_pps_copy%26_branch_match_id%3D791437124706440886%26_branch_referrer%3DH4sIAAAAAAAAA8soKSkottLXT0rMS0%252FPz0%252FRSywo0MvJzMvW9ywxSzYMD%252FBMz0wCAKK%252BdgElAAAA%26cur_warehouse%3DCN
-[photodiode-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F4Pin-Photodiode-Sensor-Controller-Module-Measure-Module-p-1416445.html%3Futm_source%3Dadwords%26utm_medium%3Dorganic%26utm_content%3D-%26utm_campaign%3Dnone_pps_copy%26_branch_match_id%3D791437124706440886%26_branch_referrer%3DH4sIAAAAAAAAA8soKSkottLXT0rMS0%252FPz0%252FRSywo0MvJzMvWN%252FIvTHHLDPdMz0wCAGUhz1klAAAA%26cur_warehouse%3DCN%26ID%3D522225
+[esp32-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2FGeekcreit-ESP32-WiFi%2Bbluetooth-Development-Board-Ultra-Low-Power-Consumption-Dual-Cores-Pins-Unsoldered-p-1214159.html
+[esp32-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F1005001929935550.html
+[esp8266-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-NodeMcu-Lua-ESP8266-ESP-12F-WIFI-Development-Board-p-985891.html
+[esp8266-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F4000160133215.html
+[wemos-d1-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-D1-Mini-V3_0_0-WIFI-Internet-Of-Things-Development-Board-Based-ESP8266-4MB-MicroPython-Nodemcu-p-1264245.html
+[wemos-d1-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F1005001621784437.html
+[dupont-jumpers-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F120pcs-20cm-Male-To-Female-Female-To-Female-Male-To-Male-Color-Breadboard-Jumper-Cable-Dupont-Wire-p-974006.html
+[photodiode-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F4Pin-Photodiode-Sensor-Controller-Module-Measure-Module-p-1416445.html
 [photodiode-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F1005001640685908.html
-[rgbled-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F50pcs-LED-RGB-Common-Cathode-4-Pin-F5-5MM-Diode-p-1016398.html%3Futm_source%3Dadwords%26utm_medium%3Dorganic%26utm_content%3D-%26utm_campaign%3Dnone_pps_copy%26_branch_match_id%3D791437124706440886%26_branch_referrer%3DH4sIAAAAAAAAA8soKSkottLXT0rMS0%252FPz0%252FRSywo0MvJzMvWT851TPYuKPVOz0wCANu%252FpdslAAAA%26cur_warehouse%3DCN
+[rgbled-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F50pcs-LED-RGB-Common-Cathode-4-Pin-F5-5MM-Diode-p-1016398.html
 [rgbled-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F4000225253691.html
