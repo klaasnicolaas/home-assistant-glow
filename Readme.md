@@ -29,7 +29,7 @@ Home Assistant Glow makes a *(not so)* smart meter without a P1 port easily read
 
 ### How do I know if my meter is supported?
 
-To make sure your meter will work with the Home Assistant Glow, you have to look for the **imp/kWh** rate (see picture). Note the value, because it will be of importance at a later stage to configure the `.yaml` file.
+To make sure your meter will work with the Home Assistant Glow, you have to look for the **imp/kWh** rate (see picture). Note the value, because it will be of importance at a later stage to configure the `home_assistant_glow.yaml` file.
 
 <p align="center">
   <img width="60%" src="static/images/pulse_rate.png">
@@ -48,9 +48,17 @@ First, fill your 🛒 or see if you already have the components below.
 - Photodiode: [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (make sure that you do not accidentally order or receive an LDR)
 - LED RGB 5mm 4 pin - kathode: [Banggood][rgbled-bg-shop] or [AliExpress][rgbled-ali-shop]
 
+### Visual schema
+
+Below you will find a visual schema of how everything is connected, depending on the type of board you use, the GPIO pins may be in a different place.
+
+<p align="center">
+  <img width="90%" src="static/images/schema.png">
+</p>
+
 ### Diagrams
 
-In the tables below you will find more information, about how to connect the various components.
+In the tables below you will find more information, about how to connect the photodiode PCB and the status LED.
 
 #### Photodiode
 
@@ -65,7 +73,7 @@ How the photodiode is connected to the ESP board of your choice.
 
 For problems with the measurements, see the [FAQ part](#faq) further down.
 
-#### LED
+#### Status LED
 
 How the status LED is connected to the ESP board of your choice. For each measured pulse, the LED will briefly flash <span style="color:red">*red*</span> and in case of no WiFi connection, the LED will continue to flash <span style="color:blue">*blue*</span>.
 
@@ -78,7 +86,7 @@ How the status LED is connected to the ESP board of your choice. For each measur
 
 ## Get started
 
-Once you are done connecting all the hardware, we'll get started with the configuration for ESPHome. In this repository you will find the file [home_assistant_glow.yaml][file], which you can copy into the `esphome` folder of your Home Assistant config. Adjust the value `pulse_rate` under **substitutions** to the value on your meter ([how do I find my imp/kWh rate?](#how-do-i-know-if-my-meter-is-supported)), by default the value is `1000` in the yaml file. Finally go through the installation wizard of ESPHome and flash the ESP32/8266.
+Once you are done connecting all the hardware, we'll get started with the configuration for ESPHome. In this repository you will find the file [home_assistant_glow.yaml][file], which you can copy into the `esphome` folder of your Home Assistant config. Adjust the value `pulse_rate` under **substitutions** to the value on your meter ([how do I find my imp/kWh rate?](#how-do-i-know-if-my-meter-is-supported)), by default the value is `1000` in the yaml file. Finally go through the installation wizard of ESPHome and flash your ESP32/8266.
 
 ## FAQ
 
