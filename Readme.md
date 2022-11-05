@@ -86,7 +86,16 @@ How the status LED is connected to the ESP board of your choice. For each measur
 
 ## Get started
 
-Once you are done connecting all the hardware, we'll get started with the configuration for ESPHome. In this repository you will find the file [home_assistant_glow.yaml][file], which you can copy into the `esphome` folder of your Home Assistant config. Adjust the value `pulse_rate` under **substitutions** to the value on your meter ([how do I find my imp/kWh rate?](#how-do-i-know-if-my-meter-is-supported)), by default the value is `1000` in the yaml file. Finally go through the installation wizard of ESPHome and flash your ESP32/8266.
+Once you are done connecting all the hardware, we'll get started with the configuration for ESPHome. In this repository you will find the file [home_assistant_glow.yaml][file], which you can copy into the `esphome` folder of your Home Assistant config.
+
+### Configuration
+
+After you go through the installation wizard of ESPHome and flash your ESP32/8266, you need to change the `pulse rate` to match with your meter ([how do I find my imp/kWh rate?](#how-do-i-know-if-my-meter-is-supported)). You can do this in 2 ways:
+
+- Open the webserver of the Glow and change the value under `Pulse rate - imp/kWh`.
+- Navigate to the device in Home Assistant and edit the number entity: `Pulse rate - imp/kWh`.
+
+The default is **1000** and you can change it with steps of 100, between 100 and 10.000 (if your pulse rate falls outside the steps or value range, open an issue).
 
 ## FAQ
 
