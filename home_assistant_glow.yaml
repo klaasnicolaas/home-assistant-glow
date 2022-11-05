@@ -3,6 +3,7 @@
 #
 # Read your electricity meter by means of the pulse LED on your 
 # meter, useful if you do not have a serial port (P1).
+# © Klaas Schoute
 #
 substitutions:
   device_name: home-assistant-glow
@@ -34,8 +35,8 @@ esp32:
 
 # WiFi credentials #
 wifi:
-  # ssid: 'CHANGEME'       # Enter your WiFi SSID here. Example: `ssid: 'your_network_name'`
-  # password: 'CHANGEME'   # Enter your wifi password here. Example: `password: 'abcde123456'`
+  # ssid: 'CHANGEME'
+  # password: 'CHANGEME'
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
@@ -106,8 +107,10 @@ status_led:
     number: ${status_led}
 
 button:
+  # Restart the ESP
   - platform: restart
     name: "Restart - Glow"
+  # Reset the total energy entity
   - platform: template
     name: "Reset - Total Energy"
     id: button_reset_total
@@ -127,9 +130,11 @@ text_sensor:
     lambda: |-
       return {"${project_version}"};
     update_interval: 6h
+  # ESPHome version
   - platform: version
     hide_timestamp: true
     name: '${friendly_name} - ESPHome Version'
+  # IP address and connected SSID
   - platform: wifi_info
     ip_address:
       name: '${friendly_name} - IP Address'
