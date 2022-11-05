@@ -12,9 +12,6 @@ substitutions:
   pulse_pin: GPIO12
   status_led: GPIO5
 
-  # imp/kWh rate ⬇ #
-  pulse_rate: '1000'
-
   # Webserver credentials ⬇ #
   web_username: 'glow'
   web_password: 'esphome'
@@ -70,6 +67,19 @@ web_server:
   auth:
     username: '${web_username}'
     password: '${web_password}'
+
+number:
+  # Select the correct pulse rate for your meter
+  - platform: template
+    id: select_pulse_rate
+    name: 'Puls rate - imp/kWh'
+    optimistic: true
+    mode: box
+    min_value: 100
+    max_value: 10000
+    step: 100
+    restore_value: yes
+    initial_value: 1000
 
 output:
   # - platform: gpio
@@ -155,7 +165,7 @@ sensor:
     filters:
       # multiply value = (60 / imp value) * 1000
       # - multiply: 60
-      - lambda: return x * ((60.0 / ${pulse_rate}) * 1000.0);
+      - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
     total:
       name: '${friendly_name} - Total Energy'
       id: sensor_total_energy
@@ -167,7 +177,7 @@ sensor:
       filters:
         # multiply value = 1 / imp value
         # - multiply: 0.001
-        - lambda: return x * (1.0 / ${pulse_rate});
+        - lambda: return x * (1.0 / id(select_pulse_rate).state);
   # Total day useage
   - platform: total_daily_energy
     name: '${friendly_name} - Daily Energy'
