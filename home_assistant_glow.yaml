@@ -3,6 +3,7 @@
 #
 # Read your electricity meter by means of the pulse LED on your 
 # meter, useful if you do not have a serial port (P1).
+# © Klaas Schoute
 #
 substitutions:
   device_name: home-assistant-glow
@@ -11,9 +12,6 @@ substitutions:
   device_description: "Measure your energy consumption with the pulse LED on your smart meter"
   pulse_pin: GPIO12
   status_led: GPIO5
-
-  # imp/kWh rate ⬇ #
-  pulse_rate: '1000'
 
   # Webserver credentials ⬇ #
   web_username: 'glow'
@@ -37,8 +35,8 @@ esp32:
 
 # WiFi credentials #
 wifi:
-  # ssid: 'CHANGEME'       # Enter your WiFi SSID here. Example: `ssid: 'your_network_name'`
-  # password: 'CHANGEME'   # Enter your wifi password here. Example: `password: 'abcde123456'`
+  # ssid: 'CHANGEME'
+  # password: 'CHANGEME'
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
@@ -71,6 +69,19 @@ web_server:
     username: '${web_username}'
     password: '${web_password}'
 
+number:
+  # Select the correct pulse rate for your meter
+  - platform: template
+    id: select_pulse_rate
+    name: 'Puls rate - imp/kWh'
+    optimistic: true
+    mode: box
+    min_value: 100
+    max_value: 10000
+    step: 100
+    restore_value: yes
+    initial_value: 1000
+
 output:
   # - platform: gpio
   #   pin: GPIO5
@@ -96,8 +107,10 @@ status_led:
     number: ${status_led}
 
 button:
+  # Restart the ESP
   - platform: restart
     name: "Restart - Glow"
+  # Reset the total energy entity
   - platform: template
     name: "Reset - Total Energy"
     id: button_reset_total
@@ -117,9 +130,11 @@ text_sensor:
     lambda: |-
       return {"${project_version}"};
     update_interval: 6h
+  # ESPHome version
   - platform: version
     hide_timestamp: true
     name: '${friendly_name} - ESPHome Version'
+  # IP address and connected SSID
   - platform: wifi_info
     ip_address:
       name: '${friendly_name} - IP Address'
@@ -155,7 +170,7 @@ sensor:
     filters:
       # multiply value = (60 / imp value) * 1000
       # - multiply: 60
-      - lambda: return x * ((60.0 / ${pulse_rate}) * 1000.0);
+      - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
     total:
       name: '${friendly_name} - Total Energy'
       id: sensor_total_energy
@@ -167,7 +182,7 @@ sensor:
       filters:
         # multiply value = 1 / imp value
         # - multiply: 0.001
-        - lambda: return x * (1.0 / ${pulse_rate});
+        - lambda: return x * (1.0 / id(select_pulse_rate).state);
   # Total day useage
   - platform: total_daily_energy
     name: '${friendly_name} - Daily Energy'
