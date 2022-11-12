@@ -84,6 +84,10 @@ How the status LED is connected to the ESP board of your choice. For each measur
 | BLUE   | D5 (GPIO5) | D1 (GPIO5)        |
 | GND    | GND        | GND               |
 
+### 3D printed case
+
+You can use the [3D printed case](/case) to neatly hide everything, but it is specifically made for the ESP32S. If you use another board, you could adjust the design with the `.step` file. If you've made some changes, I'd appreciate it if you add the new case design to the repository for everyone to benefit 😉
+
 ## Get started
 
 Once you are done connecting all the hardware, we'll get started with the configuration for ESPHome. In this repository you will find the file [home_assistant_glow.yaml][file], which you can copy into the `esphome` folder of your Home Assistant config.
