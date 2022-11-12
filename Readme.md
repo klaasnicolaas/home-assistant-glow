@@ -67,7 +67,7 @@ How the photodiode is connected to the ESP board of your choice.
 | PHOTODIODE | ESP32        | Wemos D1 / ESP8266 |
 |------------|--------------|--------------------|
 | A0         | NOT USING    | NOT USING          |
-| DO         | D12 (GPIO12) | D6 (GPIO12)        |
+| DO         | D13 (GPIO13) | D7 (GPIO13)        |
 | VCC        | 3V3          | 3V3                |
 | GND        | GND          | GND                |
 
