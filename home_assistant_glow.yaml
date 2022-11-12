@@ -12,6 +12,8 @@ substitutions:
   device_description: "Measure your energy consumption with the pulse LED on your smart meter"
   pulse_pin: GPIO12
   status_led: GPIO5
+  led_pin_red: GPIO2
+  led_pin_green: GPIO4
 
   # Webserver credentials ⬇ #
   web_username: 'glow'
@@ -87,10 +89,10 @@ output:
   #   pin: GPIO5
   #   id: output_blue
   - platform: gpio
-    pin: GPIO2
+    pin: ${led_pin_red}
     id: output_red
   - platform: gpio
-    pin: GPIO4
+    pin: ${led_pin_green}
     id: output_green
 
 light:
