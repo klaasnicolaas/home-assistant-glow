@@ -129,6 +129,17 @@ time:
     id: sntp_time
 ```
 
+### Error 4 / Out of memory
+
+Issue: [#240][issue_240]
+
+With this error there is a chance that the instance your ESPHome is running on may be out of memory (possibly on a Raspberry Pi with less RAM), you can solve this by limiting the number of processes at compiling time using [compile_process_limit][compile_process_limit].
+
+```yaml
+esphome:
+  compile_process_limit: 1
+```
+
 ## Contributing
 
 This is an active open-source project. We are always open to people who want to
@@ -174,7 +185,9 @@ SOFTWARE.
 [energy]: https://home-assistant.io/docs/energy/
 [issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
 [issue_140]: https://github.com/klaasnicolaas/home-assistant-glow/issues/140
+[issue_240]: https://github.com/klaasnicolaas/home-assistant-glow/issues/240
 [time-platform]: https://esphome.io/components/time.html#home-assistant-time-source
+[compile_process_limit]: https://esphome.io/components/esphome.html?highlight=compile_process_limit
 
 <!-- Shields -->
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
