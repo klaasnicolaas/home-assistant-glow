@@ -1,0 +1,256 @@
+---
+# Home Assistant Glow
+#
+# Read your electricity meter by means of the pulse LED on your 
+# meter, useful if you do not have a serial port (P1).
+# © Klaas Schoute
+#
+substitutions:
+  device_name: glow
+  friendly_name: Glow
+  project_version: "3.2.0"
+  device_description: "Measure your energy consumption with the pulse LED on your smart meter"
+
+  # Define the GPIO pins
+  pulse_pin: GPIO5
+  status_led: GPIO2
+
+dashboard_import:
+  package_import_url: github://klaasnicolaas/home-assistant-glow/glow_pcb_8266.yaml
+
+esphome:
+  name: '${device_name}'
+  comment: '${device_description}'
+  project:
+    name: "klaasnicolaas.home-assistant-glow"
+    version: "${project_version}"
+  name_add_mac_suffix: true
+  on_boot:
+    priority: -10
+    then:
+    - wait_until:
+        api.connected:
+    - logger.log: API is connected!
+    - repeat: 
+        count: 3
+        then:
+        - light.turn_on:
+            id: activity_led
+            brightness: 100%
+            red: 0%
+            green: 100%
+            blue: 0%
+            flash_length: 250ms 
+        - delay: 500 ms   
+
+# Choose the right Platform
+# esp32: https://esphome.io/components/esp32.html
+# esp8266: https://esphome.io/components/esp8266.html
+esp8266:
+  board: d1_mini
+
+# WiFi credentials #
+wifi:
+  networks:
+  # ssid: 'CHANGEME'
+  # password: 'CHANGEME'
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap: {}
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable improv over serial
+improv_serial:
+
+# Enable Home Assistant API
+api:
+  services:
+    - service: reset_total_energy
+      then:
+        - button.press:
+            id: button_reset_total
+
+ota:
+  safe_mode: true
+  reboot_timeout: 10min
+  num_attempts: 5
+
+web_server:
+  port: 80
+  
+number:
+  # Select the correct pulse rate for your meter
+  - platform: template
+    id: select_pulse_rate
+    name: 'Puls rate - imp/kWh'
+    optimistic: true
+    mode: box
+    min_value: 100
+    max_value: 10000
+    step: 100
+    restore_value: yes
+    initial_value: 1000
+
+light:
+- platform: neopixelbus
+  type: GRB
+  variant: WS2812
+  pin: D8
+  num_leds: 1
+  name: "${friendly_name} LED"
+  restore_mode: ALWAYS_OFF
+  default_transition_length: 10ms
+  id: activity_led
+
+# Status LED for connection 
+status_led:
+  pin:
+    # Blue LED
+    number: ${status_led}
+    inverted: true
+
+button:
+  # Restart the ESP
+  - platform: restart
+    name: "Restart - Glow"
+    id: glow_restart
+  - platform: factory_reset
+    name: Restart with Factory Default Settings
+    id: glow_factory_reset
+  # Reset the total energy entity
+  - platform: template
+    name: "Reset - Total Energy"
+    id: button_reset_total
+    on_press:
+      - pulse_meter.set_total_pulses:
+          id: sensor_energy_pulse_meter
+          value: 0
+
+# Sensors for ESP version and WIFI information
+text_sensor:
+  # Installed version
+  - platform: template
+    name: "Glow - Installed version"
+    id: glow_version
+    icon: "mdi:label-outline"
+    entity_category: diagnostic
+    lambda: |-
+      return {"${project_version}"};
+    update_interval: 6h
+  # ESPHome version
+  - platform: version
+    hide_timestamp: true
+    name: '${friendly_name} - ESPHome Version'
+  # IP address and connected SSID
+  - platform: wifi_info
+    ip_address:
+      name: '${friendly_name} - IP Address'
+      icon: mdi:wifi
+    ssid:
+      name: '${friendly_name} - Connected SSID'
+      icon: mdi:wifi-strength-2
+
+sensor:
+  # WiFi signal
+  - platform: wifi_signal
+    name: "${friendly_name} - WiFi Signal"
+    update_interval: 120s
+
+  # Pulse meter
+  - platform: pulse_meter
+    name: '${friendly_name} - Power Consumption'
+    id: sensor_energy_pulse_meter
+    unit_of_measurement: 'W'
+    state_class: measurement
+    device_class: power
+    icon: mdi:flash-outline
+    accuracy_decimals: 0
+    pin: ${pulse_pin}
+    # internal_filter: 100ms
+    on_value:
+      then:
+        - light.turn_on:
+            id: 
+        - delay: 0.2s
+        - light.turn_off:
+            id: activity_led
+    filters:
+      # multiply value = (60 / imp value) * 1000
+      # - multiply: 60
+      - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
+    total:
+      name: '${friendly_name} - Total Energy'
+      id: sensor_total_energy
+      unit_of_measurement: 'kWh'
+      icon: mdi:circle-slice-3
+      state_class: total_increasing
+      device_class: energy
+      accuracy_decimals: 3
+      filters:
+        # multiply value = 1 / imp value
+        # - multiply: 0.001
+        - lambda: return x * (1.0 / id(select_pulse_rate).state);
+  # Total day useage
+  - platform: total_daily_energy
+    name: '${friendly_name} - Daily Energy'
+    id: sensor_total_daily_energy
+    power_id: sensor_energy_pulse_meter
+    unit_of_measurement: 'kWh'
+    icon: mdi:circle-slice-3
+    state_class: total_increasing
+    device_class: energy
+    accuracy_decimals: 3
+    filters:
+      # Multiplication factor from W to kW is 0.001
+      - multiply: 0.001
+
+# Enable time component to reset energy at midnight
+# https://esphome.io/components/time.html#home-assistant-time-source
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+binary_sensor:
+  - platform: gpio
+    name: button
+    id: button_
+    pin: 
+      number: GPIO4
+      inverted: true
+    on_click:
+    - min_length: 5 ms
+      max_length: 1s
+      then:
+      - button.press: glow_restart
+    - min_length: 3s
+      max_length: 4s
+      then:
+      - repeat: 
+          count: 3
+          then:
+          - light.turn_on:
+              id: activity_led
+              brightness: 100%
+              red: 100%
+              green: 50%
+              blue: 0%
+              flash_length: 250ms 
+          - delay: 500 ms 
+      - button.press: glow_factory_reset
+    on_state:
+      - while:
+          condition:
+            binary_sensor.is_on: button_
+          then:
+            - light.turn_on:
+                id: activity_led
+                brightness: 100%
+                red: 100%
+                green: 50%
+                blue: 0%
+                flash_length: 750ms  
+            - delay: 1500 ms 
+
