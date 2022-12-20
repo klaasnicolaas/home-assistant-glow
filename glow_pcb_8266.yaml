@@ -173,10 +173,12 @@ sensor:
     on_value:
       then:
         - light.turn_on:
-            id: 
-        - delay: 0.2s
-        - light.turn_off:
             id: activity_led
+            brightness: 100%
+            red: 100%
+            green: 100%
+            blue: 100%
+            flash_length: 250ms 
     filters:
       # multiply value = (60 / imp value) * 1000
       # - multiply: 60
