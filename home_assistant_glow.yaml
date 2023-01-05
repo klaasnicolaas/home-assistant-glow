@@ -202,7 +202,7 @@ sensor:
       - multiply: 0.001
 
 # Enable time component to reset energy at midnight
-# https://esphome.io/components/time.html#home-assistant-time-source
+# https://esphome.io/components/time/homeassistant.html
 time:
   - platform: homeassistant
     id: homeassistant_time
