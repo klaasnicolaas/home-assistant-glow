@@ -3,8 +3,9 @@ name: Sync labels
 
 on:
   push:
+    # The default branch
     branches:
-      - main
+      - dev
     paths:
       - .github/labels.yml
   workflow_dispatch:

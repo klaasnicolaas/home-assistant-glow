@@ -22,7 +22,7 @@ substitutions:
   web_password: 'esphome'
 
 dashboard_import:
-  package_import_url: github://klaasnicolaas/home-assistant-glow/home_assistant_glow.yaml
+  package_import_url: github://klaasnicolaas/home-assistant-glow/home_assistant_glow.yaml@main
 
 esphome:
   name: '${device_name}'
