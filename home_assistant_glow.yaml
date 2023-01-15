@@ -86,6 +86,17 @@ number:
     restore_value: yes
     initial_value: 1000
 
+  # Reset total energy to given value
+  - platform: template
+    id: select_reset_total
+    name: "Reset Value - Total Energy kWh"
+    optimistic: true
+    mode: box
+    min_value: 0
+    max_value: 1000000
+    step: 1
+    initial_value: 0
+
 output:
   # - platform: gpio
   #   pin: GPIO5
@@ -121,7 +132,7 @@ button:
     on_press:
       - pulse_meter.set_total_pulses:
           id: sensor_energy_pulse_meter
-          value: 0
+          value: !lambda "return id(select_reset_total).state * id(select_pulse_rate).state;"
 
 # Sensors for ESP version and WIFI information
 text_sensor:
