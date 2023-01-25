@@ -164,7 +164,7 @@ sensor:
     accuracy_decimals: 0
     pin: ${pulse_pin}
     # internal_filter: 100ms
-    on_value:
+    on_raw_value:
       then:
         - light.turn_on:
             id: led_red
