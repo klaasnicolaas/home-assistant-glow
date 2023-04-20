@@ -197,6 +197,8 @@ sensor:
     state_class: total_increasing
     device_class: energy
     accuracy_decimals: 3
+  # Uncomment the line below if your house has solar panels and pulse meter is measuring 0 consumption for extended periods
+  # method: left
     filters:
       # Multiplication factor from W to kW is 0.001
       - multiply: 0.001
