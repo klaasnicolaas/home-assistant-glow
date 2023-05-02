@@ -177,7 +177,7 @@ sensor:
       - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
 
       # Update the sensor with an average every 10th second. See
-      # https://github.com/klaasnicolaas/home-assistant-glowReadme.md#reduce-the-amount-of-data-the-sensors-produce
+      # https://github.com/klaasnicolaas/home-assistant-glow/#reduce-the-amount-of-data-the-sensors-produce
       # for more information.
       #
       #- throttle_average: 10s
@@ -196,8 +196,8 @@ sensor:
         # - multiply: 0.001
         - lambda: return x * (1.0 / id(select_pulse_rate).state);
 
-        # Update the sensor once per 0.1 kWh consumed, or every 5th minute,
-        # whichever happens sooner. See https://github.com/klaasnicolaas/home-assistant-glowReadme.md#reduce-the-amount-of-data-the-sensors-produce
+        # Update the sensor once per 0.1 kWh consumed, or every 5th minute, whichever happens sooner.
+        # See https://github.com/klaasnicolaas/home-assistant-glow/#reduce-the-amount-of-data-the-sensors-produce
         # for more information.
         #- delta: 0.01
         #- heartbeat: 300s
