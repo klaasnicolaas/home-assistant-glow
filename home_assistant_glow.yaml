@@ -90,6 +90,7 @@ number:
   - platform: template
     id: select_reset_total
     name: "Reset Value - Total Energy kWh"
+    entity_category: config
     optimistic: true
     mode: box
     min_value: 0
