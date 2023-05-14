@@ -179,7 +179,6 @@ sensor:
       # Update the sensor with an average every 10th second. See
       # https://github.com/klaasnicolaas/home-assistant-glow/#reduce-the-amount-of-data-the-sensors-produce
       # for more information.
-      #
       #- throttle_average: 10s
       #- filter_out: NaN
 
