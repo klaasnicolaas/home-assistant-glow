@@ -1,7 +1,7 @@
 ---
 # Home Assistant Glow
 #
-# Read your electricity meter by means of the pulse LED on your 
+# Read your electricity meter by means of the pulse LED on your
 # meter, useful if you do not have a serial port (P1).
 # © Klaas Schoute
 #
@@ -176,17 +176,24 @@ sensor:
     accuracy_decimals: 0
     pin: ${pulse_pin}
     # internal_filter: 100ms
-    on_value:
+    on_raw_value:
       then:
         - light.turn_on:
             id: led_red
-        - delay: 0.5s
+        - delay: 0.2s
         - light.turn_off:
             id: led_red
     filters:
       # multiply value = (60 / imp value) * 1000
       # - multiply: 60
       - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
+
+      # Update the sensor with an average every 10th second. See
+      # https://github.com/klaasnicolaas/home-assistant-glow/#reduce-the-amount-of-data-the-sensors-produce
+      # for more information.
+      #- throttle_average: 10s
+      #- filter_out: NaN
+
     total:
       name: '${friendly_name} - Total Energy'
       id: sensor_total_energy
@@ -199,7 +206,14 @@ sensor:
         # multiply value = 1 / imp value
         # - multiply: 0.001
         - lambda: return x * (1.0 / id(select_pulse_rate).state);
-  # Total day useage
+
+        # Update the sensor once per 0.1 kWh consumed, or every 5th minute, whichever happens sooner.
+        # See https://github.com/klaasnicolaas/home-assistant-glow/#reduce-the-amount-of-data-the-sensors-produce
+        # for more information.
+        #- delta: 0.01
+        #- heartbeat: 300s
+
+  # Total day usage
   - platform: total_daily_energy
     name: '${friendly_name} - Daily Energy'
     id: sensor_total_daily_energy
