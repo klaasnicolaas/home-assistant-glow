@@ -1,59 +1,35 @@
----
-# Home Assistant Glow
-#
-# Read your electricity meter by means of the pulse LED on your 
-# meter, useful if you do not have a serial port (P1).
-#
 substitutions:
-  device_name: home-assistant-glow
+  device_name: rg-ha-glow
   friendly_name: House
   project_version: "3.1.0"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter"
   pulse_pin: GPIO12
   status_led: GPIO5
 
-  # imp/kWh rate ⬇ #
+ # imp/kWh rate ⬇ #
   pulse_rate: '1000'
 
-  # Webserver credentials ⬇ #
+# Webserver credentials ⬇ #
   web_username: 'glow'
   web_password: 'esphome'
 
-dashboard_import:
-  package_import_url: github://ramblinggeekuk/home-assistant-glow/home_assistant_glow.yaml
-
 esphome:
-  name: '${device_name}'
-  comment: '${device_description}'
-  project:
-    name: "klaasnicolaas.home-assistant-glow"
-    version: "${project_version}"
+  name: "${device_name}"
+  friendly_name: rg-ha-glow
+  comment: "${device_description}"
 
-# Choose the right Platform
-# esp32: https://esphome.io/components/esp32.html
-# esp8266: https://esphome.io/components/esp8266.html
 esp32:
-  board: nodemcu-32s
-
-# WiFi credentials #
-wifi:
-  # ssid: 'CHANGEME'       # Enter your WiFi SSID here. Example: `ssid: 'your_network_name'`
-  # password: 'CHANGEME'   # Enter your wifi password here. Example: `password: 'abcde123456'`
-
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: '${device_name}'
-
-captive_portal:
+  board: esp32dev
+  framework:
+    type: arduino
 
 # Enable logging
 logger:
 
-# Enable improv over serial
-improv_serial:
-
 # Enable Home Assistant API
 api:
+  encryption:
+    key: "CHANGEME"
   services:
     - service: reset_total_energy
       then:
@@ -61,9 +37,21 @@ api:
             id: button_reset_total
 
 ota:
-  safe_mode: true
-  reboot_timeout: 10min
-  num_attempts: 5
+  password: "CHANGEME"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Rg-Ha-Glow Fallback Hotspot"
+    password: "NLlSX2NUS9hX"
+
+captive_portal:
+
+# Enable improv over serial
+improv_serial:
 
 web_server:
   port: 80
