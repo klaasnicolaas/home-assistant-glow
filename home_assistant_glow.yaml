@@ -1,7 +1,7 @@
 substitutions:
-  device_name: rg-ha-glow
+  device_name: home-assistant-glow
   friendly_name: House
-  project_version: "3.1.0"
+  project_version: "3.1.1"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter"
   pulse_pin: GPIO12
   status_led: GPIO5
@@ -10,13 +10,17 @@ substitutions:
   pulse_rate: '1000'
 
 # Webserver credentials ⬇ #
-  web_username: 'glow'
-  web_password: 'esphome'
+  web_username: !secret web_username
+  web_password: !secret web_password
 
 esphome:
   name: "${device_name}"
-  friendly_name: rg-ha-glow
+  friendly_name: "${friendly_name}"
   comment: "${device_description}"
+
+  project:
+    name: "${friendly_name}"
+    version: "${project_version}"
 
 esp32:
   board: esp32dev
@@ -28,16 +32,12 @@ logger:
 
 # Enable Home Assistant API
 api:
-  encryption:
-    key: "CHANGEME"
-  services:
-    - service: reset_total_energy
-      then:
-        - button.press:
-            id: button_reset_total
 
 ota:
-  password: "CHANGEME"
+
+dashboard_import:
+  package_import_url: https://github.com/RamblingGeekUK/home-assistant-glow.yaml@main
+  import_full_config: false # or true
 
 wifi:
   ssid: !secret wifi_ssid
@@ -45,8 +45,7 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Rg-Ha-Glow Fallback Hotspot"
-    password: "NLlSX2NUS9hX"
+    ssid: "${device_name}"
 
 captive_portal:
 
