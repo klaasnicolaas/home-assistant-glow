@@ -19,7 +19,7 @@ esphome:
   comment: "${device_description}"
 
   project:
-    name: "${friendly_name}"
+    name: home-assistant-glow.klaasnicolaas
     version: "${project_version}"
 
 esp32:
@@ -35,9 +35,9 @@ api:
 
 ota:
 
+# This should point to the public location of this yaml file.
 dashboard_import:
-  package_import_url: https://github.com/RamblingGeekUK/home-assistant-glow.yaml@main
-  import_full_config: false # or true
+  package_import_url: github://RamblingGeekUK/home-assistant-glow/home-assistant-glow.yaml@main
 
 wifi:
   ssid: !secret wifi_ssid
