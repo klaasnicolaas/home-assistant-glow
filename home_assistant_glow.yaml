@@ -37,7 +37,7 @@ ota:
 
 # This should point to the public location of this yaml file.
 dashboard_import:
-  package_import_url: github://RamblingGeekUK/home-assistant-glow/home-assistant-glow.yaml@main
+  package_import_url: github://klaasnicolaas/home-assistant-glow/home_assistant_glow.yaml@main
 
 wifi:
   ssid: !secret wifi_ssid
