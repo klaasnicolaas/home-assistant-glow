@@ -140,6 +140,29 @@ esphome:
   compile_process_limit: 1
 ```
 
+### Abrupt increase in consumption when using Silar
+
+Issue: [#274][issue_274]
+
+If you have a solar system, and the consumption remains zero for sometime and then gets a value, you may see an abrupt consumption that doesn't match the actual consumption. If that is the case,
+try using the left calculation method for the daily power sensor instead of the default
+
+platform: total_daily_energy
+name: '${friendly_name} - Daily Energy'
+id: sensor_total_daily_energy
+power_id: sensor_energy_pulse_meter
+unit_of_measurement: 'kWh'
+icon: mdi:circle-slice-3
+state_class: total_increasing
+device_class: energy
+accuracy_decimals: 3
+**method: left**
+
+
+```yaml
+esphome:
+  compile_process_limit: 1
+
 ## Contributing
 
 This is an active open-source project. We are always open to people who want to
