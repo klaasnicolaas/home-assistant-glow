@@ -197,7 +197,7 @@ sensor:
         - lambda: return x * (1.0 / id(select_pulse_rate).state);
   # Total day useage
   - platform: total_daily_energy
-    name: '${friendly_name} - Daily Energy'
+    name: '${friendly_name} Daily Energy'
     id: sensor_total_daily_energy
     power_id: sensor_energy_pulse_meter
     unit_of_measurement: 'kWh'
