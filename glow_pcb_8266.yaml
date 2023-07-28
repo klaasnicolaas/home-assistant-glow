@@ -161,7 +161,7 @@ sensor:
 
   # Pulse meter
   - platform: pulse_meter
-    name: '${friendly_name} - Power Consumption'
+    name: '${friendly_name} Power Consumption'
     id: sensor_energy_pulse_meter
     unit_of_measurement: 'W'
     state_class: measurement
