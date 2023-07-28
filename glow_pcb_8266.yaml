@@ -156,7 +156,7 @@ text_sensor:
 sensor:
   # WiFi signal
   - platform: wifi_signal
-    name: "${friendly_name} - WiFi Signal"
+    name: "${friendly_name} WiFi Signal"
     update_interval: 120s
 
   # Pulse meter
