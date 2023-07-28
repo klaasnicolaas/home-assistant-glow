@@ -147,7 +147,7 @@ text_sensor:
   # IP address and connected SSID
   - platform: wifi_info
     ip_address:
-      name: '${friendly_name} - IP Address'
+      name: '${friendly_name} IP Address'
       icon: mdi:wifi
     ssid:
       name: '${friendly_name} - Connected SSID'
