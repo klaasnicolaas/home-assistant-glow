@@ -143,7 +143,7 @@ text_sensor:
   # ESPHome version
   - platform: version
     hide_timestamp: true
-    name: '${friendly_name} - ESPHome Version'
+    name: '${friendly_name} ESPHome Version'
   # IP address and connected SSID
   - platform: wifi_info
     ip_address:
