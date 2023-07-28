@@ -22,7 +22,7 @@ esphome:
   name: '${device_name}'
   comment: '${device_description}'
   project:
-    name: "klaasnicolaas.home-assistant-glow"
+    name: "klaasnicolaas.hardware-glow-v1"
     version: "${project_version}"
   name_add_mac_suffix: true
   on_boot:
