@@ -184,7 +184,7 @@ sensor:
       # - multiply: 60
       - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
     total:
-      name: '${friendly_name} - Total Energy'
+      name: '${friendly_name} Total Energy'
       id: sensor_total_energy
       unit_of_measurement: 'kWh'
       icon: mdi:circle-slice-3
