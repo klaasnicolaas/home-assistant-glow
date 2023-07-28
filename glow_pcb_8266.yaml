@@ -133,7 +133,7 @@ button:
 text_sensor:
   # Installed version
   - platform: template
-    name: "Glow - Installed version"
+    name: "${friendly_name} Installed version"
     id: glow_version
     icon: "mdi:label-outline"
     entity_category: diagnostic
