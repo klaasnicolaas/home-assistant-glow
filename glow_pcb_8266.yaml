@@ -8,7 +8,7 @@
 substitutions:
   device_name: glow
   friendly_name: Glow
-  project_version: "3.2.0"
+  project_version: "4.0.0"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter"
 
   # Define the GPIO pins
@@ -255,4 +255,3 @@ binary_sensor:
                 blue: 0%
                 flash_length: 750ms  
             - delay: 1500 ms 
-
