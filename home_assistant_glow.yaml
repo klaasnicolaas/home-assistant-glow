@@ -186,6 +186,8 @@ sensor:
     filters:
       # multiply value = (60 / imp value) * 1000
       # - multiply: 60
+      - throttle_average: 10s
+      - filter_out: nan
       - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
 
       # Update the sensor with an average every 10th second. See
@@ -205,6 +207,7 @@ sensor:
       filters:
         # multiply value = 1 / imp value
         # - multiply: 0.001
+        - heartbeat: 60s
         - lambda: return x * (1.0 / id(select_pulse_rate).state);
 
         # Update the sensor once per 0.1 kWh consumed, or every 5th minute, whichever happens sooner.
@@ -224,6 +227,7 @@ sensor:
     device_class: energy
     accuracy_decimals: 3
     filters:
+      - heartbeat: 60s
       # Multiplication factor from W to kW is 0.001
       - multiply: 0.001
 
