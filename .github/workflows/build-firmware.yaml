@@ -1,6 +1,6 @@
 ---
 # Build the ESPHome firmwares for the Home Assistant Glow project.
-name: Build firmware
+name: Build & Deploy firmware
 
 on:
   push:
@@ -152,7 +152,7 @@ jobs:
         working-directory: static
 
       - name: Copy firmware files to build assets
-        run: cp -R output/* build/assets
+        run: cp -R output/* static/build/assets
       - name: ⬆️ Upload pages artifacts
         uses: actions/upload-pages-artifact@v3
         with:
