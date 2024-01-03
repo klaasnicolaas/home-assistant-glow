@@ -151,12 +151,15 @@ jobs:
         run: npm run build
         working-directory: static
 
+      - name: Show folder structure
+        run: ls -n
+
       - name: Copy firmware files to build assets
         run: cp -R output/* static/build/assets
       - name: ⬆️ Upload pages artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: static/build
 
   deploy:
     name: Deploy to GitHub Pages
