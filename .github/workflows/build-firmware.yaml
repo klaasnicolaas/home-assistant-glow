@@ -127,8 +127,8 @@ jobs:
           name: ${{ matrix.project }}
           path: manifest.json
 
-  consolidate:
-    name: Consolidate firmwares
+  build-docs:
+    name: Build documentation website
     if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: combined-manifests
@@ -139,16 +139,20 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: output
-      - name: Copy static files
-        run: cp -R static/* output/
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
       - name: Install Docusaurus dependencies
         run: npm install --frozen-lockfile --non-interactive
+        working-directory: static
       - name: Build Docusaurus
         run: npm run build
+        working-directory: static
+
+      - name: Copy static files
+        run: cp -R static/* output/
       - name: ⬆️ Upload pages artifacts
         uses: actions/upload-pages-artifact@v3
         with:
@@ -158,7 +162,7 @@ jobs:
     name: Deploy to GitHub Pages
     if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: consolidate
+    needs: build-docs
     permissions:
       pages: write
       id-token: write
