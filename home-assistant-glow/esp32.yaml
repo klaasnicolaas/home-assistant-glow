@@ -31,14 +31,9 @@ esp32:
   board: nodemcu-32s
 
 packages:
-  remote_package:
-    url: https://github.com/klaasnicolaas/home-assistant-glow
-    ref: main
-    files:
-      - components/basis.yaml
-      - components/pulse_meter.yaml
-      - components/status_led.yaml
-    refresh: 0d
+  basis: !include ../components/basis.yaml
+  status_led: !include ../components/status_led.yaml
+  pulse_meter: !include ../components/pulse_meter.yaml
 
 # Enable logging
 logger:

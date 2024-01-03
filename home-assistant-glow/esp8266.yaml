@@ -31,13 +31,9 @@ esp8266:
   board: nodemcuv2
 
 packages:
-  remote_package:
-    url: https://github.com/klaasnicolaas/home-assistant-glow
-    ref: main
-    files:
-      - components/pulse_meter.yaml
-      - components/status_led.yaml
-    refresh: 0d
+  basis: !include ../components/basis.yaml
+  status_led: !include ../components/status_led.yaml
+  pulse_meter: !include ../components/pulse_meter.yaml
 
 # Enable logging
 logger:
