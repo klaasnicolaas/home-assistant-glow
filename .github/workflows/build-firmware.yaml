@@ -141,8 +141,8 @@ jobs:
           path: output
       - name: Copy static files
         run: cp -R static/* output/
-      - name: ⬆️ Upload output artifacts
-        uses: actions/upload-artifact@v3
+      - name: ⬆️ Upload pages artifacts
+        uses: actions/upload-pages-artifact@v3
         with:
           path: output
 
@@ -161,5 +161,5 @@ jobs:
       - name: Setup Github Pages
         uses: actions/configure-pages@v4
       - name: 🚀 Deploy to Github Pages
-        uses: actions/deploy-pages@v3.0.1
+        uses: actions/deploy-pages@v4
         id: deployment
