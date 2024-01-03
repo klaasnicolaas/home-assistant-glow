@@ -14,14 +14,14 @@
 During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in homes and how to collect all energy data and display it on a dashboard. From core release **2021.8** you can now also get started with the [energy dashboard][energy] in Home Assistant!
 
 <p align="center">
-  <img width="80%" src="static/images/home-assistant-glow.jpg">
+  <img width="80%" src="assets/images/home-assistant-glow.jpg">
 </p>
 
 <details>
   <summary>CLICK HERE! To see the Home Assistant Glow in action.</summary>
 
   <p align="center">
-    <img src="static/images/glow_sensor_testing.gif" alt="Glow testing" width="40%"/><img src="static/images/glow_in_action.gif" alt="Glow in action" width="40%"/>
+    <img src="assets/images/glow_sensor_testing.gif" alt="Glow testing" width="40%"/><img src="assets/images/glow_in_action.gif" alt="Glow in action" width="40%"/>
   </p>
 </details>
 
@@ -32,7 +32,7 @@ Home Assistant Glow makes a *(not so)* smart meter without a P1 port easily read
 To make sure your meter will work with the Home Assistant Glow, you have to look for the **imp/kWh** rate (see picture). Note the value, because it will be of importance at a later stage to configure the `home_assistant_glow.yaml` file.
 
 <p align="center">
-  <img width="60%" src="static/images/pulse_rate.png">
+  <img width="60%" src="assets/images/pulse_rate.png">
 </p>
 
 ## Hardware
@@ -53,7 +53,7 @@ First, fill your 🛒 or see if you already have the components below.
 Below you will find a visual schema of how everything is connected, depending on the type of board you use, the GPIO pins may be in a different place.
 
 <p align="center">
-  <img width="90%" src="static/images/schema.png">
+  <img width="90%" src="assets/images/schema.png">
 </p>
 
 ### Diagrams
@@ -112,7 +112,7 @@ Issue: [#34][issue_34]
 A number of users have reported receiving the recommended diode board from various sources, only to find the diode has been soldered to the board the wrong way round. This can cause that your pulse LED is not measured regardless of the sensitivity you set for the diode.
 
 <p align="center">
-  <img src="static/images/correct_board.png">
+  <img src="assets/images/correct_board.png">
 </p>
 
 The large triangular part of the diode, should be soldered to the positive side of the board not the negative. If yours is orientated as above, you should desolder the photodiode invert it and resolder so the larger triangular part of the diode is connected to positive.
