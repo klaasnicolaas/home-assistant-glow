@@ -1,0 +1,165 @@
+---
+# Build the ESPHome firmwares for the Home Assistant Glow project.
+name: Build firmware
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  pull_request:
+  # release:
+  #   types:
+  #     - published
+  schedule:
+    - cron: "0 5 * * 1"
+
+concurrency:
+  # yamllint disable-line rule:line-length
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  FIRMWARES: home-assistant-glow
+
+jobs:
+  prepare:
+    name: Prepare matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.prepare-matrix.outputs.matrix }}
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v4
+      - name: Get changed files
+        id: changes
+        uses: masesgroup/retrieve-changed-files@v3
+        if: github.event_name == 'pull_request'
+      - name: Prepare matrix
+        id: prepare-matrix
+        run: |-
+          # Set variables
+          matrix=""
+          fullRun=$(! [[ "${{ github.event_name }}" != "pull_request" || "${{ steps.changes.outputs.modified }}" == *".github/workflows/build-firmware.yaml"* ]]; echo $?)
+
+          # Iterate through firmwares and devices
+          for firmware in $FIRMWARES; do
+            for device in $firmware/*.yaml; do
+              # If pull_request event type and changed files do not contain the device, skip it
+              if [[ $fullRun -eq 0 && "${{ steps.changes.outputs.added_modified }}" != *"${device}"* ]]; then
+                continue
+              fi
+
+              # Extract device name from file path
+              device=${device##*/}
+              device=${device%.yaml}
+
+              # Set default version
+              version="latest"
+
+              # Build matrix entry
+              matrix="$matrix{\"firmware\":\"$firmware\",\"device\":\"$device\", \"version\":\"$version\"},"
+            done
+          done
+
+          # Remove trailing comma and format matrix
+          matrix=${matrix%?}
+          matrix="{\"include\":[$matrix]}"
+
+          # Output matrix to a file
+          echo matrix=$matrix >> $GITHUB_OUTPUT
+
+  build:
+    name: ${{ matrix.firmware }} / ${{ matrix.device }}
+    runs-on: ubuntu-latest
+    needs: prepare
+    strategy:
+      max-parallel: 5
+      fail-fast: false
+      matrix: ${{fromJson(needs.prepare.outputs.matrix)}}
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v4
+      - name: 🔨 Build firmware
+        uses: esphome/build-action@v1.8.0
+        id: esphome-build
+        with:
+          yaml_file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
+          version: ${{ matrix.version || 'latest' }}
+      - name: Move generated files to output
+        run: |
+          mkdir -p output/${{ matrix.device }}
+          mv ${{ steps.esphome-build.outputs.name }}/* output/${{ matrix.device }}/
+          echo ${{ steps.esphome-build.outputs.version }} > output/${{ matrix.device }}/version
+      - name: Alter manifest path
+        run: |
+          sed -i 's/${{ steps.esphome-build.outputs.name }}\//\/${{ matrix.firmware }}\/${{ matrix.device }}\//g' output/${{ matrix.device }}/manifest.json
+      - name: ⬆️ Upload firmware artifact
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: ${{ matrix.firmware}}
+          path: output
+
+  combined-manifests:
+    name: Combine ${{ matrix.project }} manifests
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: home-assistant-glow
+            name: Home Assistant Glow
+    steps:
+      - name: ⤵️ Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ matrix.project }}
+          path: files
+      - name: Generate manifest.json
+        run: |
+          version=$(cat files/*/version | sort -V | tail -n 1)
+          jq -s --arg version "$version" '{"name": "${{ matrix.name }}", "version": $version, "home_assistant_domain": "esphome", "builds":.}' files/*/manifest.json > manifest.json
+      - name: ⬆️ Upload manifest.json
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.project }}
+          path: manifest.json
+
+  consolidate:
+    name: Consolidate firmwares
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: combined-manifests
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v4
+      - name: ⬇️ Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: output
+      - name: Copy static files
+        run: cp -R static/* output/
+      - name: ⬆️ Upload output artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: output
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: consolidate
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Setup Github Pages
+        uses: actions/configure-pages@v4
+      - name: 🚀 Deploy to Github Pages
+        uses: actions/deploy-pages@v3.0.1
+        id: deployment
