@@ -139,6 +139,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: output
+      - name: Copy firmware files to build assets
+        run: cp -R output/* docs/static
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -146,20 +148,15 @@ jobs:
           node-version: 20.x
       - name: Install Docusaurus dependencies
         run: npm install --frozen-lockfile --non-interactive
-        working-directory: static
+        working-directory: docs
       - name: Build Docusaurus
         run: npm run build
-        working-directory: static
+        working-directory: docs
 
-      - name: Show folder structure
-        run: ls -n
-
-      - name: Copy firmware files to build assets
-        run: cp -R output/* static/build/assets
       - name: ⬆️ Upload pages artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: static/build
+          path: docs/build
 
   deploy:
     name: Deploy to GitHub Pages
