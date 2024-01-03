@@ -141,6 +141,14 @@ jobs:
           path: output
       - name: Copy static files
         run: cp -R static/* output/
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+      - name: Install Docusaurus dependencies
+        run: npm install --frozen-lockfile --non-interactive
+      - name: Build Docusaurus
+        run: npm run build
       - name: ⬆️ Upload pages artifacts
         uses: actions/upload-pages-artifact@v3
         with:
