@@ -23,7 +23,7 @@ export default function EspInstallButton({
           src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"
         ></script>
       </Head>
-      <esp-web-install-button manifest="https://klaasnicolaas.github.io/home-assistant-glow/home-assistant-glow/manifest.json">
+      <esp-web-install-button manifest="../home-assistant-glow/manifest.json">
         <span slot="unsupported">{unsupportedMessage}</span>
       </esp-web-install-button>
     </>
