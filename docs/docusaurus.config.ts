@@ -7,7 +7,7 @@ const projectName = "home-assistant-glow";
 
 const config: Config = {
   title: 'Home Assistant Glow 🌟',
-  tagline: 'Dinosaurs are cool',
+  tagline: '⚡ The power of energy measurements in your house',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -63,8 +63,8 @@ const config: Config = {
     navbar: {
       title: 'Home Assistant Glow',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'My Logo',
+        src: 'img/glowing-star.svg',
       },
       items: [
         {
@@ -97,8 +97,8 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Discussions',
+              href: 'https://github.com/klaasnicolaas/home-assistant-glow/discussions',
             },
             {
               label: 'Twitter',
@@ -120,7 +120,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Klaas Schoute, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
