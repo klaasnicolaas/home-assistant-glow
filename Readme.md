@@ -11,8 +11,8 @@
 [![GitHub Last Commit][last-commit-shield]][commits]
 [![Contributors][contributors-shield]][contributors-url]
 
-> [!NOTE]
-> Currently the documentation does not match the current codebase, this is due to a refactor and working towards a v4 release. If you want to use the stable release (v3.1.0)? Then use this [documentation](https://github.com/klaasnicolaas/home-assistant-glow/blob/v3.1.0/Readme.md) and the following [`home_assistant_glow.yaml`](https://github.com/klaasnicolaas/home-assistant-glow/blob/eda2baa1c96b033dc2262be7ec70a49ea7d9dfaf/home_assistant_glow.yaml) file.
+> [!Warning]
+> Currently the documentation does not match the current codebase, this is due to a refactor and working towards a [v4 release](https://github.com/klaasnicolaas/home-assistant-glow/discussions/222). If you want to use the stable release (v3.1.0)? Then use this [documentation](https://github.com/klaasnicolaas/home-assistant-glow/blob/v3.1.0/Readme.md) and the following [`home_assistant_glow.yaml`](https://github.com/klaasnicolaas/home-assistant-glow/blob/eda2baa1c96b033dc2262be7ec70a49ea7d9dfaf/home_assistant_glow.yaml) file.
 
 During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in homes and how to collect all energy data and display it on a dashboard. From core release **2021.8** you can now also get started with the [energy dashboard][energy] in Home Assistant!
 
