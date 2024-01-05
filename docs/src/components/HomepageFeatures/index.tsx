@@ -11,31 +11,31 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Easy to Install',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/undraw_setup_wizard.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Connect the hardware together, install the software with ESP web tools
+        and in no time you can use the data in Home Assistant.
       </>
     ),
   },
   {
     title: 'Measure your (stupid) Meter',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/undraw_metrics.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Use the Home Assistant Glow on a meter that is equipped with a pulse LED,
+        measure how much power (w) and energy (kWh) your house consumes.
       </>
     ),
   },
   {
     title: 'Do you need Help?',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/undraw_showing_support.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Are you encountering problems? Then you can create an issue or discussion
+        topic on GitHub so that others can help you.
       </>
     ),
   },
