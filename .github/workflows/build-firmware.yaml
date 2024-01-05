@@ -6,13 +6,14 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-  pull_request:
   # release:
   #   types:
   #     - published
+  workflow_dispatch:
+  pull_request:
+  # Every Monday at 4:00 UTC
   schedule:
-    - cron: "0 5 * * 1"
+    - cron: "0 4 * * 1"
 
 concurrency:
   # yamllint disable-line rule:line-length
@@ -32,11 +33,11 @@ jobs:
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v4
-      - name: Get changed files
+      - name: ⤵️ Get changed files
         id: changes
         uses: masesgroup/retrieve-changed-files@v3
         if: github.event_name == 'pull_request'
-      - name: Prepare matrix
+      - name: 🚧 Prepare matrix
         id: prepare-matrix
         run: |-
           # Set variables
@@ -87,12 +88,12 @@ jobs:
         with:
           yaml_file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
           version: ${{ matrix.version || 'latest' }}
-      - name: Move generated files to output
+      - name: 🚚 Move generated files to output
         run: |
           mkdir -p output/${{ matrix.device }}
           mv ${{ steps.esphome-build.outputs.name }}/* output/${{ matrix.device }}/
           echo ${{ steps.esphome-build.outputs.version }} > output/${{ matrix.device }}/version
-      - name: Alter manifest path
+      - name: 🔨 Alter path in manifest.json
         run: |
           sed -i 's/${{ steps.esphome-build.outputs.name }}\//\/${{ env.REPOSITORY }}\/${{ matrix.firmware }}\/${{ matrix.device }}\//g' output/${{ matrix.device }}/manifest.json
       - name: ⬆️ Upload firmware artifact
@@ -118,7 +119,7 @@ jobs:
         with:
           name: ${{ matrix.project }}
           path: files
-      - name: Generate manifest.json
+      - name: 🔨 Generate device manifest.json
         run: |
           version=$(cat files/*/version | sort -V | tail -n 1)
           jq -s --arg version "$version" '{"name": "${{ matrix.name }}", "version": $version, "home_assistant_domain": "esphome", "builds":.}' files/*/manifest.json > manifest.json
@@ -140,17 +141,17 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: output
-      - name: Copy firmware files to build assets
+      - name: 🗂️ Copy firmware files to build assets
         run: cp -R output/* docs/static
 
-      - name: Set up Node.js
+      - name: 🏗️ Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
-      - name: Install Docusaurus dependencies
+      - name: 🏗️ Install Docusaurus dependencies
         run: npm install --frozen-lockfile --non-interactive
         working-directory: docs
-      - name: Build Docusaurus
+      - name: 🚀 Build Docusaurus
         run: npm run build
         working-directory: docs
 
@@ -171,7 +172,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Setup Github Pages
+      - name: 🏗️ Setup Github Pages
         uses: actions/configure-pages@v4
       - name: 🚀 Deploy to Github Pages
         uses: actions/deploy-pages@v4
