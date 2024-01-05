@@ -115,7 +115,7 @@ jobs:
             name: Home Assistant Glow
     steps:
       - name: ⤵️ Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: ${{ matrix.project }}
           path: files
@@ -138,7 +138,7 @@ jobs:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v4
       - name: ⬇️ Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           path: output
       - name: 🗂️ Copy firmware files to build assets
