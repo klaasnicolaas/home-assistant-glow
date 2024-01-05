@@ -6,13 +6,14 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-  pull_request:
   # release:
   #   types:
   #     - published
+  workflow_dispatch:
+  pull_request:
+  # Every Monday at 4:00 UTC
   schedule:
-    - cron: "0 5 * * 1"
+    - cron: "0 4 * * 1"
 
 concurrency:
   # yamllint disable-line rule:line-length
