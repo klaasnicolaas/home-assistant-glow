@@ -17,7 +17,7 @@
 During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in homes and how to collect all energy data and display it on a dashboard. From core release **2021.8** you can now also get started with the [energy dashboard][energy] in Home Assistant!
 
 <p align="center">
-  <img width="80%" src="assets/images/home-assistant-glow.jpg">
+  <img width="80%" src="docs/static/img/home-assistant-glow.jpg">
 </p>
 
 <details>
@@ -35,7 +35,7 @@ Home Assistant Glow makes a *(not so)* smart meter without a P1 port easily read
 To make sure your meter will work with the Home Assistant Glow, you have to look for the **imp/kWh** rate (see picture). Note the value, because it will be of importance at a later stage to configure the `home_assistant_glow.yaml` file.
 
 <p align="center">
-  <img width="60%" src="assets/images/pulse_rate.png">
+  <img width="60%" src="docs/static/img/pulse_rate.png">
 </p>
 
 ## Hardware
