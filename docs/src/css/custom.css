@@ -28,3 +28,8 @@
   --ifm-color-primary-lightest: #4ec1dd;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.tabs__item {
+  align-items: center;
+  gap: 7px;
+}

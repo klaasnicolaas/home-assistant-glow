@@ -1,52 +1,45 @@
 ---
-sidebar_position: 1
+id: getting-started
+title: Getting Started
+description: 'Instruction to get started with the Home Assistant Glow'
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import EspInstallButton from '@site/src/components/EspInstallButton';
+import { faUsb } from '@fortawesome/free-brands-svg-icons';
 
 # Get started
 
-Let's discover **Docusaurus in less than 5 minutes**.
+This page will guide you through setting up your new Home Assistant Glow. It will take you through the steps of setup the hardware, installing the firmware and configure the device. It should take **5-10 minutes**, but probably less.
 
-<EspInstallButton
-  unsupportedMessage="Provisioning via USB only works in browsers which support Web Serial, such as Chrome or Edge. Please provision your Upsy Desky via Bluetooth or Wi-Fi instead." />
+## Step 1: Hardware
 
-## Getting Started
+- shopping list
+- schematic
 
-Get started by **creating a new site**.
+## Step 2: Install firmware
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Use the method below to provide your ESP with the correct firmware.
 
-### What you'll need
+<Tabs>
+  <TabItem value="usb" label={<><icon icon={faUsb} size="lg"/> USB</>}>
+1. Connect the ESP to your computer via USB
+2. Press the blue connect button below
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+<EspInstallButton unsupportedMessage="Provisioning via USB only works in browsers which support Web Serial, such as Chrome or Edge." />
+  </TabItem>
+</Tabs>
 
-## Generate a new site
+## Step 3: Connecto to Home Assistant
 
-Generate a new Docusaurus site using the **classic template**.
+- Auto discovery
 
-The classic template will automatically be added to your project after you run the command:
+## Step 4: Configure
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+- Pulse rate
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Step 5: Print Enclosure
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- 3D print enclosure
+- Where to find?
