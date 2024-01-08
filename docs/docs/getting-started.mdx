@@ -15,8 +15,24 @@ This page will guide you through setting up your new Home Assistant Glow. It wil
 
 ## Step 1: Hardware
 
-- shopping list
-- schematic
+To get started you need the right hardware first, fill your 🛒 or see if you already have the components below.
+
+| Nr.  | Item     |  |  |
+|:-----|:---------|:-|:-|
+|**1.**| ESP32 (recommended) | [AliExpress][esp32-ali-shop] | [Banggood][esp32-bg-shop] |
+|**1.**| ESP8266  | [AliExpress][esp8266-ali-shop] | [Banggood][esp8266-bg-shop] |
+|**1.**| Wemos D1 mini V4.0 | [AliExpress][wemos-d1-ali-shop] | [Banggood][wemos-d1-bg-shop] |
+|**2.**| Dupont Jumpers (female to female) | [AliExpress][dupont-jumpers-ali-shop] | [Banggood][dupont-jumpers-bg-shop] |
+|**3.**| Photodiode | [AliExpress][photodiode-ali-shop] | [Banggood][photodiode-bg-shop] |
+|**4.**| LED RGB 5mm 4 pin - kathode | [AliExpress][rgbled-ali-shop] | [Banggood][rgbled-bg-shop] |
+
+Obviously you do not need all 3 different types of micro controllers, but you can choose between an ESP32 (recommended), ESP8266 or the Wemos D1. With the photodiode, keep in mind that there are also boards in circulation with an LDR.
+
+### Disclamer
+
+We use aliexpress / banggood affiliate links for the components and the tools. Some Ad-blockers might block these links an thus they seem to appear broken. You will have to temporarely disable ad-blocker to open these links.
+
+How everything should be connected can be found on the [wiring diagram](/docs/reference/diagram). Once this is done, you can proceed to step 2.
 
 ## Step 2: Install firmware
 
@@ -39,7 +55,23 @@ Use the method below to provide your ESP with the correct firmware.
 
 - Pulse rate
 
+For problems with the measurements, see the [FAQ part](/docs/faq) further down.
+
 ## Step 5: Print Enclosure
 
-- 3D print enclosure
+- 3D printed case (see the [case](/case) folder)
 - Where to find?
+
+{/* Hardware */}
+[esp32-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2FGeekcreit-ESP32-WiFi%2Bbluetooth-Development-Board-Ultra-Low-Power-Consumption-Dual-Cores-Pins-Unsoldered-p-1214159.html
+[esp32-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005970816555.html
+[esp8266-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-NodeMcu-Lua-ESP8266-ESP-12F-WIFI-Development-Board-p-985891.html
+[esp8266-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005977505151.html
+[wemos-d1-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-D1-Mini-V3_0_0-WIFI-Internet-Of-Things-Development-Board-Based-ESP8266-4MB-MicroPython-Nodemcu-p-1264245.html
+[wemos-d1-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005006018009983.html
+[dupont-jumpers-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F120pcs-20cm-Male-To-Female-Female-To-Female-Male-To-Male-Color-Breadboard-Jumper-Cable-Dupont-Wire-p-974006.html
+[dupont-jumpers-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005945668553.html
+[photodiode-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F4Pin-Photodiode-Sensor-Controller-Module-Measure-Module-p-1416445.html
+[photodiode-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005003302215339.html
+[rgbled-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F50pcs-LED-RGB-Common-Cathode-4-Pin-F5-5MM-Diode-p-1016398.html
+[rgbled-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F4000225253691.html
