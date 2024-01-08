@@ -56,7 +56,7 @@ First, fill your 🛒 or see if you already have the components below.
 Below you will find a visual schema of how everything is connected, depending on the type of board you use, the GPIO pins may be in a different place.
 
 <p align="center">
-  <img width="90%" src="assets/images/schema.png">
+  <img width="90%" src="docs/static/img/wiring_schema.png">
 </p>
 
 ### Diagrams

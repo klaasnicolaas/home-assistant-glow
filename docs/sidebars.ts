@@ -16,6 +16,13 @@ const sidebars: SidebarsConfig = {
     'introduction',
     'getting-started',
     'configuration',
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+        'reference/diagram',
+      ],
+    }
   ],
 
   // But you can create a sidebar manually
