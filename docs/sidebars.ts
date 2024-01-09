@@ -21,6 +21,7 @@ const sidebars: SidebarsConfig = {
       label: 'Reference',
       items: [
         'reference/diagram',
+        'reference/cases',
       ],
     }
   ],

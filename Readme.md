@@ -47,7 +47,7 @@ First, fill your 🛒 or see if you already have the components below.
   - ESP8266 - [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
   - Wemos D1 - [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
 - [Dupont Jumpers][dupont-jumpers-shop]
-- 3D printed case (see the [case](/case) folder)
+- 3D printed case (see the [case](/docs/static/cases) folder)
 - Photodiode: [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (make sure that you do not accidentally order or receive an LDR)
 - LED RGB 5mm 4 pin - kathode: [Banggood][rgbled-bg-shop] or [AliExpress][rgbled-ali-shop]
 
@@ -89,7 +89,7 @@ How the status LED is connected to the ESP board of your choice. For each measur
 
 ### 3D printed case
 
-You can use the [3D printed case](/case) to neatly hide everything, but it is specifically made for the ESP32S. If you use another board, you could adjust the design with the `.step` file. If you've made some changes, I'd appreciate it if you add the new case design to the repository for everyone to benefit 😉
+You can use the [3D printed case](/docs/static/cases) to neatly hide everything, but it is specifically made for the ESP32S. If you use another board, you could adjust the design with the `.step` file. If you've made some changes, I'd appreciate it if you add the new case design to the repository for everyone to benefit 😉
 
 ## Get started
 
