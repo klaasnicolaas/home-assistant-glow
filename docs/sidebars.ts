@@ -15,6 +15,7 @@ const sidebars: SidebarsConfig = {
   docSidebar: [
     'introduction',
     'getting-started',
+    'configuration',
     {
       type: 'category',
       collapsed: false,
