@@ -23,6 +23,13 @@ const sidebars: SidebarsConfig = {
         'reference/diagram',
         'reference/cases',
       ],
+    },
+    {
+      type: 'category',
+      label: 'Advanced',
+      items: [
+        'advanced/firmware_customization',
+      ],
     }
   ],
 
