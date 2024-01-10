@@ -17,6 +17,7 @@ const sidebars: SidebarsConfig = {
     'getting-started',
     {
       type: 'category',
+      collapsed: false,
       label: 'Reference',
       items: [
         'reference/diagram',

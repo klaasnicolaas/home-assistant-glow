@@ -8,7 +8,7 @@ Linked issue: [#140][issue_140]
 
 By default, the Home Assistant Glow uses the `homeassistant` [time platform][time-platform], which synchronizes the current time via the native API from your home assistant config. If this doesn't work, you could consider using the `sntp` time platform, as in the example below:
 
-```yaml
+```yaml title="components/basis.yaml"
 time:
   - platform: sntp
     id: sntp_time

@@ -8,7 +8,7 @@ Linked issue: [#240][issue_240]
 
 With this error there is a chance that the instance your ESPHome is running on may be out of memory (possibly on a Raspberry Pi with less RAM), you can solve this by limiting the number of processes at compiling time using [compile_process_limit][compile_process_limit].
 
-```yaml
+```yaml title="home-assistant-glow/esp32.yaml"
 esphome:
   compile_process_limit: 1
 ```
