@@ -11,10 +11,7 @@
 [![GitHub Last Commit][last-commit-shield]][commits]
 [![Contributors][contributors-shield]][contributors-url]
 
-> [!Warning]
-> Currently the documentation does not match the current codebase, this is due to a refactor and working towards a [v4 release](https://github.com/klaasnicolaas/home-assistant-glow/discussions/222). If you want to use the stable release (v3.1.0)? Then use this [documentation](https://github.com/klaasnicolaas/home-assistant-glow/blob/v3.1.0/Readme.md) and the following [`home_assistant_glow.yaml`](https://github.com/klaasnicolaas/home-assistant-glow/blob/eda2baa1c96b033dc2262be7ec70a49ea7d9dfaf/home_assistant_glow.yaml) file.
-
-During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management in homes and how to collect all energy data and display it on a dashboard. From core release **2021.8** you can now also get started with the [energy dashboard][energy] in Home Assistant!
+During my internship at [Nabu Casa][nc] in the first half of 2021, I focused on energy management for your house, how to collect all energy data and display it on a dashboard. Since Home Assistant release **2021.8** it's possible to use the [Home Assistant Energy][energy] dashboard to display your energy usage. Unfortunately, not everyone has a smart meter and/or is equipped with a P1 port. This is where the Home Assistant Glow comes in!
 
 <p align="center">
   <img width="80%" src="docs/static/img/home-assistant-glow.jpg">
@@ -32,86 +29,32 @@ Home Assistant Glow makes a *(not so)* smart meter without a P1 port easily read
 
 ### How do I know if my meter is supported?
 
-To make sure your meter will work with the Home Assistant Glow, you have to look for the **imp/kWh** rate (see picture). Note the value, because it will be of importance at a later stage to configure the `home_assistant_glow.yaml` file.
+To make sure your meter will work with the Home Assistant Glow, you have to look for the `imp/kWh` rate on your meter (see picture). Make a note of this value because you may need it later when configuring your device.
 
 <p align="center">
   <img width="60%" src="docs/static/img/pulse_rate.png">
 </p>
 
+## Get Started
+
+On the [documentation website](https://klaasnicolaas.github.io/home-assistant-glow/docs/introduction) you will find a complete walkthrough with which hardware you need, how to install the correct firmware on your ESP (using esp web tools) and how to add it to Home Assistant.
+
 ## Hardware
 
 First, fill your 🛒 or see if you already have the components below.
 
-- One of these microcontrollers
+- One of the micro controllers
   - ESP32 (recommended) - [Banggood][esp32-bg-shop] or [AliExpress][esp32-ali-shop]
   - ESP8266 - [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
-  - Wemos D1 - [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
+  - Wemos D1 mini - [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
 - [Dupont Jumpers][dupont-jumpers-shop]
 - 3D printed case (see the [case](/docs/static/cases) folder)
 - Photodiode: [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (make sure that you do not accidentally order or receive an LDR)
 - LED RGB 5mm 4 pin - kathode: [Banggood][rgbled-bg-shop] or [AliExpress][rgbled-ali-shop]
 
-### Visual schema
-
-Below you will find a visual schema of how everything is connected, depending on the type of board you use, the GPIO pins may be in a different place.
-
-<p align="center">
-  <img width="90%" src="docs/static/img/wiring_schema.png">
-</p>
-
-### Diagrams
-
-In the tables below you will find more information, about how to connect the photodiode PCB and the status LED.
-
-#### Photodiode
-
-How the photodiode is connected to the ESP board of your choice.
-
-| PHOTODIODE | ESP32        | Wemos D1 / ESP8266 |
-|------------|--------------|--------------------|
-| A0         | NOT USING    | NOT USING          |
-| DO         | D13 (GPIO13) | D7 (GPIO13)        |
-| VCC        | 3V3          | 3V3                |
-| GND        | GND          | GND                |
-
-For problems with the measurements, see the [FAQ part](#faq) further down.
-
-#### Status LED
-
-How the status LED is connected to the ESP board of your choice. For each measured pulse, the LED will briefly flash <span style="color:red">*red*</span> and in case of no WiFi connection, the LED will continue to flash <span style="color:blue">*blue*</span>.
-
-| LED    | ESP32      | D1 mini / ESP8266 |
-|--------|------------|-------------------|
-| RED    | D2 (GPIO2) | D4 (GPIO2)        |
-| GREEN  | D4 (GPIO4) | D2 (GPIO4)        |
-| BLUE   | D5 (GPIO5) | D1 (GPIO5)        |
-| GND    | GND        | GND               |
-
-### 3D printed case
-
-You can use the [3D printed case](/docs/static/cases) to neatly hide everything, but it is specifically made for the ESP32S. If you use another board, you could adjust the design with the `.step` file. If you've made some changes, I'd appreciate it if you add the new case design to the repository for everyone to benefit 😉
-
-## Get started
-
-Once you are done connecting all the hardware, we'll get started with the configuration for ESPHome. In this repository you will find the file [home_assistant_glow.yaml][file], which you can copy into the `esphome` folder of your Home Assistant config.
-
-### Configuration
-
-After you go through the installation wizard of ESPHome and flash your ESP32/8266, you need to change the `pulse rate` to match with your meter ([how do I find my imp/kWh rate?](#how-do-i-know-if-my-meter-is-supported)). You can do this in 2 ways:
-
-- Open the webserver of the Glow and change the value under `Pulse rate - imp/kWh`.
-- Navigate to the device in Home Assistant and edit the number entity: `Pulse rate - imp/kWh`.
-
-The default is **1000** and you can change it with steps of 100, between 100 and 10.000 (if your pulse rate falls outside the steps or value range, open an issue).
-
-## FAQ
-
-Answers to frequently asked questions in this project, can be found on the [FAQ](https://klaasnicolaas.github.io/home-assistant-glow/docs/faq/) page.
-
 ## Contributing
 
-This is an active open-source project. We are always open to people who want to
-use the code or contribute to it.
+This is an active open-source project. We are always open to people who want to use the code or contribute to it.
 
 We've set up a separate document for our
 [contribution guidelines](CONTRIBUTING.md).
@@ -147,15 +90,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[file]: /home_assistant_glow.yaml
 [esphome]: https://esphome.io
 [nc]: https://www.nabucasa.com
-[energy]: https://home-assistant.io/docs/energy/
-[issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
-[issue_140]: https://github.com/klaasnicolaas/home-assistant-glow/issues/140
-[issue_240]: https://github.com/klaasnicolaas/home-assistant-glow/issues/240
-[time-platform]: https://esphome.io/components/time.html#home-assistant-time-source
-[compile_process_limit]: https://esphome.io/components/esphome.html?highlight=compile_process_limit
+[energy]: https://www.home-assistant.io/home-energy-management
 
 <!-- Shields -->
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2024.svg
