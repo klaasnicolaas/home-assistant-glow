@@ -147,6 +147,26 @@ esphome:
   compile_process_limit: 1
 ```
 
+### Abrupt increase in consumption when using Solar
+
+Issue: [#274][issue_274]
+
+If you have a solar system, and the consumption remains zero for some time and then gets a value, you may see an abrupt increase in the total daily energy sensor value that doesn't match the actual consumption. If that is the case,
+try using the left calculation method instead of the default
+
+```yaml
+platform: total_daily_energy
+name: '${friendly_name} - Daily Energy'
+id: sensor_total_daily_energy
+power_id: sensor_energy_pulse_meter
+unit_of_measurement: 'kWh'
+icon: mdi:circle-slice-3
+state_class: total_increasing
+device_class: energy
+accuracy_decimals: 3
+method: left
+```
+
 ## Contributing
 
 This is an active open-source project. We are always open to people who want to
@@ -193,6 +213,7 @@ SOFTWARE.
 [issue_34]: https://github.com/klaasnicolaas/home-assistant-glow/issues/34
 [issue_140]: https://github.com/klaasnicolaas/home-assistant-glow/issues/140
 [issue_240]: https://github.com/klaasnicolaas/home-assistant-glow/issues/240
+[issue_274]: https://github.com/klaasnicolaas/home-assistant-glow/issues/274
 [time-platform]: https://esphome.io/components/time.html#home-assistant-time-source
 [compile_process_limit]: https://esphome.io/components/esphome.html?highlight=compile_process_limit
 
