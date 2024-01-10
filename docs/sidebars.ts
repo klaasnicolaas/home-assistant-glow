@@ -15,7 +15,6 @@ const sidebars: SidebarsConfig = {
   docSidebar: [
     'introduction',
     'getting-started',
-    'configuration',
     {
       type: 'category',
       label: 'Reference',

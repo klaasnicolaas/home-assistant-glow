@@ -30,7 +30,7 @@ Obviously you do not need all 3 different types of micro controllers, but you ca
 
 ### Disclamer
 
-We use aliexpress / banggood affiliate links for the components and the tools. Some Ad-blockers might block these links an thus they seem to appear broken. You will have to temporarely disable ad-blocker to open these links.
+We use AliExpress / Banggood affiliate links for the components and the tools. Some Ad-blockers might block these links an thus they seem to appear broken. You will have to temporarily disable ad-blocker to open these links.
 
 How everything should be connected can be found on the [wiring diagram](/docs/reference/diagram). Once this is done, you can proceed to step 2.
 
@@ -46,7 +46,6 @@ _Make sure this page is opened in a Chromium-based browser on a desktop. The sof
 1. Press the blue **connect** button below, a pop-up window will appear with a list of available USB devices.
 2. Plug the USB cable into the ESP and connect it to your computer.
 3. In the pop-up window, there should now appear a new entry. Select this USB serial port and click **Connect**.
-    - If you don't see it, make sure you are using a USB data cable (i.e., not power-only), and try installing the [driver](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads) for the serial chip.
 4. Select **Install Home Assistant Glow**, then **Install**.
     - If the installation does not go well, you may need to first hold down the boot button and then click install.
 5. Once the installation is complete, select **Next**.
@@ -55,6 +54,10 @@ _Make sure this page is opened in a Chromium-based browser on a desktop. The sof
       - Select **Connect**.
       - The Home Assistant Glow now joined your network.
 6. Congratulations 🎉 You have successfully installed the firmware on your Home Assistant Glow.
+
+:::note
+If your device does not appear in the list, make sure you are using a USB data cable (i.e., not power-only), and try installing the [driver](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads) for the serial chip.
+:::
 
 <EspInstallButton unsupportedMessage="Provisioning via USB only works in browsers which support Web Serial, such as Chrome or Edge." />
   </TabItem>
