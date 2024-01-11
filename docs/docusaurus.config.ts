@@ -81,11 +81,14 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
+          href: `https://github.com/sponsors/${organizationName}`,
+          label: 'Sponsor',
+          position: 'right',
+        },
+        {
           href: `https://github.com/${organizationName}/${projectName}`,
           label: 'GitHub',
           position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub repository',
         },
       ],
     },
@@ -135,6 +138,17 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  plugins: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        hashed: true,
+        removeDefaultStopWordFilter: true,
+        indexPages: true,
+      },
+    ]
+  ]
 };
 
 export default config;
