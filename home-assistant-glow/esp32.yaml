@@ -12,7 +12,7 @@ substitutions:
   device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP32"
 
   # Define the GPIO pins
-  pulse_pin: GPIO13
+  pulse_pin: GPIO26
   status_led: GPIO5
   led_pin_red: GPIO2
   led_pin_green: GPIO4
