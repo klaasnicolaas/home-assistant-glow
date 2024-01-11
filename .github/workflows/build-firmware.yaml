@@ -4,6 +4,8 @@ name: Build & Deploy firmware
 
 on:
   push:
+    branches-ignore:
+      - renovate/**
     branches:
       - main
   # release:
@@ -12,7 +14,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches-ignore:
-      - "renovate/**"
+      - renovate/**
   # Every Monday at 4:00 UTC
   schedule:
     - cron: "0 4 * * 1"
