@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "3.1.0",
-    "@docusaurus/preset-classic": "3.0.1",
+    "@docusaurus/preset-classic": "3.1.0",
     "@easyops-cn/docusaurus-search-local": "^0.40.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
@@ -30,7 +30,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.0.1",
+    "@docusaurus/module-type-aliases": "3.1.0",
     "@docusaurus/tsconfig": "3.1.0",
     "@docusaurus/types": "3.1.0",
     "typescript": "~5.3.0"
