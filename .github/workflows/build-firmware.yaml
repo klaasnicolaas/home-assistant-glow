@@ -3,9 +3,9 @@
 name: Build & Deploy firmware
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   # release:
   #   types:
   #     - published
