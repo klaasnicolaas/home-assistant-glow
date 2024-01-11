@@ -34,7 +34,7 @@ jobs:
       matrix: ${{ steps.prepare-matrix.outputs.matrix }}
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.1
       - name: ⤵️ Get changed files
         id: changes
         uses: masesgroup/retrieve-changed-files@v3
@@ -83,7 +83,7 @@ jobs:
       matrix: ${{fromJson(needs.prepare.outputs.matrix)}}
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.1
       - name: 🔨 Build firmware
         uses: esphome/build-action@v1.8.0
         id: esphome-build
@@ -138,7 +138,7 @@ jobs:
     needs: combined-manifests
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.1
       - name: ⬇️ Download artifacts
         uses: actions/download-artifact@v3
         with:
