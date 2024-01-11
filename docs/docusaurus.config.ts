@@ -81,11 +81,14 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
+          href: `https://github.com/sponsors/${organizationName}`,
+          label: 'Sponsor',
+          position: 'right',
+        },
+        {
           href: `https://github.com/${organizationName}/${projectName}`,
           label: 'GitHub',
           position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub repository',
         },
       ],
     },
