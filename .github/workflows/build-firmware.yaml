@@ -11,6 +11,8 @@ on:
   #     - published
   workflow_dispatch:
   pull_request:
+    branches-ignore:
+      - "renovate/**"
   # Every Monday at 4:00 UTC
   schedule:
     - cron: "0 4 * * 1"
