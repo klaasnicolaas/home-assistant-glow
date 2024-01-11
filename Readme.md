@@ -37,7 +37,7 @@ To make sure your meter will work with the Home Assistant Glow, you have to look
 
 ## Get Started
 
-On the [documentation website](https://klaasnicolaas.github.io/home-assistant-glow/docs/introduction) you will find a complete walkthrough with which hardware you need, how to install the correct firmware on your ESP (using esp web tools) and how to add it to Home Assistant.
+On the [documentation website](https://glow-energy.io/docs/introduction) you will find a complete walkthrough with which hardware you need, how to install the correct firmware on your ESP (using esp web tools) and how to add it to Home Assistant.
 
 ## Hardware
 
@@ -48,7 +48,7 @@ First, fill your 🛒 or see if you already have the components below.
   - ESP8266 - [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
   - Wemos D1 mini - [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
 - [Dupont Jumpers][dupont-jumpers-shop]
-- 3D printed case (see the [case](https://klaasnicolaas.github.io/home-assistant-glow/docs/reference/cases) folder)
+- 3D printed case (see the [case](https://glow-energy.io/docs/reference/cases) folder)
 - Photodiode: [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (make sure that you do not accidentally order or receive an LDR)
 - LED RGB 5mm 4 pin - kathode: [Banggood][rgbled-bg-shop] or [AliExpress][rgbled-ali-shop]
 

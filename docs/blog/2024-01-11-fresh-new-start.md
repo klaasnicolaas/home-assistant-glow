@@ -35,7 +35,7 @@ The configuration YAML for the Home Assistant Glow is now split into multiple fi
 
 ### Documentation website
 
-The previous website has been replaced with a comprehensive documentation website, accessible at [https://klaasnicolaas.github.io/home-assistant-glow](https://klaasnicolaas.github.io/home-assistant-glow/). This new website is built using [Docusaurus](https://docusaurus.io/), a static site generator widely used by various open source projects and hosted on GitHub Pages. It provides more space to present information in a structured format. Additionally, users can conveniently install firmware on their ESP directly from their browser using [ESP web tools](https://esphome.github.io/esp-web-tools/).
+The previous website has been replaced with a comprehensive documentation website, accessible at [https://glow-energy.io](https://glow-energy.io). This new website is built using [Docusaurus](https://docusaurus.io/), a static site generator widely used by various open source projects and hosted on GitHub Pages. It provides more space to present information in a structured format. Additionally, users can conveniently install firmware on their ESP directly from their browser using [ESP web tools](https://esphome.github.io/esp-web-tools/).
 
 ### Configuration in UI
 

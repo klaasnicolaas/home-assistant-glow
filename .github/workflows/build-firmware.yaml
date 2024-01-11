@@ -24,7 +24,6 @@ concurrency:
 
 env:
   FIRMWARES: home-assistant-glow
-  REPOSITORY: home-assistant-glow
 
 jobs:
   prepare:
@@ -97,7 +96,7 @@ jobs:
           echo ${{ steps.esphome-build.outputs.version }} > output/${{ matrix.device }}/version
       - name: 🔨 Alter path in manifest.json
         run: |
-          sed -i 's/${{ steps.esphome-build.outputs.name }}\//\/${{ env.REPOSITORY }}\/${{ matrix.firmware }}\/${{ matrix.device }}\//g' output/${{ matrix.device }}/manifest.json
+          sed -i 's/${{ steps.esphome-build.outputs.name }}\//\/${{ matrix.firmware }}\/${{ matrix.device }}\//g' output/${{ matrix.device }}/manifest.json
       - name: ⬆️ Upload firmware artifact
         uses: actions/upload-artifact@v4.0.0
         with:
