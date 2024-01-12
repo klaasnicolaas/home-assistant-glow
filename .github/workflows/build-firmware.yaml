@@ -120,21 +120,20 @@ jobs:
         with:
           pattern: ${{ matrix.project }}-*
           merge-multiple: true
-          path: files
+          path: project-build
 
-      # TODO move build folders to home-assisant-glow folder
       - name: 🔨 Generate device manifest.json
         run: |
-          version=$(cat files/*/version | sort -V | tail -n 1)
-          jq -s --arg version "$version" '{"name": "${{ matrix.name }}", "version": $version, "home_assistant_domain": "esphome", "builds":.}' files/*/manifest.json > manifest.json
+          version=$(cat project-build/*/version | sort -V | tail -n 1)
+          jq -s --arg version "$version" '{"name": "${{ matrix.name }}", "version": $version, "home_assistant_domain": "esphome", "builds":.}' project-build/*/manifest.json > project-build/manifest.json
 
-      - name: Display structure of downloaded files
+      - name: Display structure of downloaded artifact
         run: ls -R
       - name: ⬆️ Upload manifest.json
         uses: actions/upload-artifact@v4.0.0
         with:
           name: ${{ matrix.project }}
-          path: manifest.json
+          path: project-build
 
   # build-docs:
   #   name: Build documentation website
