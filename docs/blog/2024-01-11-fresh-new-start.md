@@ -45,7 +45,7 @@ This feature was already present in the old development branch, but never includ
 
 The firmware building process has undergone a significant rewrite, allowing the generation of firmware files tailored to various board types. These files are used in the [Getting Started](/docs/getting-started#step-2-install-firmware) section by ESP web tools.
 
-Moving forward, new firmware builds will be published on a weekly basis. This ensures that the firmware used on the website consistently incorporates the latest version of ESPHome, providing new users with up-to-date features and improvements.
+Moving forward, firmware builds will be tested on a weekly basis. This ensures that build problems with latest versions of ESPHome are identified more quickly, providing new users with up-to-date features and improvements in the future.
 
 ---
 
