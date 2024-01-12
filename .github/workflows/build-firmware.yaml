@@ -154,7 +154,7 @@ jobs:
           for firmware in $FIRMWARES; do
             mv repository/$firmware docs/static
           done
-          rm repository
+          rm -R repository
       - name: Display structure of downloaded artifact
         run: ls -R
 
