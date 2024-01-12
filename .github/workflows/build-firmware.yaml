@@ -152,8 +152,9 @@ jobs:
       - name: 🗂️ Copy firmware files to build assets
         run: |
           for firmware in $FIRMWARES; do
-            cp -R repository/$firmware docs/static
+            mv repository/$firmware docs/static
           done
+          rm repository
       - name: Display structure of downloaded artifact
         run: ls -R
 
