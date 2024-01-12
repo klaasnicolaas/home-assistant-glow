@@ -147,13 +147,15 @@ jobs:
       - name: ⬇️ Download artifacts
         uses: actions/download-artifact@v4.1.1
         with:
-          # pattern: ${{ env.FIRMWARES }}
           path: repository
 
+      - name: 🗂️ Copy firmware files to build assets
+        run: |
+          for firmware in $FIRMWARES; do
+            cp -R repository/$firmware docs/static
+          done
       - name: Display structure of downloaded artifact
         run: ls -R
-      # - name: 🗂️ Copy firmware files to build assets
-      #   run: cp -R repository/* docs/static
 
       # - name: 🏗️ Set up Node.js
       #   uses: actions/setup-node@v4.0.1
