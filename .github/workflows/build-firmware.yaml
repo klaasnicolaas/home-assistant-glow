@@ -100,7 +100,7 @@ jobs:
       - name: ⬆️ Upload firmware artifact
         uses: actions/upload-artifact@v4.0.0
         with:
-          name: ${{ matrix.firmware}}
+          name: ${{ matrix.firmware}}-${{ matrix.device }}
           path: output
 
   combined-manifests:
@@ -116,10 +116,14 @@ jobs:
             name: Home Assistant Glow
     steps:
       - name: ⤵️ Download artifacts
-        uses: actions/download-artifact@v3.0.2
+        uses: actions/download-artifact@v4.1.1
         with:
-          name: ${{ matrix.project }}
+          pattern: ${{ matrix.project }}-*
+          merge-multiple: true
           path: files
+      - name: Display structure of downloaded files
+        run: ls -R
+      # TODO move build folders to home-assisant-glow folder
       - name: 🔨 Generate device manifest.json
         run: |
           version=$(cat files/*/version | sort -V | tail -n 1)
@@ -130,51 +134,51 @@ jobs:
           name: ${{ matrix.project }}
           path: manifest.json
 
-  build-docs:
-    name: Build documentation website
-    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    needs: combined-manifests
-    steps:
-      - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4.1.1
-      - name: ⬇️ Download artifacts
-        uses: actions/download-artifact@v3.0.2
-        with:
-          path: output
-      - name: 🗂️ Copy firmware files to build assets
-        run: cp -R output/* docs/static
+  # build-docs:
+  #   name: Build documentation website
+  #   if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   needs: combined-manifests
+  #   steps:
+  #     - name: ⤵️ Check out code from GitHub
+  #       uses: actions/checkout@v4.1.1
+  #     - name: ⬇️ Download artifacts
+  #       uses: actions/download-artifact@v4.1.1
+  #       with:
+  #         path: output
+  #     - name: 🗂️ Copy firmware files to build assets
+  #       run: cp -R output/* docs/static
 
-      - name: 🏗️ Set up Node.js
-        uses: actions/setup-node@v4.0.1
-        with:
-          node-version: 20.x
-      - name: 🏗️ Install Docusaurus dependencies
-        run: npm install --frozen-lockfile --non-interactive
-        working-directory: docs
-      - name: 🚀 Build Docusaurus
-        run: npm run build
-        working-directory: docs
+  #     - name: 🏗️ Set up Node.js
+  #       uses: actions/setup-node@v4.0.1
+  #       with:
+  #         node-version: 20.x
+  #     - name: 🏗️ Install Docusaurus dependencies
+  #       run: npm install --frozen-lockfile --non-interactive
+  #       working-directory: docs
+  #     - name: 🚀 Build Docusaurus
+  #       run: npm run build
+  #       working-directory: docs
 
-      - name: ⬆️ Upload pages artifacts
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/build
+  #     - name: ⬆️ Upload pages artifacts
+  #       uses: actions/upload-pages-artifact@v3
+  #       with:
+  #         path: docs/build
 
-  deploy:
-    name: Deploy to GitHub Pages
-    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    needs: build-docs
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: 🏗️ Setup Github Pages
-        uses: actions/configure-pages@v4
-      - name: 🚀 Deploy to Github Pages
-        uses: actions/deploy-pages@v4.0.2
-        id: deployment
+  # deploy:
+  #   name: Deploy to GitHub Pages
+  #   if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   needs: build-docs
+  #   permissions:
+  #     pages: write
+  #     id-token: write
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   steps:
+  #     - name: 🏗️ Setup Github Pages
+  #       uses: actions/configure-pages@v4
+  #     - name: 🚀 Deploy to Github Pages
+  #       uses: actions/deploy-pages@v4.0.2
+  #       id: deployment
