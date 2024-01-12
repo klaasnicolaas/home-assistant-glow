@@ -147,7 +147,7 @@ jobs:
       - name: ⬇️ Download artifacts
         uses: actions/download-artifact@v4.1.1
         with:
-          pattern: ${{ env.FIRMWARES }}
+          # pattern: ${{ env.FIRMWARES }}
           path: repository
 
       - name: Display structure of downloaded artifact
