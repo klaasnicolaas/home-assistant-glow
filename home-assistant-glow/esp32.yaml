@@ -9,7 +9,7 @@ substitutions:
   device_name: home-assistant-glow
   friendly_name: Home Assistant Glow
   project_version: "4.0.0"
-  device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP32"
+  device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP32 Generic"
 
   # Define the GPIO pins
   pulse_pin: GPIO26
@@ -29,7 +29,9 @@ dashboard_import:
   package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp32.yaml@main
 
 esp32:
-  board: nodemcu-32s
+  board: esp32dev
+  framework:
+    type: arduino
 
 packages:
   basis: !include ../components/basis.yaml
