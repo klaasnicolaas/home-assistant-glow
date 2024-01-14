@@ -1,5 +1,6 @@
 import Head from "@docusaurus/Head";
 import React from "react";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 declare global {
   namespace JSX {
@@ -23,7 +24,7 @@ export default function EspInstallButton({
           src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"
         ></script>
       </Head>
-      <esp-web-install-button manifest="../home-assistant-glow/manifest.json">
+      <esp-web-install-button manifest={useBaseUrl('/home-assistant-glow/manifest.json')}>
         <span slot="unsupported">{unsupportedMessage}</span>
       </esp-web-install-button>
     </>
