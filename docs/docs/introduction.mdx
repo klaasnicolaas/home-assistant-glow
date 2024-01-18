@@ -1,0 +1,25 @@
+---
+id: introduction
+title: Introduction
+description: What is the Home Assistant Glow?s
+---
+
+# Introduction
+
+During my internship at [Nabu Casa](https://www.nabucasa.com) in the first half of 2021, I focused on energy management for your house, how to collect all energy data and display it on a dashboard. Since Home Assistant release **2021.8** it's possible to use the [Home Assistant Energy](https://www.home-assistant.io/home-energy-management) dashboard to display your energy usage. Unfortunately, not everyone has a smart meter and/or is equipped with a P1 port. This is where the Home Assistant Glow comes in!
+
+## What is this thing?
+
+Home Assistant Glow makes a (not so) smart meter without a P1 port easily readable, using the pulse LED that is always present in most cases and it works with [ESPHome](https://esphome.io)! To neatly hide it all in your meter cupboard, a case has been designed that you can 3D print yourself.
+
+<p align="center">
+  <img width="80%" src={require('@site/static/img/home-assistant-glow.jpg').default} />
+</p>
+
+## How do I know if my meter is supported?
+
+To make sure your meter will work with the Home Assistant Glow, you have to look for the `imp/kWh` rate on your meter (see picture). Make a note of this value because you may need it later when configuring your device.
+
+<p align="center">
+  <img width="60%" src={require('@site/static/img/pulse_rate.png').default} />
+</p>

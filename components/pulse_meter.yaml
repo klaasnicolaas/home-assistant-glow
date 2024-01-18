@@ -1,0 +1,107 @@
+# Pulse meter configuration #
+
+# Enable Home Assistant API
+api:
+  services:
+    - service: reset_total_energy
+      then:
+        - button.press:
+            id: button_reset_total
+
+number:
+  # Set the pulse rate of the LED on your meter
+  - platform: template
+    id: select_pulse_rate
+    name: 'Puls rate - imp/kWh'
+    optimistic: true
+    mode: box
+    min_value: 100
+    max_value: 10000
+    step: 100
+    restore_value: yes
+    initial_value: 1000
+
+  # Reset total energy to given value
+  - platform: template
+    id: select_reset_total
+    name: 'Reset Value - Total Energy kWh'
+    entity_category: config
+    optimistic: true
+    mode: box
+    min_value: 0
+    max_value: 1000000
+    step: 1
+    initial_value: 0
+
+button:
+  # Reset the total energy entity
+  - platform: template
+    name: "Reset - Total Energy"
+    id: button_reset_total
+    on_press:
+      - pulse_meter.set_total_pulses:
+          id: sensor_energy_pulse_meter
+          value: !lambda "return id(select_reset_total).state * id(select_pulse_rate).state;"
+
+sensor:
+  # Pulse meter
+  - platform: pulse_meter
+    name: '${friendly_name} - Power Consumption'
+    id: sensor_energy_pulse_meter
+    unit_of_measurement: W
+    state_class: measurement
+    device_class: power
+    icon: mdi:flash-outline
+    accuracy_decimals: 0
+    pin: ${pulse_pin}
+    # internal_filter: 100ms
+    on_raw_value:
+      then:
+        - light.turn_on:
+            id: led_red
+        - delay: 0.2s
+        - light.turn_off:
+            id: led_red
+    filters:
+      # multiply value = (60 / imp value) * 1000
+      # - multiply: 60
+      - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
+
+      # Update the sensor with an average every 10th second. See
+      # https://github.com/klaasnicolaas/home-assistant-glow/#reduce-the-amount-of-data-the-sensors-produce
+      # for more information.
+      #- throttle_average: 10s
+      #- filter_out: NaN
+
+    total:
+      name: '${friendly_name} - Total Energy'
+      id: sensor_total_energy
+      unit_of_measurement: kWh
+      icon: mdi:circle-slice-3
+      state_class: total_increasing
+      device_class: energy
+      accuracy_decimals: 3
+      filters:
+        # multiply value = 1 / imp value
+        # - multiply: 0.001
+        - lambda: return x * (1.0 / id(select_pulse_rate).state);
+
+        # Update the sensor once per 0.1 kWh consumed, or every 5th minute, whichever happens sooner.
+        # See https://github.com/klaasnicolaas/home-assistant-glow/#reduce-the-amount-of-data-the-sensors-produce
+        # for more information.
+        #- delta: 0.01
+        #- heartbeat: 300s
+
+  # Total day usage
+  - platform: total_daily_energy
+    name: '${friendly_name} - Daily Energy'
+    id: sensor_total_daily_energy
+    power_id: sensor_energy_pulse_meter
+    unit_of_measurement: kWh
+    icon: mdi:circle-slice-3
+    state_class: total_increasing
+    device_class: energy
+    accuracy_decimals: 3
+    filters:
+      # Multiplication factor from W to kW is 0.001
+      - multiply: 0.001

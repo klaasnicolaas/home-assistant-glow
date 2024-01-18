@@ -1,0 +1,24 @@
+# Status LED configuration #
+output:
+  # - platform: gpio
+  #   pin: GPIO5
+  #   id: output_blue
+  - platform: gpio
+    pin: ${led_pin_red}
+    id: output_red
+  - platform: gpio
+    pin: ${led_pin_green}
+    id: output_green
+
+light:
+  - platform: binary
+    internal: true
+    id: led_red
+    name: Red
+    output: output_red
+
+# Status LED for connection
+status_led:
+  pin:
+    # Blue LED
+    number: ${status_led}

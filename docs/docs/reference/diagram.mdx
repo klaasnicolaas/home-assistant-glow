@@ -1,0 +1,43 @@
+---
+id: diagram
+title: Diagram
+description: How to connect the Photodiode and Status LED based on diagrams
+---
+
+# Diagrams
+
+On this page you will find GPIO pin tables for the Photodiode and Status LED, as well as a wiring diagram of how everything is connected.
+
+## Wiring diagram
+
+Below you will find a wiring diagram of how everything is connected, depending on the type of board you use, the [GPIO pins](#gpio-pins) may be in a different place. You could also omit the status LED if desired.
+
+<p align="center">
+  <img width="90%" src={require('@site/static/img/wiring_diagram.png').default} />
+</p>
+
+## GPIO pins
+
+In the tables below you will find more information, about how to connect the Photodiode PCB and the status LED.
+
+### Photodiode
+
+How the Photodiode is connected to the ESP board of your choice.
+
+| PHOTODIODE | ESP32        | Wemos D1 / ESP8266 |
+|------------|--------------|--------------------|
+| A0         | NOT USING    | NOT USING          |
+| DO         | D26 (GPIO26) | D7 (GPIO13)        |
+| VCC        | 3V3          | 3V3                |
+| GND        | GND          | GND                |
+
+### Status LED
+
+How the status LED is connected to the ESP board of your choice. For each measured pulse, the LED will briefly flash <span style={{ color: 'red' }}>*red*</span> and in case of no WiFi connection, the LED will continue to flash <span style={{ color: 'blue' }}>*blue*</span>.
+
+| LED    | ESP32      | D1 mini / ESP8266 |
+|--------|------------|-------------------|
+| RED    | D2 (GPIO2) | D4 (GPIO2)        |
+| GREEN  | D4 (GPIO4) | D2 (GPIO4)        |
+| BLUE   | D5 (GPIO5) | D1 (GPIO5)        |
+| GND    | GND        | GND               |

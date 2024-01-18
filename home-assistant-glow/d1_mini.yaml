@@ -1,0 +1,61 @@
+---
+# Home Assistant Glow
+#
+# Read your electricity meter by means of the pulse LED on your
+# meter, useful if you do not have a serial port (P1).
+# © Klaas Schoute
+#
+substitutions:
+  device_name: home-assistant-glow
+  friendly_name: Home Assistant Glow
+  project_version: "4.0.0"
+  device_description: "Measure your energy consumption with the pulse LED on your smart meter - Wemos D1 Mini"
+
+  # Define the GPIO pins
+  pulse_pin: GPIO13
+  status_led: GPIO5
+  led_pin_red: GPIO2
+  led_pin_green: GPIO4
+
+esphome:
+  name: '${device_name}'
+  comment: '${device_description}'
+  name_add_mac_suffix: true
+  project:
+    name: "klaasnicolaas.home-assistant-glow"
+    version: "${project_version}"
+
+dashboard_import:
+  package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp32.yaml@main
+
+esp8266:
+  board: d1_mini
+
+packages:
+  basis: !include ../components/basis.yaml
+  status_led: !include ../components/status_led.yaml
+  pulse_meter: !include ../components/pulse_meter.yaml
+
+# Enable logging
+logger:
+
+# Allow OTA updates
+ota:
+  safe_mode: true
+  reboot_timeout: 10min
+  num_attempts: 5
+
+# Allow provisioning Wi-Fi via serial
+improv_serial:
+
+wifi:
+  # Set up a wifi access point
+  ap:
+    ssid: '${friendly_name}'
+
+# In combination with the `ap` this allows the user
+# to provision wifi credentials to the device via WiFi AP.
+captive_portal:
+
+# To have a "next url" for improv serial
+web_server:

@@ -1,0 +1,190 @@
+---
+# Build the ESPHome firmwares for the Home Assistant Glow project.
+name: Build & Deploy firmware
+
+on:
+  push:
+    branches:
+      - main
+  # release:
+  #   types:
+  #     - published
+  workflow_dispatch:
+  pull_request:
+    branches-ignore:
+      - renovate/docusaurus**
+  # Every Monday at 4:00 UTC
+  schedule:
+    - cron: "0 4 * * 1"
+
+concurrency:
+  # yamllint disable-line rule:line-length
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  FIRMWARES: |
+    home-assistant-glow
+
+jobs:
+  prepare:
+    name: Prepare matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.prepare-matrix.outputs.matrix }}
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v4.1.1
+      - name: ⤵️ Get changed files
+        id: changes
+        uses: masesgroup/retrieve-changed-files@v3
+        if: github.event_name == 'pull_request'
+      - name: 🚧 Prepare matrix
+        id: prepare-matrix
+        run: |-
+          # Set variables
+          matrix=""
+          fullRun=$(! [[ "${{ github.event_name }}" != "pull_request" || "${{ steps.changes.outputs.modified }}" == *".github/workflows/build-firmware.yaml"* ]]; echo $?)
+
+          # Iterate through firmwares and devices
+          for firmware in $FIRMWARES; do
+            for device in $firmware/*.yaml; do
+              # If pull_request event type and changed files do not contain the device, skip it
+              if [[ $fullRun -eq 0 && "${{ steps.changes.outputs.added_modified }}" != *"${device}"* ]]; then
+                continue
+              fi
+
+              # Extract device name from file path
+              device=${device##*/}
+              device=${device%.yaml}
+
+              # Set default version
+              version="latest"
+
+              # Build matrix entry
+              matrix="$matrix{\"firmware\":\"$firmware\",\"device\":\"$device\", \"version\":\"$version\"},"
+            done
+          done
+
+          # Remove trailing comma and format matrix
+          matrix=${matrix%?}
+          matrix="{\"include\":[$matrix]}"
+
+          # Output matrix to a file
+          echo matrix=$matrix >> $GITHUB_OUTPUT
+
+  build:
+    name: ${{ matrix.firmware }} / ${{ matrix.device }}
+    runs-on: ubuntu-latest
+    needs: prepare
+    strategy:
+      max-parallel: 5
+      fail-fast: false
+      matrix: ${{fromJson(needs.prepare.outputs.matrix)}}
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v4.1.1
+      - name: 🔨 Build firmware
+        uses: esphome/build-action@v1.8.0
+        id: esphome-build
+        with:
+          yaml_file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
+          version: ${{ matrix.version || 'latest' }}
+      - name: 🚚 Move generated files to output
+        run: |
+          mkdir -p output/${{ matrix.device }}
+          mv ${{ steps.esphome-build.outputs.name }}/* output/${{ matrix.device }}/
+          echo ${{ steps.esphome-build.outputs.version }} > output/${{ matrix.device }}/version
+      - name: 🔨 Alter path in manifest.json
+        run: |
+          sed -i 's/${{ steps.esphome-build.outputs.name }}\//\/${{ matrix.firmware }}\/${{ matrix.device }}\//g' output/${{ matrix.device }}/manifest.json
+      - name: ⬆️ Upload firmware / device artifact
+        uses: actions/upload-artifact@v4.1.0
+        with:
+          name: ${{ matrix.firmware}}-${{ matrix.device }}
+          path: output
+
+  combined-manifests:
+    name: Combine ${{ matrix.project }} manifests
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: home-assistant-glow
+            name: Home Assistant Glow
+    steps:
+      - name: ⤵️ Download specific artifacts
+        uses: actions/download-artifact@v4.1.1
+        with:
+          pattern: ${{ matrix.project }}-*
+          merge-multiple: true
+          path: project-build
+      - name: 🔨 Generate device manifest.json
+        run: |
+          version=$(cat project-build/*/version | sort -V | tail -n 1)
+          jq -s --arg version "$version" '{"name": "${{ matrix.name }}", "version": $version, "home_assistant_domain": "esphome", "builds":.}' project-build/*/manifest.json > project-build/manifest.json
+      - name: 🧪 Display structure of job
+        run: ls -R
+      - name: ⬆️ Upload project artifact
+        uses: actions/upload-artifact@v4.1.0
+        with:
+          name: ${{ matrix.project }}
+          path: project-build
+
+  build-docs:
+    name: Build documentation website
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: combined-manifests
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v4.1.1
+      - name: ⬇️ Download all artifacts
+        uses: actions/download-artifact@v4.1.1
+        with:
+          path: repository
+      - name: 🗂️ Move firmware folders to static
+        run: |
+          for firmware in $FIRMWARES; do
+            mv repository/$firmware docs/static
+          done
+          rm -R repository
+      - name: 🧪 Display structure of job
+        run: ls -R
+
+      - name: 🏗️ Set up Node.js
+        uses: actions/setup-node@v4.0.1
+        with:
+          node-version: 20.x
+      - name: 🏗️ Install Docusaurus dependencies
+        run: npm install --frozen-lockfile --non-interactive
+        working-directory: docs
+      - name: 🚀 Build Docusaurus
+        run: npm run build
+        working-directory: docs
+
+      - name: ⬆️ Upload pages artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/build
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: build-docs
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 🏗️ Setup Github Pages
+        uses: actions/configure-pages@v4
+      - name: 🚀 Deploy to Github Pages
+        uses: actions/deploy-pages@v4.0.3
+        id: deployment

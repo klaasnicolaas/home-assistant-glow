@@ -1,0 +1,137 @@
+---
+id: getting-started
+title: Getting Started
+description: 'Instruction to get started with the Home Assistant Glow'
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import EspInstallButton from '@site/src/components/EspInstallButton';
+import { faUsb } from '@fortawesome/free-brands-svg-icons';
+
+# Get started
+
+This page will guide you through setting up your new Home Assistant Glow. It will take you through the steps of setup the hardware, installing the firmware and configure the device. It should take **5-10 minutes**, but probably less.
+
+## Step 1: Hardware
+
+To get started you need the right hardware first, fill your 🛒 or see if you already have the components below.
+
+| Nr.  | Item     |  |  |
+|:-----|:---------|:-|:-|
+|**1.**| ESP32 (recommended) | [AliExpress][esp32-ali-shop] | [Banggood][esp32-bg-shop] |
+|**1.**| ESP8266  | [AliExpress][esp8266-ali-shop] | [Banggood][esp8266-bg-shop] |
+|**1.**| Wemos D1 mini V4.0 | [AliExpress][wemos-d1-ali-shop] | [Banggood][wemos-d1-bg-shop] |
+|**2.**| Dupont Jumpers (female to female) | [AliExpress][dupont-jumpers-ali-shop] | [Banggood][dupont-jumpers-bg-shop] |
+|**3.**| LM393 Photodiode | [AliExpress][photodiode-ali-shop] | [Banggood][photodiode-bg-shop] |
+|**4.**| LED RGB 5mm 4 pin - kathode | [AliExpress][rgbled-ali-shop] | [Banggood][rgbled-bg-shop] |
+
+Obviously you do not need all 3 different types of micro controllers, but you can choose between an **ESP32** (recommended), **ESP8266** or the **Wemos D1 mini**. About the photodiode, keep in mind that there are also boards in circulation with an LDR.
+
+### Disclamer
+
+We use AliExpress / Banggood affiliate links for the components and the tools. Some Ad-blockers might block these links an thus they seem to appear broken. You will have to temporarily disable ad-blocker to open these links.
+
+How everything should be connected can be found on the [wiring diagram](/docs/reference/diagram). Once this is done, you can proceed to step 2.
+
+## Step 2: Install firmware
+
+Use the method below to provide your ESP with the correct firmware.
+
+<Tabs>
+  <TabItem value="usb" label={<><icon icon={faUsb} size="lg"/> USB</>}>
+
+_Make sure this page is opened in a Chromium-based browser on a desktop. The software installation does not work with a tablet or phone._
+
+1. Press the blue **connect** button below, a pop-up window will appear with a list of available USB devices.
+2. Plug the USB cable into the ESP and connect it to your computer.
+3. In the pop-up window, there should now appear a new entry. Select this USB serial port and click **Connect**.
+4. Select **Install Home Assistant Glow**, then **Install**.
+    - If the installation does not go well, you may need to first hold down the boot button and then click install.
+5. Once the installation is complete, select **Next**.
+    - Add the Home Assistant Glow to your Wi-Fi network:
+      - When prompted, select your network from the list and enter the credentials to your 2.4&nbsp;GHz Wi-Fi network.
+      - Select **Connect**.
+      - The Home Assistant Glow now joined your network.
+6. Congratulations 🎉 You have successfully installed the firmware on your Home Assistant Glow.
+
+:::note
+If your device does not appear in the list, make sure you are using a USB data cable (i.e., not power-only), and try installing the [driver](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads) for the serial chip.
+:::
+
+<EspInstallButton unsupportedMessage="Provisioning via USB only works in browsers which support Web Serial, such as Chrome or Edge." />
+  </TabItem>
+</Tabs>
+
+## Step 3: Connect to Home Assistant
+
+You have two options to add the Home Assistant Glow to Home Assistant.
+
+### Option 1: During firmware installation
+
+1. Immediately after setting up your Wi-Fi network (from step 2), you will see a screen with the option **Add to Home Assistant**.
+    - This opens the **My** link to Home Assistant (see image below).
+      - If you have not used My Home Assistant before, you will need to configure it. If your Home Assistant URL is not accessible on `http://homeassistant.local:8123`, replace it with the URL to your Home Assistant instance.
+2. Click on **Open the link**.
+3. It opens your Home Assistant instance and asks you to set up, click **OK**.
+4. Congratulations 🎉 You have successfully added the Home Assistant Glow to your Home Assistant instance.
+
+<p align="left">
+  <img width="60%" src={require('@site/static/img/installation/my-link.png').default} />
+</p>
+
+### Option 2: Auto discovery
+
+When the Home Assistant Glow is added to a network to which your Home Assistant instance is also connected, your device will automatically be recognized in Home Assistant.
+
+1. Under [**Settings** > **Devices & Services**](https://my.home-assistant.io/redirect/integrations/), your Home Assistant Glow should be discovered (see image below).
+2. Click on **Configure**, at the discovered device.
+3. It asks if you want to add the device and click **Submit**.
+4. Congratulations 🎉 You have successfully added the Home Assistant Glow to your Home Assistant instance.
+
+<p align="left">
+  <img width="40%" src={require('@site/static/img/installation/auto-discovery.png').default} />
+</p>
+
+## Step 4: Configure
+
+In order for the measurements to run smoothly, it is important to set the correct pulse rate. Each meter with a pulse LED has a marking with an **imp/kWh** value, for example 1000, 2000, etc. The Home Assistant Glow will use the value `1000` by default, because this is a commonly used value in the Netherlands.
+
+You can adjust the value in 2 ways:
+
+### Option 1: Via the web interface
+
+You open the web server by going to the IP address of your Home Assistant Glow, where you will find the line **Pulse rate - imp/kWh** in the table and you can then adjust it on the right.
+
+<p align="left">
+  <img width="80%" src={require('@site/static/img/installation/pulse_rate-webserver.png').default} />
+</p>
+
+### Option 2: In Home Assistant
+
+1. Go to the device overview page of the Home Assistant Glow, via [**Settings** > **Devices & Services** > **ESPHome**](https://my.home-assistant.io/redirect/integration/?domain=esphome).
+2. Adjust the value for the entity **Pulse rate - imp/kWh**.
+
+For problems with the measurements, see the [FAQ page](/docs/faq).
+
+## Step 5: Print Enclosure
+
+The last step is to print a housing, the files for this can be found on the [cases page](/docs/reference/cases). If you do not have a 3D printer, there are platforms where you could place a print job or mount the Home Assistant Glow in a creative way 🙃 (my first concept was with cardboard).
+
+## Step 6: Sit back and relax
+
+Congratulations 🎉 You have gone successfully through everything to get started with the Home Assistant Glow 🌟 If you have any questions, please check the [FAQ page](/docs/faq) first and if you can't find the answer there, you can always ask your question on the [Github](https://github.com/klaasnicolaas/home-assistant-glow).
+
+{/* Hardware */}
+[esp32-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2FGeekcreit-ESP32-WiFi%2Bbluetooth-Development-Board-Ultra-Low-Power-Consumption-Dual-Cores-Pins-Unsoldered-p-1214159.html
+[esp32-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005970816555.html
+[esp8266-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-NodeMcu-Lua-ESP8266-ESP-12F-WIFI-Development-Board-p-985891.html
+[esp8266-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005977505151.html
+[wemos-d1-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-D1-Mini-V3_0_0-WIFI-Internet-Of-Things-Development-Board-Based-ESP8266-4MB-MicroPython-Nodemcu-p-1264245.html
+[wemos-d1-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005006018009983.html
+[dupont-jumpers-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F120pcs-20cm-Male-To-Female-Female-To-Female-Male-To-Male-Color-Breadboard-Jumper-Cable-Dupont-Wire-p-974006.html
+[dupont-jumpers-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005945668553.html
+[photodiode-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F4Pin-Photodiode-Sensor-Controller-Module-Measure-Module-p-1416445.html
+[photodiode-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005003302215339.html
+[rgbled-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F50pcs-LED-RGB-Common-Cathode-4-Pin-F5-5MM-Diode-p-1016398.html
+[rgbled-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F4000225253691.html

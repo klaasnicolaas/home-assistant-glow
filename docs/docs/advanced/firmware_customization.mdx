@@ -1,0 +1,41 @@
+---
+id: firmware_customization
+title: Customizing the Firmware
+description: How to adopt and customize the firmware for your own needs.
+---
+
+Since the Home Assistant Glow's firmware is based on [ESPHome](https://esphome.io), making
+customizations to the firmware is as easy as editing some YAML. The best way to modify the
+firmware config is by installing the [ESPHome Dashboard](https://esphome.io/guides/getting_started_hassio.html)
+(or using it [via cli](https://esphome.io/guides/getting_started_command_line.html)).
+
+## Adopting the Device
+
+Once ESPHome Dashboard is running, and your Home Assistant Glow is connected to your network,
+it should prompt you to adopt it.
+
+<p align="left">
+  <img src={require('@site/static/img/customization/adopt-esphome.png').default} />
+</p>
+
+
+Go through the adoption flow; it will do these things:
+
+1. Create an ESPHome configuration file
+2. Set an API encryption key (used by Home Assistant or other native API consumers)
+3. Bake the Wi-Fi credentials into the firmware
+4. Install the new firmware to the device
+
+## Understanding the Configuration
+
+### Components
+
+To keep things maintainable and to make it easier to build firmware for different board types,
+each large part of the configuration is broken up into its own "components". There are currently
+three components, all of which are included in the base config:
+
+- `basis.yaml`: Entities related to the basic functionality of the device
+- `pulse_meter.yaml`: Entities related to the pulse meter
+- `status_led.yaml`: Entities related to the status LED
+
+You can see the source for all the components [here](https://github.com/klaasnicolaas/home-assistant-glow/tree/main/components).
