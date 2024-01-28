@@ -1,0 +1,28 @@
+.navbar--github-link {
+  font-size: 0;
+}
+
+.navbar--github-link:hover {
+  opacity: 0.6;
+}
+
+.navbar--github-link:before {
+  content: "";
+  display: flex;
+  height: 24px;
+  width: 24px;
+  background: url("/img/brand-github.svg");
+}
+
+html[data-theme="dark"] .navbar--github-link:before {
+  background: url("/img/brand-github-inverted.svg");
+}
+
+@media screen and (max-width: 966px) {
+  .navbar--github-link {
+    font-size: var(--ifm-code-font-size);
+  }
+  .navbar--github-link:before {
+    display: none;
+  }
+}
