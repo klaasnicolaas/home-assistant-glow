@@ -29,10 +29,9 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title}`}
+      title={`Home`}
       description="The Home Assistant Glow makes a (not so) smart meter without a P1 port easily readable, using the pulse LED that is always present in most cases and it works with ESPHome!">
       <HomepageHeader />
       <main>
