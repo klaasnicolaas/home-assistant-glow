@@ -43,9 +43,6 @@ logger:
 
 # Allow OTA updates
 ota:
-  safe_mode: true
-  reboot_timeout: 10min
-  num_attempts: 5
 
 # Allow provisioning Wi-Fi via serial
 improv_serial:
