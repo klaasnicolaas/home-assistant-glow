@@ -168,7 +168,7 @@ jobs:
         working-directory: docs
 
       - name: ⬆️ Upload pages artifacts
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: docs/build
 
