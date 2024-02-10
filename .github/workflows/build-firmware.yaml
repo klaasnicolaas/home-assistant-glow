@@ -118,7 +118,7 @@ jobs:
             name: Home Assistant Glow
     steps:
       - name: ⤵️ Download specific artifacts
-        uses: actions/download-artifact@v4.1.1
+        uses: actions/download-artifact@v4.1.2
         with:
           pattern: ${{ matrix.project }}-*
           merge-multiple: true
@@ -144,7 +144,7 @@ jobs:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v4.1.1
       - name: ⬇️ Download all artifacts
-        uses: actions/download-artifact@v4.1.1
+        uses: actions/download-artifact@v4.1.2
         with:
           path: repository
       - name: 🗂️ Move firmware folders to static
