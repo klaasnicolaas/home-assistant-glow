@@ -7,6 +7,8 @@ description: Sudden increase in consumption after a period of zero readings
 
 If you have a solar system, and the consumption remains zero for some time and then gets a value from the sensor, you may see an abrupt increase in the total daily energy sensor value that doesn't match the actual consumption. 
 
+More details under: https://github.com/klaasnicolaas/home-assistant-glow/issues/274
+
 ## What to do?
 
 In your esp config file, use the left calculation method instead of the default
