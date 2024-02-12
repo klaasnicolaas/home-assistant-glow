@@ -10,11 +10,11 @@ If you have a solar system, and the consumption remains zero for some time and t
 
 ## What to do?
 
-In your esp config file, use the left [calculation method][method] instead of the default
+In your ESP config file, use the `left` [calculation method][method] instead of the default (`right`):
 
 ```yaml
 - platform: total_daily_energy
-  ...
+  # ...
   method: left
 ```
 
