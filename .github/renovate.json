@@ -13,7 +13,7 @@
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
-      "addLabels": ["dependencies"],
+      "addLabels": ["github_actions"],
       "rangeStrategy": "pin",
       "extractVersion": "^(?<version>v\\d+\\.\\d+\\.\\d+)$",
       "versioning": "regex:^v(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
@@ -24,11 +24,7 @@
       "automerge": true
     },
     {
-      "matchManagers": ["npm"],
-      "addLabels": ["dependencies"]
-    },
-    {
-      "matchManagers": ["npm"],
+      "matchManagers": ["npm", "html"],
       "matchUpdateTypes": ["patch"],
       "automerge": true
     }
