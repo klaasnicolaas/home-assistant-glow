@@ -14,6 +14,7 @@ In your esp config file, use the left [calculation method][method] instead of th
 
 ```yaml
 - platform: total_daily_energy
+  ...
   method: left
 ```
 
