@@ -24,7 +24,7 @@
       "automerge": true
     },
     {
-      "matchManagers": ["npm", "html"],
+      "matchManagers": ["npm"],
       "matchUpdateTypes": ["patch"],
       "automerge": true
     }
