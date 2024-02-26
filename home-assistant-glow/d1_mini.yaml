@@ -26,7 +26,7 @@ esphome:
     version: "${project_version}"
 
 dashboard_import:
-  package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp32.yaml@main
+  package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/d1_mini.yaml@main
 
 esp8266:
   board: d1_mini
