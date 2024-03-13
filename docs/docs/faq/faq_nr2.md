@@ -6,7 +6,7 @@ description: How to reduce the amount of sensor data
 
 Depending on the configured **pulse rate**, the type of house/apartment and the heating system in use, the sensors that are exposed to Home Assistant may produce a lot of data. For example, with the default **pulse rate** of `1000`, a power consumption of 3600 W means that the sensors produce 2 HA state changes per second (which means 7200 state changes per hour).
 
-If you don't need that kind of granularity, you can use [ESPHome sensor filters][filters] to reduce the rate of updates written to Home Assistant. With the commented-out filters in the [pulse_meter.yaml][file] enabled, only 396 state changes will be produced per hour. You can read more about making YAML adjustments on the "[Customizing the Firmware](/docs/advanced/firmware_customization.mdx)" page.
+If you don't need that kind of granularity, you can use [ESPHome sensor filters][filters] to reduce the rate of updates written to Home Assistant. With the commented-out filters in the [pulse_meter.yaml][file] enabled, only 396 state changes will be produced per hour. You can read more about making YAML adjustments on the [customizing the Firmware](/docs/advanced/firmware_customization.mdx) page.
 
 ### Pulse meter - power sensor
 
