@@ -12,10 +12,11 @@ If you have a solar system, and the consumption remains zero for some time and t
 
 In your ESP config file, use the `left` [calculation method][method] instead of the default (`right`):
 
-```yaml
-- platform: total_daily_energy
-  # ...
-  method: left
+```yaml title="components/pulse_meter.yaml"
+sensor:
+  - platform: total_daily_energy
+    # ...
+    method: left
 ```
 
 [method]: https://esphome.io/components/sensor/total_daily_energy.html
