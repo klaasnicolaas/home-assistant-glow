@@ -27,6 +27,7 @@ esphome:
 
 dashboard_import:
   package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/d1_mini.yaml@main
+  import_full_config: true
 
 esp8266:
   board: d1_mini
