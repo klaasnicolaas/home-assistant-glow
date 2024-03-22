@@ -34,10 +34,13 @@ esp32:
     type: arduino
 
 packages:
-  remote:
-    url: github://klaasnicolaas/home-assistant-glow
+  remote_package:
+    url: https://github.com/klaasnicolaas/home-assistant-glow/
     ref: main
-    files: [components/basis.yaml, components/status_led.yaml, components/pulse_meter.yaml]
+    files:
+      - components/basis.yaml
+      - components/status_led.yaml
+      - components/pulse_meter.yaml
 
 # Enable logging
 logger:
