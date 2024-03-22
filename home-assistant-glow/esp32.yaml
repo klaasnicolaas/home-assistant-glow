@@ -35,9 +35,9 @@ esp32:
 
 packages:
   remote:
-    url: github://klaasnicolaas/home-assistant-glow/components
+    url: github://klaasnicolaas/home-assistant-glow
     ref: main
-    files: [basis.yaml, status_led.yaml, pulse_meter.yaml]
+    files: [components/basis.yaml, components/status_led.yaml, components/pulse_meter.yaml]
 
 # Enable logging
 logger:
