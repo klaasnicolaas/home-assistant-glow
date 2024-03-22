@@ -94,6 +94,7 @@ jobs:
         with:
           yaml_file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
           version: ${{ matrix.version || 'latest' }}
+          cache: true
       - name: 🚚 Move generated files to output
         run: |
           mkdir -p output/${{ matrix.device }}
