@@ -10,6 +10,7 @@ substitutions:
   friendly_name: Home Assistant Glow
   project_version: "4.0.0"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP8266 Generic"
+  project_url: "github://klaasnicolaas/home-assistant-glow"
 
   # Define the GPIO pins
   pulse_pin: GPIO13
@@ -26,16 +27,15 @@ esphome:
     version: "${project_version}"
 
 dashboard_import:
-  package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp8266.yaml@main
-  import_full_config: true
+  package_import_url: '${project_url}/home-assistant-glow/esp8266.yaml@main'
 
 esp8266:
   board: esp01_1m
 
 packages:
-  basis: !include ../components/basis.yaml
-  status_led: !include ../components/status_led.yaml
-  pulse_meter: !include ../components/pulse_meter.yaml
+  basis: '${project_url}/components/basis.yaml@main'
+  status_led: '${project_url}/components/status_led.yaml@main'
+  pulse_meter: '${project_url}/components/pulse_meter.yaml@main'
 
 # Enable logging
 logger:
