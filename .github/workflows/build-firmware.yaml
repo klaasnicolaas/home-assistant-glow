@@ -111,7 +111,7 @@ jobs:
 
   combined-manifests:
     name: Combine ${{ matrix.project }} manifests
-    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+    # if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: build
     strategy:
@@ -141,7 +141,7 @@ jobs:
 
   build-docs:
     name: Build documentation website
-    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+    # if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: combined-manifests
     steps:
@@ -178,7 +178,7 @@ jobs:
 
   deploy:
     name: Deploy to GitHub Pages
-    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
+    # if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: build-docs
     permissions:
