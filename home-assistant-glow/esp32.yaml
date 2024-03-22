@@ -27,7 +27,6 @@ esphome:
 
 dashboard_import:
   package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp32.yaml@main
-  import_full_config: true
 
 esp32:
   board: esp32dev
@@ -35,9 +34,13 @@ esp32:
     type: arduino
 
 packages:
-  basis: !include ../components/basis.yaml
-  status_led: !include ../components/status_led.yaml
-  pulse_meter: !include ../components/pulse_meter.yaml
+  remote_package:
+    url: https://github.com/klaasnicolaas/home-assistant-glow/
+    ref: main
+    files:
+      - components/basis.yaml
+      - components/status_led.yaml
+      - components/pulse_meter.yaml
 
 # Enable logging
 logger:
