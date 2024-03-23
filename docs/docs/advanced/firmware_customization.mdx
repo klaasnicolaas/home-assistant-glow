@@ -1,6 +1,6 @@
 ---
 id: firmware_customization
-title: Customizing the Firmware
+title: Customizing the firmware
 description: How to adopt and customize the firmware for your own needs.
 ---
 
@@ -36,4 +36,30 @@ three components, all of which are included in the base config:
 - `pulse_meter.yaml`: Entities related to the pulse meter
 - `status_led.yaml`: Entities related to the status LED
 
-You can see the source for all the components [here](https://github.com/klaasnicolaas/home-assistant-glow/tree/main/components).
+All of these components can be found on the [GitHub repository](https://github.com/klaasnicolaas/home-assistant-glow/tree/main/components).
+
+## Make customizations
+
+After adopting the device, you can make customizations to the firmware by editing the YAML
+files. You can do this by clicking the **EDIT** button in the ESPHome dashboard. This will open
+the YAML editor, where you can make changes to the configuration.
+
+<p align="left">
+  <img src={require('@site/static/img/customization/edit-device.png').default} />
+</p>
+
+When you open the YAML editor you will see a minimal configuration of your Home Assistant Glow,
+if you want to make adjustments to, e.g., the [pulse_meter] component then the best way
+is to use an [!extend].
+
+```yaml title="your_glow_config.yaml"
+sensor:
+  - id: !extend sensor_energy_pulse_meter
+    internal_filter: 100ms
+```
+
+With the above example you will add an [internal_filter], which can be useful if high power values are measured.
+
+[internal_filter]: https://esphome.io/components/sensor/pulse_counter.html?highlight=internal_filter
+[pulse_meter]: https://esphome.io/components/sensor/pulse_counter.html
+[!extend]: https://esphome.io/guides/configuration-types.html#extend
