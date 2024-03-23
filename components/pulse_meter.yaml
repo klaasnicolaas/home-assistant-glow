@@ -36,8 +36,8 @@ number:
 button:
   # Reset the total energy entity
   - platform: template
-    name: "Reset - Total Energy"
     id: button_reset_total
+    name: "Reset - Total Energy"
     on_press:
       - pulse_meter.set_total_pulses:
           id: sensor_energy_pulse_meter
@@ -46,15 +46,14 @@ button:
 sensor:
   # Pulse meter
   - platform: pulse_meter
-    name: '${friendly_name} - Power Consumption'
     id: sensor_energy_pulse_meter
+    name: '${friendly_name} - Power Consumption'
     unit_of_measurement: W
     state_class: measurement
     device_class: power
     icon: mdi:flash-outline
     accuracy_decimals: 0
     pin: ${pulse_pin}
-    # internal_filter: 100ms
     on_raw_value:
       then:
         - light.turn_on:
@@ -67,15 +66,9 @@ sensor:
       # - multiply: 60
       - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
 
-      # Update the sensor with an average every 10th second. See
-      # https://github.com/klaasnicolaas/home-assistant-glow/#reduce-the-amount-of-data-the-sensors-produce
-      # for more information.
-      #- throttle_average: 10s
-      #- filter_out: NaN
-
     total:
-      name: '${friendly_name} - Total Energy'
       id: sensor_total_energy
+      name: '${friendly_name} - Total Energy'
       unit_of_measurement: kWh
       icon: mdi:circle-slice-3
       state_class: total_increasing
@@ -86,16 +79,10 @@ sensor:
         # - multiply: 0.001
         - lambda: return x * (1.0 / id(select_pulse_rate).state);
 
-        # Update the sensor once per 0.1 kWh consumed, or every 5th minute, whichever happens sooner.
-        # See https://github.com/klaasnicolaas/home-assistant-glow/#reduce-the-amount-of-data-the-sensors-produce
-        # for more information.
-        #- delta: 0.01
-        #- heartbeat: 300s
-
   # Total day usage
   - platform: total_daily_energy
-    name: '${friendly_name} - Daily Energy'
     id: sensor_total_daily_energy
+    name: '${friendly_name} - Daily Energy'
     power_id: sensor_energy_pulse_meter
     unit_of_measurement: kWh
     icon: mdi:circle-slice-3
