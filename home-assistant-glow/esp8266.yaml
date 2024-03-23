@@ -8,7 +8,7 @@
 substitutions:
   device_name: home-assistant-glow
   friendly_name: Home Assistant Glow
-  project_version: "4.0.0"
+  project_version: "4.0.1"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP8266 Generic"
 
   # Define the GPIO pins
