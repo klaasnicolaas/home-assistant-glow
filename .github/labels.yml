@@ -1,10 +1,13 @@
 ---
 - name: "breaking-change"
-  color: ee0701
+  color: d93f0b
   description: "A breaking change for existing users."
+- name: "bug"
+  color: fc2929
+  description: "Inconsistencies or issues which will cause a problem for users."
 - name: "bugfix"
-  color: ee0701
-  description: "Inconsistencies or issues which will cause a problem for users or implementors."
+  color: ededed
+  description: "Fixing a bug."
 - name: "documentation"
   color: 0052cc
   description: "Solely about the documentation of the project."
@@ -19,7 +22,7 @@
   description: "Improving performance, not introducing new features."
 - name: "new-feature"
   color: 0e8a16
-  description: "New features or options."
+  description: "New features or request."
 - name: "maintenance"
   color: 2af79e
   description: "Generic maintenance tasks."
@@ -39,6 +42,15 @@
 - name: "no-stale"
   color: fef2c0
   description: "This issue or PR is exempted from the stable bot."
+- name: "wontfix"
+  color: ffffff
+  description: "This issue or PR will not be fixed."
+- name: "cleanup"
+  color: ef75d5
+  description: "Cleanup of code."
+- name: "sync"
+  color: 00a6ed
+  description: "Syncing with upstream github config repository."
 
 - name: "security"
   color: ee0701
@@ -49,6 +61,9 @@
 - name: "invalid"
   color: fef2c0
   description: "Marks a PR or issue that is missing information."
+- name: "duplicate"
+  color: cfd3d7
+  description: "This issue or pull request already exists."
 
 - name: "beginner-friendly"
   color: 0e8a16
