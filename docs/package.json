@@ -17,7 +17,7 @@
   "dependencies": {
     "@docusaurus/core": "3.3.2",
     "@docusaurus/preset-classic": "3.3.2",
-    "@easyops-cn/docusaurus-search-local": "^0.40.1",
+    "@easyops-cn/docusaurus-search-local": "^0.41.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
