@@ -11,7 +11,7 @@ jobs:
     name: 🐦 Tweet the release
     runs-on: ubuntu-latest
     steps:
-      - uses: Eomm/why-don-t-you-tweet@v1.1.0
+      - uses: Eomm/why-don-t-you-tweet@v2.0.0
         with:
           # GitHub event payload
           # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#release
