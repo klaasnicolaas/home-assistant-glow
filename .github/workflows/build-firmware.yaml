@@ -23,6 +23,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/latest
   FIRMWARES: |
     home-assistant-glow
 
@@ -94,7 +95,7 @@ jobs:
         with:
           yaml_file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
           version: ${{ matrix.version || 'latest' }}
-          release_url: ${{ github.event.release.html_url }}
+          release_url: ${{ github.event.release.html_url || env.RELEASE_URL }}
           cache: true
       - name: 🚚 Move generated files to output
         run: |
