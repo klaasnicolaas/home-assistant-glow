@@ -10,3 +10,4 @@ update:
 
 http_request:
   timeout: 10s
+  verify_ssl: false
