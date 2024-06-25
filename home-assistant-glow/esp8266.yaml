@@ -38,15 +38,12 @@ packages:
     ref: main
     files:
       - components/basis.yaml
+      - components/updates.yaml
       - components/status_led.yaml
       - components/pulse_meter.yaml
 
 # Enable logging
 logger:
-
-# Allow OTA updates
-ota:
-  - platform: esphome
 
 # Allow provisioning Wi-Fi via serial
 improv_serial:
