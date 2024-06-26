@@ -1,7 +1,9 @@
 # OTA configuration #
 ota:
   - platform: esphome
+    id: ota_esphome
   - platform: http_request
+    id: ota_http_request
 
 update:
   - platform: http_request
