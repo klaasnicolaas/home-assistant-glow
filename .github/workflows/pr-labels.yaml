@@ -4,6 +4,9 @@ name: PR Labels
 # yamllint disable-line rule:truthy
 on:
   pull_request:
+    # Don't run on target branch
+    branches-ignore:
+      - main
     types: [opened, labeled, unlabeled, synchronize]
 
 jobs:

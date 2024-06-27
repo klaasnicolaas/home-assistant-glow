@@ -5,7 +5,8 @@ name: Build & Deploy firmware
 on:
   push:
     branches:
-      - main
+      - develop
+      - release/**
   release:
     types:
       - published
