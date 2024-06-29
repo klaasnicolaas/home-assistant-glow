@@ -10,10 +10,12 @@ on:
     inputs:
       release-tag:
         description: "Release tag"
+        default: "x.x.x"
         required: true
         type: string
       release-url:
         description: "Release URL"
+        default: "https://github.com"
         required: true
         type: string
 
