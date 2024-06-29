@@ -92,14 +92,10 @@ jobs:
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v4.1.7
-      - name: Determine ref
-        id: determine_ref
+      - name: 🔍 Determine ref - ESPHome packages
+        if: ${{ !contains(fromJSON('["workflow_dispatch", "release", "workflow_call"]'), github.event_name) }}
         run: |
-          if [[ "${{ github.ref }}" != "refs/heads/main" ]]; then
-            sed -i "s/ref: .*/ref: ${{ github.head_ref || 'klaas-2024-035' }}/g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
-          else
-            echo "Skipping sed command because the branch is main."
-          fi
+          sed -i "s/ref: .*/ref: ${{ github.head_ref || 'klaas-2024-035' }}/g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🧪 Display changed YAML file
         run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware
