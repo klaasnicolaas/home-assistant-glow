@@ -100,7 +100,7 @@ jobs:
         id: determine_ref
         run: |
           if [[ "${{ github.ref }}" != "refs/heads/main" ]]; then
-            sed -i "s/ref: .*/ref: ${{ github.head_ref }}/g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
+            sed -i "s/ref: .*/ref: ${{ github.head_ref || github.ref }}/g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
           else
             echo "Skipping sed command because the branch is main."
           fi
