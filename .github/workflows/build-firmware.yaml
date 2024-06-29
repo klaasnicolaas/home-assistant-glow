@@ -104,7 +104,7 @@ jobs:
           else
             echo "Skipping sed command because the branch is main."
           fi
-      - name: Log Changed YAML file
+      - name: 🧪 Display changed YAML file
         run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware
         uses: esphome/build-action@v3.1.0
