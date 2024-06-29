@@ -14,7 +14,7 @@ on:
 jobs:
   build-firmware:
     uses: klaasnicolaas/home-assistant-glow/.github/workflows/build-firmware.yaml@klaas-2024-035
-    name: Build firmware
+    name: Firmware
     with:
       release-url: ${{ github.event.release.html_url }}
 
@@ -35,7 +35,7 @@ jobs:
           pattern: build-${{ matrix.project }}-*
           merge-multiple: true
           path: files
-          run-id: ${{ needs.build-firmware.outputs.run-id }}
+          # run-id: ${{ needs.build-firmware.outputs.run-id }}
       - name: 🔨 Generate device manifest.json
         run: |
           version=${{ github.event.release.tag_name || '4.1.0' }}
