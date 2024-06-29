@@ -9,16 +9,17 @@ on:
   workflow_dispatch:
     inputs:
       release-tag:
-        description: "The tag of the release to use in deployment"
+        description: "Release tag"
         required: true
         type: string
       release-url:
-        description: "The URL of the release to use in deployment"
+        description: "Release URL"
         required: true
         type: string
 
 jobs:
   build-firmware:
+    if: ${{ github.event.ref == 'refs/heads/main' }}
     uses: klaasnicolaas/home-assistant-glow/.github/workflows/build-firmware.yaml@main
     name: Firmware
     with:
