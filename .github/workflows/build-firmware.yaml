@@ -11,7 +11,7 @@ on:
   workflow_call:
     inputs:
       release-url:
-        required: false
+        required: true
         type: string
   pull_request:
     branches-ignore:
@@ -93,9 +93,9 @@ jobs:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v4.1.7
       - name: 🔍 Determine ref - ESPHome packages
-        if: ${{ !contains(fromJSON('["workflow_dispatch", "release", "workflow_call"]'), github.event_name) }}
+        if: ${{ !contains(fromJSON('["release", "workflow_call"]'), github.event_name) }}
         run: |
-          sed -i "s/ref: .*/ref: ${{ github.head_ref || 'klaas-2024-035' }}/g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
+          sed -i "s/ref: .*/ref: ${{ github.head_ref }}/g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🧪 Display changed YAML file
         run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware

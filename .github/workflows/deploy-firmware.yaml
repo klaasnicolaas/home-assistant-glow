@@ -3,20 +3,26 @@
 name: Deploy firmware
 
 on:
-  push:
-    branches:
-      - klaas-2024-035
   release:
     types:
       - published
   workflow_dispatch:
+    inputs:
+      release-tag:
+        description: "The tag of the release to use in deployment"
+        required: true
+        type: string
+      release-url:
+        description: "The URL of the release to use in deployment"
+        required: true
+        type: string
 
 jobs:
   build-firmware:
-    uses: klaasnicolaas/home-assistant-glow/.github/workflows/build-firmware.yaml@klaas-2024-035
+    uses: klaasnicolaas/home-assistant-glow/.github/workflows/build-firmware.yaml@main
     name: Firmware
     with:
-      release-url: ${{ github.event.release.html_url }}
+      release-url: ${{ github.event.release.html_url || inputs.release-url }}
 
   combined-manifests:
     name: Combine ${{ matrix.project }} manifests
@@ -37,7 +43,7 @@ jobs:
           path: files
       - name: 🔨 Generate device manifest.json
         run: |
-          version=${{ github.event.release.tag_name || '4.1.0' }}
+          version=${{ github.event.release.tag_name || inputs.release-tag }}
           jq -s --arg version "$version" '{"name": "${{ matrix.name }}", "version": $version, "home_assistant_domain": "esphome", "builds":.}' files/*/manifest.json > files/manifest.json
       - name: 🧪 Display structure of job
         run: ls -R
@@ -81,19 +87,19 @@ jobs:
         with:
           path: docs/build
 
-  # deploy:
-  #   name: Deploy to GitHub Pages
-  #   runs-on: ubuntu-latest
-  #   needs: build-docs
-  #   permissions:
-  #     pages: write
-  #     id-token: write
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-  #   steps:
-  #     - name: 🏗️ Setup Github Pages
-  #       uses: actions/configure-pages@v5.0.0
-  #     - name: 🚀 Deploy to Github Pages
-  #       uses: actions/deploy-pages@v4.0.5
-  #       id: deployment
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: build-docs
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 🏗️ Setup Github Pages
+        uses: actions/configure-pages@v5.0.0
+      - name: 🚀 Deploy to Github Pages
+        uses: actions/deploy-pages@v4.0.5
+        id: deployment
