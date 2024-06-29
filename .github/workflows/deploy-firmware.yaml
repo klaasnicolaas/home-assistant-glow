@@ -14,6 +14,7 @@ on:
 jobs:
   build-firmware:
     uses: klaasnicolaas/home-assistant-glow/.github/workflows/build-firmware.yaml@klaas-2024-035
+    name: Build firmware
     with:
       release-url: ${{ github.event.release.html_url }}
 
