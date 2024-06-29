@@ -35,7 +35,6 @@ jobs:
           pattern: build-${{ matrix.project }}-*
           merge-multiple: true
           path: files
-          # run-id: ${{ needs.build-firmware.outputs.run-id }}
       - name: 🔨 Generate device manifest.json
         run: |
           version=${{ github.event.release.tag_name || '4.1.0' }}

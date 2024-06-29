@@ -13,10 +13,6 @@ on:
       release-url:
         required: false
         type: string
-    outputs:
-      run-id:
-        description: "The ID of the workflow run"
-        value: ${{ github.run_id }}
   pull_request:
     branches-ignore:
       - renovate/docusaurus**
