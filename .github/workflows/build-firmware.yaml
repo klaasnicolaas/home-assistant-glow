@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - develop
-      - release/**
+      - main
   release:
     types:
       - published
@@ -90,6 +90,16 @@ jobs:
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v4.1.7
+      - name: Determine ref
+        id: determine_ref
+        run: |
+          if [[ "${{ github.ref_name }}" != "main" ]]; then
+            sed -i "s/ref: .*/ref: {{ github.ref_name }}/g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
+          else
+            echo "Skipping sed command because the branch is main."
+          fi
+      - name: Log Changed YAML file
+        run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware
         uses: esphome/build-action@v3.1.0
         id: esphome-build
