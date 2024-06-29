@@ -35,7 +35,10 @@ To make sure your meter will work with the Home Assistant Glow, you have to look
   <img width="60%" src="docs/static/img/pulse_rate.png">
 </p>
 
-## Get Started
+## Getting Started
+
+> [!IMPORTANT]
+> Please note, the default branch shows development and may be ahead of the released version. For copying YAML code, use the [release branch](https://github.com/klaasnicolaas/home-assistant-glow/releases/latest). It's best to use the [website](https://glow-energy.io/docs/getting-started#step-2-install-firmware) to install the latest firmware on your ESP.
 
 On the [documentation website](https://glow-energy.io/docs/introduction) you will find a complete walkthrough with which hardware you need, how to install the correct firmware on your ESP (using esp web tools) and how to add it to Home Assistant.
 
