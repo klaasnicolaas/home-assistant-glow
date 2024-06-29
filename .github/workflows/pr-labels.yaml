@@ -18,5 +18,5 @@ jobs:
         uses: klaasnicolaas/action-pr-labels@v2.0.0
         with:
           valid-labels: >-
-            breaking-change, bugfix, documentation, enhancement,
+            breaking-change, bugfix, documentation, enhancement, sync,
             refactor, performance, new-feature, maintenance, ci, dependencies
