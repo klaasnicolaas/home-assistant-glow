@@ -96,7 +96,7 @@ jobs:
         if: ${{ !contains(fromJSON('["release", "workflow_call"]'), github.event_name) }}
         run: |
           echo "ref: ${{ github.head_ref || github.ref_name }}"
-          sed -i "s|ref: .*|ref: ${{ github.head_ref || github.ref_name }}|g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
+          sed -i "s|ref: .*|ref: \"${{ github.head_ref || github.ref_name }}\"|g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🧪 Display changed YAML file
         run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware
