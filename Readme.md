@@ -67,7 +67,7 @@ Thank you for being involved! :heart_eyes:
 
 ## Disclamer
 
-Affiliate links are used on this repository to support the Home Assistant Glow 🌟 project. Some Ad-blockers might block these links an thus they seem to appear broken. You will have to temporarily disable ad-blocker to open these links.
+Affiliate links are used on this repository to support the Home Assistant Glow 🌟 project. Some Ad-blockers might block these links and thus they seem to appear broken. You will have to temporarily disable ad-blocker to open these links.
 
 ## License
 
