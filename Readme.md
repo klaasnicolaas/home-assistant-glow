@@ -46,7 +46,7 @@ On the [documentation website](https://glow-energy.io/docs/introduction) you wil
 
 First, fill your 🛒 or see if you already have the components below.
 
-- One of the micro controllers
+Choose one of the listed microcontrollers, but keep in mind that the ESP32 is recommended.
   - ESP32 (recommended) - [AliExpress](https://s.click.aliexpress.com/e/_DdAe4Fl) or [Banggood][esp32-bg-shop] or [AliExpress][esp32-ali-shop]
   - ESP8266 - [AliExpress](https://s.click.aliexpress.com/e/_DCd13n1) or [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
   - Wemos D1 mini - [AliExpress](https://s.click.aliexpress.com/e/_DFkIzM7) or [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
