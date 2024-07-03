@@ -14,8 +14,9 @@ Try to use the `left` [calculation method][method] instead of the default (`righ
 
 ```yaml title="your_glow_config.yaml"
 sensor:
-  - id: !extend sensor_total_daily_energy
-    method: left
+  - id: !extend sensor_energy_pulse_meter
+    total:
+      method: left
 ```
 
 ## Related topics

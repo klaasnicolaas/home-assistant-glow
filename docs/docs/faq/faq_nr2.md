@@ -15,11 +15,11 @@ sensor:
       # Update the sensor with an average every 10th second. See
       - throttle_average: 10s
       - filter_out: NaN
-  - id: !extend sensor_total_daily_energy
-    filters:
-      # Update the sensor once per 0.1 kWh consumed, or every 5th minute, whichever happens sooner.
-      - delta: 0.01
-      - heartbeat: 300s
+    total:
+      filters:
+        # Update the sensor once per 0.1 kWh consumed, or every 5th minute, whichever happens sooner.
+        - delta: 0.01
+        - heartbeat: 300s
 ```
 
 After applying the filters, only 396 state changes will be produced per hour. You can read more about making YAML adjustments on the [customizing the firmware](/docs/advanced/firmware_customization.mdx) page.
