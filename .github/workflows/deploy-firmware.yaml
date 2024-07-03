@@ -21,7 +21,6 @@ on:
 
 jobs:
   build-firmware:
-    if: ${{ github.event.ref == 'refs/heads/main' }}
     uses: klaasnicolaas/home-assistant-glow/.github/workflows/build-firmware.yaml@main
     name: Firmware
     with:
