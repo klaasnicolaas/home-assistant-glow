@@ -1,0 +1,15 @@
+# OTA configuration #
+ota:
+  - platform: esphome
+    id: ota_esphome
+  - platform: http_request
+    id: ota_http_request
+
+update:
+  - platform: http_request
+    name: Firmware Update
+    source: https://glow-energy.io/home-assistant-glow/manifest.json
+
+http_request:
+  timeout: 10s
+  verify_ssl: false

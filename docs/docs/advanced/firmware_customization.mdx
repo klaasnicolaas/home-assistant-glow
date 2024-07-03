@@ -32,9 +32,10 @@ To keep things maintainable and to make it easier to build firmware for differen
 each large part of the configuration is broken up into its own "components". There are currently
 three components, all of which are included in the base config:
 
-- `basis.yaml`: Entities related to the basic functionality of the device
-- `pulse_meter.yaml`: Entities related to the pulse meter
-- `status_led.yaml`: Entities related to the status LED
+- `basis.yaml`: package related to the basic functionality of the device
+- `pulse_meter.yaml`: package related to the pulse meter
+- `status_led.yaml`: package related to the status LED
+- `updates.yaml`: package related to the OTA updates
 
 All of these components can be found on the [GitHub repository](https://github.com/klaasnicolaas/home-assistant-glow/tree/main/components).
 
@@ -58,7 +59,12 @@ sensor:
     internal_filter: 100ms
 ```
 
-With the above example you will add an [internal_filter], which can be useful if high power values are measured.
+With the above example, you will add an [internal_filter], which can be useful if high power values are measured.
+
+## Related topics
+
+- [ESPHome - Pulse Counter][pulse_meter]
+- [ESPHome - Extend][!extend]
 
 [internal_filter]: https://esphome.io/components/sensor/pulse_counter.html?highlight=internal_filter
 [pulse_meter]: https://esphome.io/components/sensor/pulse_counter.html

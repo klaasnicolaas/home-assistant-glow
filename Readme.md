@@ -35,7 +35,10 @@ To make sure your meter will work with the Home Assistant Glow, you have to look
   <img width="60%" src="docs/static/img/pulse_rate.png">
 </p>
 
-## Get Started
+## Getting Started
+
+> [!IMPORTANT]
+> Please note, the default branch shows development and may be ahead of the released version. For copying YAML code, use the [release branch](https://github.com/klaasnicolaas/home-assistant-glow/releases/latest). It's best to use the [website](https://glow-energy.io/docs/getting-started#step-2-install-firmware) to install the latest firmware on your ESP.
 
 On the [documentation website](https://glow-energy.io/docs/introduction) you will find a complete walkthrough with which hardware you need, how to install the correct firmware on your ESP (using esp web tools) and how to add it to Home Assistant.
 
@@ -43,14 +46,15 @@ On the [documentation website](https://glow-energy.io/docs/introduction) you wil
 
 First, fill your 🛒 or see if you already have the components below.
 
-- One of the micro controllers
-  - ESP32 (recommended) - [Banggood][esp32-bg-shop] or [AliExpress][esp32-ali-shop]
-  - ESP8266 - [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
-  - Wemos D1 mini - [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
-- [Dupont Jumpers][dupont-jumpers-shop]
-- 3D printed case (see the [case](https://glow-energy.io/docs/reference/cases) folder)
-- LM393 Photodiode: [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (make sure that you do not accidentally order or receive an LDR)
-- LED RGB 5mm 4 pin - kathode: [Banggood][rgbled-bg-shop] or [AliExpress][rgbled-ali-shop]
+Choose one of the listed microcontrollers, but keep in mind that the ESP32 is recommended.
+
+  - ESP32 (recommended) - [AliExpress](https://s.click.aliexpress.com/e/_DdAe4Fl) or [Banggood][esp32-bg-shop] or [AliExpress][esp32-ali-shop]
+  - ESP8266 - [AliExpress](https://s.click.aliexpress.com/e/_DCd13n1) or [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
+  - Wemos D1 mini - [AliExpress](https://s.click.aliexpress.com/e/_DFkIzM7) or [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
+- Dupont Jumpers (female to male) - [AliExpress](https://s.click.aliexpress.com/e/_DmbrJsj) or [Banggood][dupont-jumpers-shop]
+- 3D-printed case (see the [case](https://glow-energy.io/docs/reference/cases) folder)
+- LM393 Photodiode: [AliExpress](https://s.click.aliexpress.com/e/_DDkX3zN) or [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (please note that you will not receive an LDR)
+- LED RGB 5mm 4 pin - kathode: [AliExpress](https://s.click.aliexpress.com/e/_Dn1D0wT) or [Banggood][rgbled-bg-shop] or [AliExpress][rgbled-ali-shop]
 
 ## Contributing
 
@@ -63,7 +67,7 @@ Thank you for being involved! :heart_eyes:
 
 ## Disclamer
 
-We use AliExpress / Banggood affiliate links for the components and the tools. Some Ad-blockers might block these links an thus they seem to appear broken. You will have to temporarily disable ad-blocker to open these links.
+Affiliate links are used on this repository to support the Home Assistant Glow 🌟 project. Some Ad-blockers might block these links and thus they seem to appear broken. You will have to temporarily disable ad-blocker to open these links.
 
 ## License
 
