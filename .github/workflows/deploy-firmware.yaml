@@ -8,11 +8,6 @@ on:
       - published
   workflow_dispatch:
     inputs:
-      release-tag:
-        description: "Release tag"
-        default: "x.x.x"
-        required: true
-        type: string
       release-url:
         description: "Release URL"
         default: "https://github.com"
@@ -45,7 +40,7 @@ jobs:
           path: files
       - name: 🔨 Generate device manifest.json
         run: |
-          version=${{ github.event.release.tag_name || inputs.release-tag }}
+          version=cat(project_version)
           jq -s --arg version "$version" '{"name": "${{ matrix.name }}", "version": $version, "home_assistant_domain": "esphome", "builds":.}' files/*/manifest.json > files/manifest.json
       - name: 🧪 Display structure of job
         run: ls -R
