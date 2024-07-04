@@ -7,9 +7,19 @@ ota:
 
 update:
   - platform: http_request
-    name: Firmware Update
+    id: update_http_request
+    name: Firmware
     source: https://glow-energy.io/home-assistant-glow/manifest.json
 
 http_request:
   timeout: 10s
   verify_ssl: false
+
+button:
+  - platform: template
+    id: check_for_update_button
+    name: Check for firmware update
+    device_class: update
+    on_press:
+      then:
+        - component.update: update_http_request
