@@ -62,6 +62,9 @@ captive_portal:
 # To have a "next url" for improv serial
 web_server:
 
+preferences:
+  flash_write_interval: 5min
+
 globals:
   id: persist_sensor_total_energy
   type: float
