@@ -61,3 +61,8 @@ captive_portal:
 
 # To have a "next url" for improv serial
 web_server:
+
+globals:
+  id: persist_sensor_total_energy
+  type: float
+  restore_value: True
