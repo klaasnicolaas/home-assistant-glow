@@ -25,11 +25,11 @@ esphome:
   project:
     name: "klaasnicolaas.home-assistant-glow"
     version: "${project_version}"
-  on_boot: 
-  then:
-    - pulse_meter.set_total_pulses: 
-        id: sensor_energy_pulse_meter
-        value: !lambda "return id(persist_sensor_total_energy);"
+  on_boot:
+    then:
+      - pulse_meter.set_total_pulses:
+          id: sensor_energy_pulse_meter
+          value: !lambda "return id(persist_sensor_total_energy);"
 
 dashboard_import:
   package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp32.yaml@main
