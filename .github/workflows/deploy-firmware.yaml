@@ -33,7 +33,7 @@ jobs:
             name: Home Assistant Glow
     steps:
       - name: ⤵️ Download specific artifacts
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4.1.8
         with:
           pattern: build-${{ matrix.project }}-*
           merge-multiple: true
@@ -60,7 +60,7 @@ jobs:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v4.1.7
       - name: ⬇️ Download all artifacts
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4.1.8
         with:
           pattern: "!build-*"
           path: output
