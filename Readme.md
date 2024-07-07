@@ -50,7 +50,6 @@ Choose one of the listed microcontrollers, but keep in mind that the ESP32 is re
 
   - ESP32 (recommended) - [AliExpress](https://s.click.aliexpress.com/e/_DdAe4Fl) or [Banggood][esp32-bg-shop] or [AliExpress][esp32-ali-shop]
   - ESP8266 - [AliExpress](https://s.click.aliexpress.com/e/_DCd13n1) or [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
-  - Wemos D1 mini - [AliExpress](https://s.click.aliexpress.com/e/_DFkIzM7) or [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
 - Dupont Jumpers (female to male) - [AliExpress](https://s.click.aliexpress.com/e/_DmbrJsj) or [Banggood][dupont-jumpers-shop]
 - 3D-printed case (see the [case](https://glow-energy.io/docs/reference/cases) folder)
 - LM393 Photodiode: [AliExpress](https://s.click.aliexpress.com/e/_DDkX3zN) or [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (please note that you will not receive an LDR)
@@ -118,8 +117,6 @@ SOFTWARE.
 [esp32-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005970816555.html
 [esp8266-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-NodeMcu-Lua-ESP8266-ESP-12F-WIFI-Development-Board-p-985891.html
 [esp8266-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005977505151.html
-[wemos-d1-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-D1-Mini-V3_0_0-WIFI-Internet-Of-Things-Development-Board-Based-ESP8266-4MB-MicroPython-Nodemcu-p-1264245.html
-[wemos-d1-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005006018009983.html
 [dupont-jumpers-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F120pcs-20cm-Male-To-Female-Female-To-Female-Male-To-Male-Color-Breadboard-Jumper-Cable-Dupont-Wire-p-974006.html
 [photodiode-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F4Pin-Photodiode-Sensor-Controller-Module-Measure-Module-p-1416445.html
 [photodiode-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005003302215339.html
