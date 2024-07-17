@@ -7,7 +7,8 @@ ota:
 
 update:
   - platform: http_request
-    name: Firmware Update
+    id: update_http_request
+    name: Firmware
     source: https://glow-energy.io/home-assistant-glow/manifest.json
 
 http_request:

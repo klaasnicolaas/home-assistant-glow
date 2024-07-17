@@ -100,7 +100,7 @@ jobs:
       - name: 🧪 Display changed YAML file
         run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware
-        uses: esphome/build-action@v3.1.0
+        uses: esphome/build-action@v3.2.0
         id: esphome-build
         with:
           yaml_file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
@@ -112,11 +112,12 @@ jobs:
           mkdir -p output/${{ matrix.device }}
           mv ${{ steps.esphome-build.outputs.name }}/* output/${{ matrix.device }}/
           echo ${{ steps.esphome-build.outputs.version }} > output/${{ matrix.device }}/version
+          echo ${{ steps.esphome-build.outputs.project-version }} > output/${{ matrix.device }}/project_version
       - name: 🔨 Alter path in manifest.json
         run: |
           sed -i 's/${{ steps.esphome-build.outputs.name }}\//\/${{ matrix.firmware }}\/${{ matrix.device }}\//g' output/${{ matrix.device }}/manifest.json
       - name: ⬆️ Upload firmware / device artifact
-        uses: actions/upload-artifact@v4.3.3
+        uses: actions/upload-artifact@v4.3.4
         with:
           name: build-${{ matrix.firmware}}-${{ matrix.device }}
           path: output
