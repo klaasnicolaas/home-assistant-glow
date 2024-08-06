@@ -25,6 +25,11 @@ esphome:
   project:
     name: "klaasnicolaas.home-assistant-glow"
     version: "${project_version}"
+  on_boot:
+    then:
+      - pulse_meter.set_total_pulses:
+          id: sensor_energy_pulse_meter
+          value: !lambda "return id(persist_sensor_total_energy);"
 
 dashboard_import:
   package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp32.yaml@main
@@ -61,3 +66,11 @@ captive_portal:
 
 # To have a "next url" for improv serial
 web_server:
+
+preferences:
+  flash_write_interval: 5min
+
+globals:
+  id: persist_sensor_total_energy
+  type: float
+  restore_value: True
