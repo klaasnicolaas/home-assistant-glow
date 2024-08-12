@@ -64,7 +64,8 @@ sensor:
     filters:
       # multiply value = 1 / imp value
       # - multiply: 0.001
-      - lambda: id(persist_sensor_total_energy) = id(sensor_total_energy).raw_state; # write sensor_total_energy to flash
+      - lambda: |-
+          id(persist_sensor_total_energy) = id(sensor_total_energy).raw_state; # write sensor_total_energy to flash
           return x * (1.0 / id(select_pulse_rate).state);
 
     total:
