@@ -10,7 +10,6 @@ on:
     inputs:
       release-url:
         description: "Release URL"
-        default: "https://github.com"
         required: true
         type: string
 

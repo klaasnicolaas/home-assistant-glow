@@ -103,9 +103,9 @@ jobs:
         uses: esphome/build-action@v4.0.1
         id: esphome-build
         with:
-          yaml_file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
+          yaml-file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
           version: ${{ matrix.version || 'latest' }}
-          release_url: ${{ inputs.release-url || env.RELEASE_URL }}
+          release-url: ${{ inputs.release-url || env.RELEASE_URL }}
           cache: true
       - name: 🚚 Move generated files to output
         run: |
