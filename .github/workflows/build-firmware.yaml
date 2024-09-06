@@ -115,7 +115,8 @@ jobs:
           echo ${{ steps.esphome-build.outputs.project-version }} > output/${{ matrix.device }}/project_version
       - name: 🔨 Alter path in manifest.json
         run: |
-          sed -i 's/${{ steps.esphome-build.outputs.name }}\//\/${{ matrix.firmware }}\/${{ matrix.device }}\//g' output/${{ matrix.device }}/manifest.json
+          sed -i 's#${{ steps.esphome-build.outputs.name }}#/${{ matrix.firmware }}/${{ matrix.device }}/&/#g' output/${{ matrix.device }}/manifest.json
+          cat output/${{ matrix.device }}/manifest.json
       - name: ⬆️ Upload firmware / device artifact
         uses: actions/upload-artifact@v4.4.0
         with:
