@@ -105,6 +105,7 @@ jobs:
         with:
           yaml-file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
           version: ${{ matrix.version || 'latest' }}
+          release-summary: "Check the release notes for more information."
           release-url: ${{ inputs.release-url || env.RELEASE_URL }}
           cache: true
       - name: 🚚 Move generated files to output
