@@ -100,12 +100,12 @@ jobs:
       - name: 🧪 Display changed YAML file
         run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware
-        uses: esphome/build-action@v3.2.0
+        uses: esphome/build-action@v4.0.1
         id: esphome-build
         with:
-          yaml_file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
+          yaml-file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
           version: ${{ matrix.version || 'latest' }}
-          release_url: ${{ inputs.release-url || env.RELEASE_URL }}
+          release-url: ${{ inputs.release-url || env.RELEASE_URL }}
           cache: true
       - name: 🚚 Move generated files to output
         run: |
@@ -117,7 +117,7 @@ jobs:
         run: |
           sed -i 's/${{ steps.esphome-build.outputs.name }}\//\/${{ matrix.firmware }}\/${{ matrix.device }}\//g' output/${{ matrix.device }}/manifest.json
       - name: ⬆️ Upload firmware / device artifact
-        uses: actions/upload-artifact@v4.3.4
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: build-${{ matrix.firmware}}-${{ matrix.device }}
           path: output
