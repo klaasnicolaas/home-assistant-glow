@@ -59,4 +59,5 @@ captive_portal:
 
 # Local Web Server running on port 80
 web_server:
+  id: esphome_web_server
   version: 3
