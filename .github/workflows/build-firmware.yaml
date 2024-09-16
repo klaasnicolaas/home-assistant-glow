@@ -100,7 +100,7 @@ jobs:
       - name: 🧪 Display changed YAML file
         run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware
-        uses: esphome/build-action@v4.0.2
+        uses: esphome/build-action@v4.0.3
         id: esphome-build
         with:
           yaml-file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
