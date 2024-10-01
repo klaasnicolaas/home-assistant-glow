@@ -108,6 +108,10 @@ const config: Config = {
               label: 'Getting Started',
               to: '/docs/getting-started',
             },
+            {
+              label: 'FAQ',
+              to: '/docs/faq',
+            }
           ],
         },
         {
@@ -136,6 +140,18 @@ const config: Config = {
             },
           ],
         },
+        {
+          title: 'Donations',
+          items: [
+            {
+              html: `
+              <a href="https://ko-fi.com/${organizationName}" target="_blank" rel="noreferrer noopener" aria-label="Ko-fi button">
+                <img src="https://storage.ko-fi.com/cdn/brandasset/kofi_bg_tag_white.png" style="height: 60px;" alt="Ko-fi button" />
+              </a>
+              `,
+            }
+          ]
+        }
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Klaas Schoute. Built with Docusaurus.`,
     },
