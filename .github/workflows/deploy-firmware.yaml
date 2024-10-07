@@ -57,7 +57,7 @@ jobs:
     needs: combined-manifests
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4.2.0
+        uses: actions/checkout@v4.2.1
       - name: ⬇️ Download all artifacts
         uses: actions/download-artifact@v4.1.8
         with:
