@@ -1,9 +1,9 @@
 import Head from "@docusaurus/Head";
-import React, { useMemo } from "react";
+import React from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
 /**
- * Define the global JSX types for esp-web-install-button
+ * Extend JSX.IntrinsicElements to include the custom element
  */
 declare global {
   namespace JSX {
@@ -11,7 +11,7 @@ declare global {
       "esp-web-install-button": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
-      >;
+      > & { manifest: string };
     }
   }
 }
