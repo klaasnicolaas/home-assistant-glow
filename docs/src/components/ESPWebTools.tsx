@@ -27,7 +27,7 @@ const loadEspWebToolsScript = () => (
   />
 );
 
-export default function InstallButton() {
+export default function ESPHomeButton() {
   const manifestUrl = useBaseUrl("/home-assistant-glow/manifest.json");
   return (
     <>
