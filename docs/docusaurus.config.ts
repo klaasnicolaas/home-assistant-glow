@@ -170,7 +170,7 @@ const config: Config = {
         indexPages: true,
       },
     ]
-  ]
+  ],
 };
 
 export default config;
