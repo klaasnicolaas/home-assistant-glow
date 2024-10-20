@@ -170,6 +170,13 @@ const config: Config = {
         indexPages: true,
       },
     ]
+  ],
+
+  scripts: [
+    {
+      src: 'https://unpkg.com/esp-web-tools@10/dist/web/install-button.js',
+      async: true,
+    },
   ]
 };
 
