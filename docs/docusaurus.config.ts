@@ -171,13 +171,6 @@ const config: Config = {
       },
     ]
   ],
-
-  scripts: [
-    {
-      src: 'https://unpkg.com/esp-web-tools@10/dist/web/install-button.js',
-      async: true,
-    },
-  ]
 };
 
 export default config;
