@@ -38,7 +38,7 @@ jobs:
       matrix: ${{ steps.prepare-matrix.outputs.matrix }}
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.1
       - name: ⤵️ Get changed files
         if: github.event_name == 'pull_request'
         id: changes
@@ -91,7 +91,7 @@ jobs:
       matrix: ${{fromJson(needs.prepare.outputs.matrix)}}
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.1
       - name: 🔍 Determine ref - ESPHome packages
         if: ${{ !contains(fromJSON('["release", "workflow_call"]'), github.event_name) }}
         run: |
@@ -100,7 +100,7 @@ jobs:
       - name: 🧪 Display changed YAML file
         run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware
-        uses: esphome/build-action@v4.0.1
+        uses: esphome/build-action@v4.0.3
         id: esphome-build
         with:
           yaml-file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
@@ -119,7 +119,7 @@ jobs:
           sed -i 's/${{ steps.esphome-build.outputs.name }}\(\.[a-z]*\)\.bin/\/${{ matrix.firmware }}\/${{ matrix.device }}\/${{ steps.esphome-build.outputs.name }}\1.bin/' output/${{ matrix.device }}/manifest.json
           cat output/${{ matrix.device }}/manifest.json
       - name: ⬆️ Upload firmware / device artifact
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: build-${{ matrix.firmware}}-${{ matrix.device }}
           path: output

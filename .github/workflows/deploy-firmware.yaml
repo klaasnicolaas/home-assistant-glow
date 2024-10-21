@@ -44,7 +44,7 @@ jobs:
       - name: 🧪 Display structure of job
         run: ls -R
       - name: ⬆️ Upload project artifact
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: ${{ matrix.project }}
           path: files
@@ -57,7 +57,7 @@ jobs:
     needs: combined-manifests
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.1
       - name: ⬇️ Download all artifacts
         uses: actions/download-artifact@v4.1.8
         with:
@@ -69,7 +69,7 @@ jobs:
         run: ls -R
 
       - name: 🏗️ Set up Node.js
-        uses: actions/setup-node@v4.0.3
+        uses: actions/setup-node@v4.0.4
         with:
           node-version: 20.x
       - name: 🏗️ Install Docusaurus dependencies

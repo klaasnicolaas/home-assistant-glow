@@ -49,6 +49,8 @@ Moving forward, firmware builds will be tested on a weekly basis. This ensures t
 
 ---
 
-That's it! If you would like to support the project you can do so through [Github sponsors](https://github.com/sponsors/klaasnicolaas). If you have any questions, you can ask them via the [discussions](https://github.com/klaasnicolaas/home-assistant-glow/discussions) and if you encounter problems with the Home Assistant Glow, you can indicate this in the [issues](https://github.com/klaasnicolaas/home-assistant-glow/issues).
+That's it! If you would like to support the project you can do so through [Github sponsors](https://github.com/sponsors/klaasnicolaas) or Ko-fi. If you have any questions, you can ask them via the [discussions](https://github.com/klaasnicolaas/home-assistant-glow/discussions) and if you encounter problems with the Home Assistant Glow, you can indicate this in the [issues](https://github.com/klaasnicolaas/home-assistant-glow/issues).
 
 ./Klaas
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F1SW69D)
