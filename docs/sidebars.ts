@@ -15,7 +15,16 @@ const sidebars: SidebarsConfig = {
   docSidebar: [
     'introduction',
     'getting-started',
-    'configuration',
+    {
+      type: 'category',
+      collapsed: false,
+      label: 'Configuration',
+      items: [
+        'configuration/pulse_rate',
+        'configuration/rename',
+        'configuration/energy_dashboard',
+      ],
+    },
     {
       type: 'category',
       label: 'Advanced',
