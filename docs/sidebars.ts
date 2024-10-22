@@ -18,20 +18,21 @@ const sidebars: SidebarsConfig = {
     'configuration',
     {
       type: 'category',
-      collapsed: false,
-      label: 'Reference',
-      items: [
-        'reference/diagram',
-        'reference/cases',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Advanced',
       items: [
         'advanced/firmware_customization',
       ],
-    }
+    },
+    {
+      type: 'category',
+      collapsed: false,
+      label: 'Resources',
+      items: [
+        'resources/schematics',
+        'resources/gpio',
+        'resources/cases',
+      ],
+    },
   ],
 
   // But you can create a sidebar manually
