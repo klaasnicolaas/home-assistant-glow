@@ -13,9 +13,9 @@ import { faUsb } from '@fortawesome/free-brands-svg-icons';
 
 This guide will walk you through the steps needed to set up your new Home Assistant Glow. You'll go through connecting the hardware, installing the necessary software, and configuring the settings to get everything up and running smoothly.
 
-## Step 1: Hardware
+## Step 1 - Hardware
 
-To get started, you need the right hardware first, fill your 🛒 or see if you already have the components in house. Choose between an **ESP32** (recommended) or **ESP8266**.
+To get started, you need the right hardware first, fill your 🛒 or see if you already have the items in house. Choose between an **ESP32** (recommended) or **ESP8266**.
 
 | Nr.  | Item     | Shops |  |  |
 |:-----|:---------|:------|:-|:-|
@@ -37,7 +37,7 @@ Keep in mind that besides the photodiode board there are also boards in circulat
 
 How everything should be connected can be found on the [wiring diagram](/docs/resources/schematics). Once this is done, you can proceed to step 2.
 
-## Step 2: Install firmware
+## Step 2 - Install firmware
 
 Use the method below to provide your ESP with the correct firmware.
 
@@ -46,31 +46,29 @@ Use the method below to provide your ESP with the correct firmware.
 
 _Make sure this page is opened in a Chromium-based browser on a desktop. The software installation does not work with a tablet or phone._
 
-:::note
-If your device does not appear in the list, make sure you are using a USB data cable (i.e., not power-only), and try installing the [driver](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads) for the serial chip.
-:::
-
-1. Click the blue **connect** button below, a pop-up window will appear with a list of available USB devices.
-2. Plug the USB cable into the ESP and connect it to your computer.
-3. In the pop-up window, there should now appear a new entry. Select this USB serial port and click **Connect**.
-4. Choose **Install Home Assistant Glow**, then click **Install**.
+1. Click the blue **connect** button below to display a list of available USB devices.
+2. To connect your ESP to your computer, follow these steps:
+    - In the pop-up window, view the list of available USB devices.
+    - Connect your ESP to your computer using a USB cable.
+    - In the pop-up window, there should now appear a new entry. Select this USB serial port and select **Connect**.
+3. Select **Install Home Assistant Glow**, then **Install**.
     - If the installation does not go well, you may need to first hold down the `boot` button and then click **Install**.
-5. Once the installation is completed, click **Next**.
+4. Once the installation is completed, click **Next**.
     - Add the Home Assistant Glow to your Wi-Fi network:
       - When prompted, select your network from the list and enter the credentials to your 2.4 GHz Wi-Fi network.
       - Click **Connect**.
       - The Home Assistant Glow is now connected to your network.
-6. Congratulations 🎉 You have successfully installed the firmware on your Home Assistant Glow.
+5. Congratulations 🎉 You have successfully installed the firmware on your Home Assistant Glow.
 
   <ESPHomeButton />
   </TabItem>
 </Tabs>
 
-## Step 3: Connect to Home Assistant
+## Step 3 - Connect to Home Assistant
 
-You have two options to add the Home Assistant Glow to Home Assistant.
+There are two ways to connect the Glow to Home Assistant. You can do this during the firmware installation or later via auto discovery.
 
-### Option 1: During firmware installation
+### Option 1 - During firmware installation
 
 1. Immediately after setting up your Wi-Fi network (from step 2), you will see a screen with the option **Add to Home Assistant**.
     - This opens the **My** link to Home Assistant (see image below).
@@ -80,10 +78,14 @@ You have two options to add the Home Assistant Glow to Home Assistant.
 4. Congratulations 🎉 You have successfully added the Home Assistant Glow to your Home Assistant instance.
 
 <p align="left">
-  <img width="60%" src={require('@site/static/img/installation/my-link.png').default} />
+  <img 
+    width="60%"
+    src={require('@site/static/img/installation/my-link.png').default}
+    alt='My link to Home Assistant'
+  />
 </p>
 
-### Option 2: Auto discovery
+### Option 2 - Auto discovery
 
 When the Home Assistant Glow is added to a network to which your Home Assistant instance is also connected, your device will automatically be recognized in Home Assistant.
 
@@ -93,45 +95,51 @@ When the Home Assistant Glow is added to a network to which your Home Assistant 
 4. Congratulations 🎉 You have successfully added the Home Assistant Glow to your Home Assistant instance.
 
 <p align="left">
-  <img width="40%" src={require('@site/static/img/installation/auto-discovery.png').default} />
+  <img 
+    width="40%"
+    src={require('@site/static/img/installation/auto-discovery.png').default}
+    alt='Auto discovery in Home Assistant'
+  />
 </p>
 
-## Step 4: Configure the Pulse Rate
+## Step 4 - Configure the Pulse Rate
 
-In order for the measurements to run smoothly, it is important to set the correct pulse rate. Each meter with a pulse LED has a marking with an **imp/kWh** value, for example 1000, 2000, etc. The Home Assistant Glow will use the value `1000` by default, because this is a commonly used value in the Netherlands.
+To ensure that the Home Assistant Glow accurately measures energy consumption, you must set the correct pulse rate. The pulse rate refers to the number of pulses the energy meter sends per kilowatt-hour (kWh). Energy meters with a pulse LED will have an imp/kWh value indicated, such as 1000, 2000, etc.
 
-You can adjust the value in 2 ways:
+By default, the Home Assistant Glow is configured to use a pulse rate of `1000`.
 
-### Option 1: Via the web interface
+There are two ways to adjust the pulse rate:
 
-You open the web server by going to the IP address of your Home Assistant Glow, where you will find the line **Pulse rate - imp/kWh** in the table and you can then adjust it on the right.
+### Option 1 - Via the web interface
+
+Access the web interface by navigating to the IP address of your Home Assistant Glow. Once there, you'll find a table with a row labeled **Pulse rate - imp/kWh**, where you can easily adjust the value in the column on the right.
 
 <p align="left">
-  <img width="80%" src={require('@site/static/img/installation/pulse_rate-webserver.png').default} />
+  <img 
+    width="80%"
+    src={require('@site/static/img/installation/pulse_rate-webserver.png').default}
+    alt='Pulse rate in the web interface'
+  />
 </p>
 
-### Option 2: In Home Assistant
+### Option 2 - In Home Assistant
 
 1. Go to the device overview page of the Home Assistant Glow, via [**Settings** > **Devices & Services** > **ESPHome**](https://my.home-assistant.io/redirect/integration/?domain=esphome).
 2. Adjust the value for the entity **Pulse rate - imp/kWh**.
 
 For problems with the measurements, see the [FAQ page](/docs/faq).
 
-## Step 5: Print Enclosure
+## Step 5 - Print the case
 
-The last step is to print a housing, the files for this can be found on the [cases page](/docs/resources/cases). If you do not have a 3D printer, there are platforms where you could place a print job or mount the Home Assistant Glow in a creative way 🙃 (my first concept was with cardboard).
+The final step is to wrap everything up in a casing that you can print. The files for this can be found on the [case resources page](/docs/resources/cases). If you do not have a 3D printer, there are platforms where you could place a print job or mount the Home Assistant Glow in a creative way 🙃
 
-## Step 6: Sit back and relax
+## Step 6 - Sit back and relax
 
 Congratulations 🎉 You have gone successfully through everything to get started with the Home Assistant Glow 🌟 If you have any questions, please check the [FAQ page](/docs/faq) first and if you can't find the answer there, you can always ask your question on the [Github](https://github.com/klaasnicolaas/home-assistant-glow).
 
 ## Disclamer
 
 Affiliate links are used on this website to support the Home Assistant Glow 🌟 project. Some Ad-blockers might block these links, and thus they seem to appear broken. You will have to temporarily disable ad-blocker to open these links.
-
-:::note
-This page contains content derived from the [Upsy Desky documentation](https://upsy-desky.tjhorner.dev/) by [TJ Horner](https://github.com/tjhorner). The derived content is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
-:::
 
 {/* Hardware */}
 [esp32-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2FGeekcreit-ESP32-WiFi%2Bbluetooth-Development-Board-Ultra-Low-Power-Consumption-Dual-Cores-Pins-Unsoldered-p-1214159.html
