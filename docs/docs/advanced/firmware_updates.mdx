@@ -1,0 +1,70 @@
+---
+id: firmware_updates
+title: Firmware Updates
+description: Learn how to update the firmware of the Glow.
+---
+
+# Firmware Updates
+
+Keeping your device's firmware up to date is essential to ensure it runs smoothly and benefits from the latest (ESPHome) features. This guide will walk you through how to update the firmware of the Home Assistant Glow.
+
+## Updating Firmware through Home Assistant
+
+_Level of Difficulty: **Easy**_
+
+The easiest way to update the firmware of the Glow is through Home Assistant. When a new firmware update is available, you will receive a notification directly within Home Assistant. To update your device, follow these simple steps:
+
+1. Look on the **Settings** page of Home Assistant for update notifications.
+2. Click on the notification for the Home Assistant Glow.
+3. A pop-up will appear with release notes / version number and the option to update the firmware.
+4. Click **Install** to start the process.
+
+<p align="left">
+  <img 
+    width="80%"
+    src={require('@site/static/img/advanced/glow_update-popup.png').default}
+    alt="Update notification in Home Assistant"
+  />
+</p>
+
+:::note
+Since ESPHome 2024.6.x, the update component can directly retrieve firmware updates from the glow energy manifest. Which has made updating even easier and eliminates the need to use ESPHome Dashboard add-on just for updates.
+:::
+
+## Glow Web Interface
+
+_Level of Difficulty: **Medium**_
+
+If you are unable to update the firmware through Home Assistant, you can also update the firmware directly within the Glow's web interface. This method is useful if you are using the Glow as a standalone device or if you prefer to update the firmware manually.
+
+1. Download the latest firmware binary file for your device:
+    - Download for ESP32: [home-assistant-glow-esp32.ota.bin](https://glow-energy.io/home-assistant-glow/esp32/home-assistant-glow-esp32.ota.bin)
+    - Download for ESP8266: [home-assistant-glow-esp8266.ota.bin](https://glow-energy.io/home-assistant-glow/esp8266/home-assistant-glow-esp8266.ota.bin)
+2. Navigate to the Glow's web interface, by entering the IP address of the device in your browser.
+3. At the bottom of the page, you will find the **OTA Update** section.
+4. Click on **Choose File** and select the firmware binary file you downloaded.
+5. Click **Upload** to start the update process.
+
+After the update is complete, the device will automatically reboot with the new firmware.
+
+## ESPHome Dashboard
+
+_Level of Difficulty: **Advanced**_
+
+If you are using the ESPHome Dashboard add-on in Home Assistant, you can also update the firmware through the dashboard. This method is useful if you have adopted the firmware to your ESPHome dashboard and know how to tweak the YAML configuration.
+
+1. Open the ESPHome Dashboard.
+2. If it is possible to update the firmware, you will see an update button at the device card (see image below).
+3. Click on the **UPDATE** button to start the process.
+4. Select **Wirelessly** to update the firmware over-the-air (OTA).
+5. After this, it will start the update process and you will see the update process in a pop-up window.
+
+Once the update is complete, the device will automatically reboot with the new firmware.
+
+<p align="left">
+  <img 
+    width="80%"
+    src={require('@site/static/img/advanced/glow_update-esphome.png').default}
+    alt="Update firmware through ESPHome Dashboard"
+  />
+</p>

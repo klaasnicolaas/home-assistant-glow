@@ -18,7 +18,7 @@ In the example above, replace `your_password` with the password you want to use 
 
 - [ESPHome - OTA updates][esphome_ota]
 - [ESPHome - Extend][!extend]
-- [Customizing the firmware](/docs/advanced/firmware_customization.mdx)
+- [Customizing the Firmware](/docs/advanced/firmware_changes)
 
 [esphome_ota]: https://esphome.io/components/ota.html
 [!extend]: https://esphome.io/components/packages.html#extend
