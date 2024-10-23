@@ -27,16 +27,14 @@ Following the adoption steps will automatically:
 
 ## Component Structure
 
-The firmware is designed to be flexible for different ESP boards by breaking it into separate "components." Each main function of the device is kept in its own YAML file, making it easier to manage. The base configuration includes a few key components that handle the important functions of the device.
+The firmware is designed to be flexible for different ESP boards by breaking it into separate "components". Each main function of the device is kept in its own YAML file, making it easier to manage. The base configuration includes a few key components that handle the important functions of the device.
 
-| Component              | Description                                                                                           |
-|------------------------|-------------------------------------------------------------------------------------------------------|
-| **`basis.yaml`**       | Handles the basic, essential functionality of the device.                                             |
-| **`pulse_meter.yaml`** | Manages pulse metering, useful for tracking energy usage.                                             |
-| **`status_led.yaml`**  | Controls the status LED, allowing customization of its behavior or color based on the device's state. |
-| **`updates.yaml`**     | Provides Over-the-Air ([OTA][ota]) update capabilities for easy firmware updates.                     |
-
-These components can be found in the [GitHub repository](https://github.com/klaasnicolaas/home-assistant-glow/tree/main/components).
+| Component                                     | Description                                                                                           |
+| :-------------------------------------------- | :---------------------------------------------------------------------------------------------------- |
+| [**basis.yaml**][component-basis]             | Handles the basic, essential functionality of the device.                                             |
+| [**pulse_meter.yaml**][component-pulse_meter] | Manages pulse metering, useful for tracking energy usage.                                             |
+| [**status_led.yaml**][component-status_led]   | Controls the status LED, allowing customization of its behavior or color based on the device's state. |
+| [**updates.yaml**][component-updates]         | Provides Over-the-Air ([OTA][ota]) update capabilities for easy firmware updates.                     |
 
 ### Making Your First Customization
 
@@ -70,3 +68,8 @@ sensor:
 [!extend]: https://esphome.io/components/packages.html#extend
 [ota]: https://esphome.io/components/ota/
 [remote]: https://esphome.io/components/packages.html#remote-git-packages
+
+[component-basis]: https://github.com/klaasnicolaas/home-assistant-glow/blob/main/components/basis.yaml
+[component-pulse_meter]: https://github.com/klaasnicolaas/home-assistant-glow/blob/main/components/pulse_meter.yaml
+[component-status_led]: https://github.com/klaasnicolaas/home-assistant-glow/blob/main/components/status_led.yaml
+[component-updates]: https://github.com/klaasnicolaas/home-assistant-glow/blob/main/components/updates.yaml
