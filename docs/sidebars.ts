@@ -29,7 +29,8 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Advanced',
       items: [
-        'advanced/firmware_customization',
+        'advanced/firmware_changes',
+        'advanced/firmware_updates',
       ],
     },
     {
