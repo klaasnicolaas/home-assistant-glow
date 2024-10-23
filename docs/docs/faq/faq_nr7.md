@@ -21,7 +21,7 @@ sensor:
 ## Related topics
 
 - [ESPHome total daily energy sensor][method]
-- [Customizing the firmware](/docs/advanced/firmware_customization.mdx)
+- [Customizing the Firmware](/docs/advanced/firmware_changes)
 
 [method]: https://esphome.io/components/sensor/total_daily_energy.html
 [issue_274]: https://github.com/klaasnicolaas/home-assistant-glow/issues/274
