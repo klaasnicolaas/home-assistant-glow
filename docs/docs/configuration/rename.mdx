@@ -22,13 +22,13 @@ Here's how to change the name of your Glow in Home Assistant:
 
 1. Open your Home Assistant dashboard/interface.
 2. **Go to settings**: From the sidebar, click on **Settings** and then select **Devices & Services**.
-3. In the **ESPHome** section, find your glow. If you have multiple devices, look for the one with the default format `home-assistant-glow-XXXXXX`.
+3. In the **ESPHome** section, find your glow. If you have multiple devices, look for the one with the default format.
 
   **Pro Tip**: Want to get there faster? Click the badge below to jump directly to your device page:
 
 [![Open your Home Assistant instance and show an integration.](https://my.home-assistant.io/badges/integration.svg)][esphome-devices]
 
-4. On the device details page, click the pencil icon in the top-right corner to rename it.
+4. On the device details page, click the pencil icon in the top-right corner to rename it (see image below).
 5. **Choose a descriptive name** that's easy to remember, like "Home Assistant Glow" or "Glow Energy".
 6. Click **Update** to save the new name.
 
@@ -44,7 +44,7 @@ Here's how to change the name of your Glow in Home Assistant:
 After you rename the device, Home Assistant may ask if you want to also rename the associated entity IDs. The entity IDs are already usable as is, but if you prefer consistency, you can rename them to match the new device name:
 
 - **If you want the entity IDs to stay the same**: Simply keep the existing entity IDs and only update the device name.
-- **Want everything to be consistent?** You can rename the entity IDs too, but remember that this might require updating automations or dashboards that reference the old names.
+- **Want everything to be consistent?** You can rename the entity IDs too, but be aware that this is a breaking change. You will need to update all automations, scripts, dashboards, and any other configurations that reference the old entity IDs to prevent disruptions in your Home Assistant setup.
 
 ## Helpful resources
 
