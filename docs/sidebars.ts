@@ -15,23 +15,34 @@ const sidebars: SidebarsConfig = {
   docSidebar: [
     'introduction',
     'getting-started',
-    'configuration',
     {
       type: 'category',
       collapsed: false,
-      label: 'Reference',
+      label: 'Configuration',
       items: [
-        'reference/diagram',
-        'reference/cases',
+        'configuration/pulse_rate',
+        'configuration/rename',
+        'configuration/energy_dashboard',
       ],
     },
     {
       type: 'category',
       label: 'Advanced',
       items: [
-        'advanced/firmware_customization',
+        'advanced/firmware_changes',
+        'advanced/firmware_updates',
       ],
-    }
+    },
+    {
+      type: 'category',
+      collapsed: false,
+      label: 'Resources',
+      items: [
+        'resources/schematics',
+        'resources/gpio',
+        'resources/cases',
+      ],
+    },
   ],
 
   // But you can create a sidebar manually

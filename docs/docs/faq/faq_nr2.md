@@ -22,14 +22,14 @@ sensor:
         - heartbeat: 300s
 ```
 
-After applying the filters, only 396 state changes will be produced per hour. You can read more about making YAML adjustments on the [customizing the firmware](/docs/advanced/firmware_customization.mdx) page.
+After applying the filters, only 396 state changes will be produced per hour. You can read more about making YAML adjustments on the [customizing the firmware](/docs/advanced/firmware_changes) page.
 
 ## Related topics
 
 - [ESPHome sensor filters][filters]
 - [ESPHome pulse meter](https://esphome.io/components/sensor/pulse_meter.html)
 - [ESPHome total daily energy sensor](https://esphome.io/components/sensor/total_daily_energy.html)
-- [Customizing the firmware](/docs/advanced/firmware_customization.mdx)
+- [Customizing the Firmware](/docs/advanced/firmware_changes)
 
 [filters]: https://esphome.io/components/sensor/index.html#sensor-filters
 [file]: https://github.com/klaasnicolaas/home-assistant-glow/blob/main/components/pulse_meter.yaml#L73

@@ -1,0 +1,53 @@
+---
+id: rename
+title: Rename the Glow
+description: Learn how to rename your Home Assistant Glow device to something more descriptive and user-friendly.
+---
+
+# Rename your Glow in Home Assistant
+
+When you add the Glow to Home Assistant, it is automatically given a default name like `home-assistant-glow-XXXXXX`, where `XXXXXX` is a portion of the device's MAC address. This name shows up in the device list, but it isn't very descriptive. Renaming the device makes it much easier to manage, and if you want, you can also update the **entity IDs** to match the new device name for consistency.
+
+## Why rename the device?
+
+Even though the entity IDs don't include the MAC address and are functional as they are, having a device name that includes part of the MAC address isn't ideal. Changing the device name to something more descriptive can help you:
+
+- Quickly identify the device in Home Assistant.
+- Make it easier to work with the device when adding in automations or dashboards.
+- Keep your Home Assistant setup organized and clear 🧹
+
+## Step-by-step guide to rename your Glow
+
+Here's how to change the name of your Glow in Home Assistant:
+
+1. Open your Home Assistant dashboard/interface.
+2. **Go to settings**: From the sidebar, click on **Settings** and then select **Devices & Services**.
+3. In the **ESPHome** section, find your glow. If you have multiple devices, look for the one with the default format.
+
+  **Pro Tip**: Want to get there faster? Click the badge below to jump directly to your device page:
+
+[![Open your Home Assistant instance and show an integration.](https://my.home-assistant.io/badges/integration.svg)][esphome-devices]
+
+4. On the device details page, click the pencil icon in the top-right corner to rename it (see image below).
+5. **Choose a descriptive name** that's easy to remember, like "Home Assistant Glow" or "Glow Energy".
+6. Click **Update** to save the new name.
+
+<p align="left">
+  <img
+    src={require('@site/static/img/configuration/rename-device.png').default}
+    alt="Renaming a device in Home Assistant"
+  />
+</p>
+
+### Renaming Entity IDs (Optional)
+
+After you rename the device, Home Assistant may ask if you want to also rename the associated entity IDs. The entity IDs are already usable as is, but if you prefer consistency, you can rename them to match the new device name:
+
+- **If you want the entity IDs to stay the same**: Simply keep the existing entity IDs and only update the device name.
+- **Want everything to be consistent?** You can rename the entity IDs too, but be aware that this is a breaking change. You will need to update all automations, scripts, dashboards, and any other configurations that reference the old entity IDs to prevent disruptions in your Home Assistant setup.
+
+## Helpful resources
+
+- [Home Assistant - Terminology](https://home-assistant.io/getting-started/concepts-terminology)
+
+[esphome-devices]: https://my.home-assistant.io/redirect/integration/?domain=esphome
