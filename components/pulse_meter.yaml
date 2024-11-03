@@ -16,7 +16,7 @@ number:
     optimistic: true
     mode: box
     min_value: 100
-    max_value: 10000
+    max_value: 100000
     step: 100
     restore_value: yes
     initial_value: 1000
