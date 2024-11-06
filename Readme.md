@@ -50,7 +50,7 @@ Choose one of the listed microcontrollers, but keep in mind that the ESP32 is re
 
   - ESP32 (recommended) - [AliExpress](https://s.click.aliexpress.com/e/_DdAe4Fl) or [Banggood][esp32-bg-shop] or [AliExpress][esp32-ali-shop]
   - ESP8266 - [AliExpress](https://s.click.aliexpress.com/e/_DCd13n1) or [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
-- Dupont Jumpers (female to male) - [AliExpress](https://s.click.aliexpress.com/e/_DmbrJsj) or [Banggood][dupont-jumpers-shop]
+- Dupont Jumpers (female to female) - [AliExpress](https://s.click.aliexpress.com/e/_DmbrJsj) or [Banggood][dupont-jumpers-shop]
 - 3D-printed case (see the [case](https://glow-energy.io/docs/reference/cases) folder)
 - LM393 Photodiode: [AliExpress](https://s.click.aliexpress.com/e/_DDkX3zN) or [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (please note that you will not receive an LDR)
 - LED RGB 5mm 4 pin - kathode: [AliExpress](https://s.click.aliexpress.com/e/_Dn1D0wT) or [Banggood][rgbled-bg-shop] or [AliExpress][rgbled-ali-shop]
