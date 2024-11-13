@@ -47,7 +47,7 @@ sensor:
   # Pulse meter
   - platform: pulse_meter
     id: sensor_energy_pulse_meter
-    name: '${friendly_name} - Power Consumption'
+    name: 'Power Consumption'
     unit_of_measurement: W
     state_class: measurement
     device_class: power
@@ -68,7 +68,7 @@ sensor:
 
     total:
       id: sensor_total_energy
-      name: '${friendly_name} - Total Energy'
+      name: 'Total Energy'
       unit_of_measurement: kWh
       icon: mdi:circle-slice-3
       state_class: total_increasing
@@ -82,7 +82,7 @@ sensor:
   # Total day usage
   - platform: total_daily_energy
     id: sensor_total_daily_energy
-    name: '${friendly_name} - Daily Energy'
+    name: 'Daily Energy'
     power_id: sensor_energy_pulse_meter
     unit_of_measurement: kWh
     icon: mdi:circle-slice-3
