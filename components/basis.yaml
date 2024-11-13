@@ -18,14 +18,14 @@ text_sensor:
   # ESPHome version
   - platform: version
     hide_timestamp: true
-    name: '${friendly_name} - ESPHome Version'
+    name: 'ESPHome Version'
   # IP address and connected SSID
   - platform: wifi_info
     ip_address:
-      name: '${friendly_name} - IP Address'
+      name: 'IP Address'
       icon: mdi:wifi
     ssid:
-      name: '${friendly_name} - Connected SSID'
+      name: 'Connected SSID'
       icon: mdi:wifi-strength-2
 
 sensor:
