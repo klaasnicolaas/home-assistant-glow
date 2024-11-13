@@ -52,8 +52,7 @@ improv_serial:
 
 wifi:
   # Set up a wifi access point
-  ap:
-    ssid: '${friendly_name}'
+  ap: {}
 
 # In combination with the `ap` this allows the user
 # to provision wifi credentials to the device via WiFi AP.
