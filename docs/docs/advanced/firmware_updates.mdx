@@ -28,7 +28,7 @@ The easiest way to update the firmware of the Glow is through Home Assistant. Wh
 </p>
 
 :::note
-Since ESPHome 2024.6.x, the update component can directly retrieve firmware updates from the glow energy manifest. Which has made updating even easier and eliminates the need to use ESPHome Dashboard add-on just for updates.
+Since ESPHome 2024.6.x, the update component can directly retrieve firmware updates from the [glow-energy.io](https://glow-energy.io) manifest. Which has made updating even easier and eliminates the need to use ESPHome Compiler (add-on) just for updates.
 :::
 
 ## Glow Web Interface
@@ -47,13 +47,13 @@ If you are unable to update the firmware through Home Assistant, you can also up
 
 After the update is complete, the device will automatically reboot with the new firmware.
 
-## ESPHome Dashboard
+## ESPHome Compiler
 
 _Level of Difficulty: **Advanced**_
 
-If you are using the ESPHome Dashboard add-on in Home Assistant, you can also update the firmware through the dashboard. This method is useful if you have adopted the firmware to your ESPHome dashboard and know how to tweak the YAML configuration.
+If you are using the ESPHome Compiler add-on in Home Assistant, you can also update the firmware through the compiler dashboard. This method is useful if you have adopted the firmware to your ESPHome Compiler and know how to tweak the YAML configuration.
 
-1. Open the ESPHome Dashboard.
+1. Open the ESPHome Compiler (add-on).
 2. If it is possible to update the firmware, you will see an update button at the device card (see image below).
 3. Click on the **UPDATE** button to start the process.
 4. Select **Wirelessly** to update the firmware over-the-air (OTA).
@@ -65,6 +65,6 @@ Once the update is complete, the device will automatically reboot with the new f
   <img 
     width="80%"
     src={require('@site/static/img/advanced/glow_update-esphome.png').default}
-    alt="Update firmware through ESPHome Dashboard"
+    alt="Update firmware through ESPHome Compiler (add-on)"
   />
 </p>
