@@ -54,13 +54,6 @@ sensor:
     icon: mdi:flash-outline
     accuracy_decimals: 0
     pin: ${pulse_pin}
-    on_raw_value:
-      then:
-        - light.turn_on:
-            id: led_red
-        - delay: 0.2s
-        - light.turn_off:
-            id: led_red
     filters:
       # multiply value = (60 / imp value) * 1000
       # - multiply: 60
@@ -78,6 +71,11 @@ sensor:
         # multiply value = 1 / imp value
         # - multiply: 0.001
         - lambda: return x * (1.0 / id(select_pulse_rate).state);
+      on_raw_value:
+        then:
+          - light.turn_on:
+              id: led_red
+              flash_length: 100ms
 
   # Total day usage
   - platform: total_daily_energy
