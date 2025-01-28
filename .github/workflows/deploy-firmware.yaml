@@ -69,7 +69,7 @@ jobs:
         run: ls -R
 
       - name: 🏗️ Set up Node.js
-        uses: actions/setup-node@v4.1.0
+        uses: actions/setup-node@v4.2.0
         with:
           node-version: 20.x
       - name: 🏗️ Install Docusaurus dependencies
