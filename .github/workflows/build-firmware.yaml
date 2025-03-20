@@ -118,7 +118,7 @@ jobs:
           sed -i 's/${{ steps.esphome-build.outputs.name }}\(\.[a-z]*\)\.bin/\/${{ matrix.firmware }}\/${{ matrix.device }}\/${{ steps.esphome-build.outputs.name }}\1.bin/' output/${{ matrix.device }}/manifest.json
           cat output/${{ matrix.device }}/manifest.json
       - name: ⬆️ Upload firmware / device artifact
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: build-${{ matrix.firmware}}-${{ matrix.device }}
           path: output
