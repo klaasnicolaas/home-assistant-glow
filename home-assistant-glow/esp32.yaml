@@ -8,7 +8,7 @@
 substitutions:
   device_name: home-assistant-glow
   friendly_name: Home Assistant Glow
-  project_version: "4.1.0"
+  project_version: "4.2.3"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP32 Generic"
 
   # Define the GPIO pins
@@ -42,7 +42,7 @@ esp32:
 packages:
   remote_package:
     url: https://github.com/klaasnicolaas/home-assistant-glow/
-    ref: "4.1.0"
+    ref: "4.2.3"
     files:
       - components/basis.yaml
       - components/updates.yaml
@@ -74,3 +74,7 @@ globals:
   id: persist_sensor_total_energy
   type: float
   restore_value: True
+# Local Web Server running on port 80
+web_server:
+  id: esphome_web_server
+  version: 3

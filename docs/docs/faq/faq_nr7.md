@@ -14,15 +14,14 @@ Try to use the `left` [calculation method][method] instead of the default (`righ
 
 ```yaml title="your_glow_config.yaml"
 sensor:
-  - id: !extend sensor_energy_pulse_meter
-    total:
-      method: left
+  - id: !extend sensor_total_daily_energy
+    method: left
 ```
 
 ## Related topics
 
 - [ESPHome total daily energy sensor][method]
-- [Customizing the firmware](/docs/advanced/firmware_customization.mdx)
+- [Customizing the Firmware](/docs/advanced/firmware_changes)
 
 [method]: https://esphome.io/components/sensor/total_daily_energy.html
 [issue_274]: https://github.com/klaasnicolaas/home-assistant-glow/issues/274

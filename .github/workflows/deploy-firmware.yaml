@@ -10,7 +10,6 @@ on:
     inputs:
       release-url:
         description: "Release URL"
-        default: "https://github.com"
         required: true
         type: string
 
@@ -33,19 +32,19 @@ jobs:
             name: Home Assistant Glow
     steps:
       - name: ⤵️ Download specific artifacts
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v5.0.0
         with:
           pattern: build-${{ matrix.project }}-*
           merge-multiple: true
           path: files
       - name: 🔨 Generate device manifest.json
         run: |
-          version=cat(project_version)
+          version=$(cat files/*/project_version | sort -V | tail -n 1)
           jq -s --arg version "$version" '{"name": "${{ matrix.name }}", "version": $version, "home_assistant_domain": "esphome", "builds":.}' files/*/manifest.json > files/manifest.json
       - name: 🧪 Display structure of job
         run: ls -R
       - name: ⬆️ Upload project artifact
-        uses: actions/upload-artifact@v4.3.3
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: ${{ matrix.project }}
           path: files
@@ -53,14 +52,14 @@ jobs:
 
   build-docs:
     name: Build documentation
-    if: contains(fromJSON('["workflow_dispatch", "release"]'), github.event_name) && github.ref == 'refs/heads/main'
+    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     needs: combined-manifests
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v5.0.0
       - name: ⬇️ Download all artifacts
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v5.0.0
         with:
           pattern: "!build-*"
           path: output
@@ -70,7 +69,7 @@ jobs:
         run: ls -R
 
       - name: 🏗️ Set up Node.js
-        uses: actions/setup-node@v4.0.2
+        uses: actions/setup-node@v5.0.0
         with:
           node-version: 20.x
       - name: 🏗️ Install Docusaurus dependencies
@@ -80,7 +79,7 @@ jobs:
         run: npm run build
         working-directory: docs
       - name: ⬆️ Upload pages artifacts
-        uses: actions/upload-pages-artifact@v3.0.1
+        uses: actions/upload-pages-artifact@v4.0.0
         with:
           path: docs/build
 

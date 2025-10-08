@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🏷 Verify PR has a valid label
-        uses: klaasnicolaas/action-pr-labels@v2.0.0
+        uses: klaasnicolaas/action-pr-labels@v2.0.2
         with:
           valid-labels: >-
             breaking-change, bugfix, documentation, enhancement, sync,

@@ -49,10 +49,9 @@ First, fill your ðŸ›’ or see if you already have the components below.
 Choose one of the listed microcontrollers, but keep in mind that the ESP32 is recommended.
 
   - ESP32 (recommended) - [AliExpress](https://s.click.aliexpress.com/e/_DdAe4Fl) or [Banggood][esp32-bg-shop] or [AliExpress][esp32-ali-shop]
-  - ESP8266 - [AliExpress](https://s.click.aliexpress.com/e/_DCd13n1) or [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
-  - Wemos D1 mini - [AliExpress](https://s.click.aliexpress.com/e/_DFkIzM7) or [Banggood][wemos-d1-bg-shop] or [AliExpress][wemos-d1-ali-shop]
-- Dupont Jumpers (female to male) - [AliExpress](https://s.click.aliexpress.com/e/_DmbrJsj) or [Banggood][dupont-jumpers-shop]
-- 3D-printed case (see the [case](https://glow-energy.io/docs/reference/cases) folder)
+  - ESP8266 - [AliExpress](https://s.click.aliexpress.com/e/_omR3PTr) or [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
+- Dupont Jumpers (female to female) - [AliExpress](https://s.click.aliexpress.com/e/_DmbrJsj) or [Banggood][dupont-jumpers-shop]
+- 3D-printed case (see the [case](https://glow-energy.io/docs/resources/cases) folder)
 - LM393 Photodiode: [AliExpress](https://s.click.aliexpress.com/e/_DDkX3zN) or [Banggood][photodiode-bg-shop] or [AliExpress][photodiode-ali-shop] (please note that you will not receive an LDR)
 - LED RGB 5mm 4 pin - kathode: [AliExpress](https://s.click.aliexpress.com/e/_Dn1D0wT) or [Banggood][rgbled-bg-shop] or [AliExpress][rgbled-ali-shop]
 
@@ -73,7 +72,7 @@ Affiliate links are used on this repository to support the Home Assistant Glow ð
 
 MIT License
 
-Copyright (c) 2021-2024 Klaas Schoute
+Copyright (c) 2021-2025 Klaas Schoute
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -99,7 +98,7 @@ SOFTWARE.
 [energy]: https://www.home-assistant.io/home-energy-management
 
 <!-- Shields -->
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2024.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2025.svg
 [contributors-shield]: https://img.shields.io/github/contributors/klaasnicolaas/home-assistant-glow.svg
 [contributors-url]: https://github.com/klaasnicolaas/home-assistant-glow/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/home-assistant-glow.svg
@@ -118,8 +117,6 @@ SOFTWARE.
 [esp32-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005970816555.html
 [esp8266-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-NodeMcu-Lua-ESP8266-ESP-12F-WIFI-Development-Board-p-985891.html
 [esp8266-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005977505151.html
-[wemos-d1-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-D1-Mini-V3_0_0-WIFI-Internet-Of-Things-Development-Board-Based-ESP8266-4MB-MicroPython-Nodemcu-p-1264245.html
-[wemos-d1-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005006018009983.html
 [dupont-jumpers-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F120pcs-20cm-Male-To-Female-Female-To-Female-Male-To-Male-Color-Breadboard-Jumper-Cable-Dupont-Wire-p-974006.html
 [photodiode-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F4Pin-Photodiode-Sensor-Controller-Module-Measure-Module-p-1416445.html
 [photodiode-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005003302215339.html

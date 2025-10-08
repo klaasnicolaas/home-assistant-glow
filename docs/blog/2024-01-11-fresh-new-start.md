@@ -25,7 +25,7 @@ TL;DR - A lot 😅 ... v4.0.0 has been released, the most important changes are 
 1. The pulse meter pin for ESP32 boards has been changed from GPIO `13` to GPIO `26`.
 2. The `home_assistant_glow.yaml` file no longer exists.
 
-This would break the **package_import** for existing configs for people in the ESPHome dashboard. If you would like to use the latest version, I recommend re-flashing your ESP according to step 2 in [Getting Started](/docs/getting-started#step-2-install-firmware), and if desired, [re-adopting](/docs/advanced/firmware_customization#adopting-the-device) your device again in ESPHome dashboard (add-on).
+This would break the **package_import** for existing configs for people in the ESPHome Compiler (add-on). If you would like to use the latest version, I recommend re-flashing your ESP according to step 2 in [Getting Started](/docs/getting-started#step-2-install-firmware), and if desired, [re-adopting](/docs/advanced/firmware_changes#adopting-the-device) your device again in ESPHome compiler (add-on).
 
 ### New config structure
 
@@ -49,6 +49,8 @@ Moving forward, firmware builds will be tested on a weekly basis. This ensures t
 
 ---
 
-That's it! If you would like to support the project you can do so through [Github sponsors](https://github.com/sponsors/klaasnicolaas). If you have any questions, you can ask them via the [discussions](https://github.com/klaasnicolaas/home-assistant-glow/discussions) and if you encounter problems with the Home Assistant Glow, you can indicate this in the [issues](https://github.com/klaasnicolaas/home-assistant-glow/issues).
+That's it! If you would like to support the project you can do so through [Github sponsors](https://github.com/sponsors/klaasnicolaas) or Ko-fi. If you have any questions, you can ask them via the [discussions](https://github.com/klaasnicolaas/home-assistant-glow/discussions) and if you encounter problems with the Home Assistant Glow, you can indicate this in the [issues](https://github.com/klaasnicolaas/home-assistant-glow/issues).
 
 ./Klaas
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F1SW69D)

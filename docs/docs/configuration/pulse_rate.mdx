@@ -1,0 +1,34 @@
+---
+id: pulse_rate
+title: Pulse Rate
+description: Learn how to adjust the pulse rate of your Home Assistant Glow device to match your energy meter.
+---
+
+# Adjust the Pulse Rate
+
+The Glow uses a pulse meter to track energy usage, which requires setting the correct pulse rate to match your energy meter. This ensures accurate energy monitoring and tracking in Home Assistant.
+
+In most cases, the correct pulse rate is set during the [getting started](/docs/getting-started#step-4-configure-the-pulse-rate) guide, but you can easily adjust it later if needed. If the pulse rate hasn't been changed yet, the Glow defaults to `1000` **imp/kWh**, which is commonly used in the Netherlands. However, you may need to modify this value based on your energy meter's specifications.
+
+You can adjust the value in 2 ways:
+
+### Option 1: Via the web interface
+
+You open the web server by going to the IP address of your Home Assistant Glow, where you will find the line **Pulse rate - imp/kWh** in the table, and you can then adjust it on the right.
+
+<p align="left">
+  <img 
+    width="80%"
+    src={require('@site/static/img/installation/pulse_rate-webserver.png').default}
+    alt="Adjusting the pulse rate via the web interface"
+  />
+</p>
+
+### Option 2: In Home Assistant
+
+1. Go to the device overview page of the Home Assistant Glow, via [**Settings** > **Devices & Services** > **ESPHome**](https://my.home-assistant.io/redirect/integration/?domain=esphome).
+2. Adjust the value for the entity **Pulse rate - imp/kWh**.
+
+## Useful resources
+
+- [Glow Energy - FAQ page](/docs/faq)

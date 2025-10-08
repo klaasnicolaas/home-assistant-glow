@@ -8,7 +8,7 @@
 substitutions:
   device_name: home-assistant-glow
   friendly_name: Home Assistant Glow
-  project_version: "4.1.0"
+  project_version: "4.2.3"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP8266 Generic"
 
   # Define the GPIO pins
@@ -35,7 +35,7 @@ esp8266:
 packages:
   remote_package:
     url: https://github.com/klaasnicolaas/home-assistant-glow/
-    ref: "4.1.0"
+    ref: "4.2.3"
     files:
       - components/basis.yaml
       - components/updates.yaml
@@ -57,5 +57,7 @@ wifi:
 # to provision wifi credentials to the device via WiFi AP.
 captive_portal:
 
-# To have a "next url" for improv serial
+# Local Web Server running on port 80
 web_server:
+  id: esphome_web_server
+  version: 3
