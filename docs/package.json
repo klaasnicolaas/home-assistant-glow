@@ -45,8 +45,5 @@
       "last 3 firefox version",
       "last 5 safari version"
     ]
-  },
-  "engines": {
-    "node": ">=18.0"
   }
 }

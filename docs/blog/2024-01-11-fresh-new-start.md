@@ -25,7 +25,7 @@ TL;DR - A lot 😅 ... v4.0.0 has been released, the most important changes are 
 1. The pulse meter pin for ESP32 boards has been changed from GPIO `13` to GPIO `26`.
 2. The `home_assistant_glow.yaml` file no longer exists.
 
-This would break the **package_import** for existing configs for people in the ESPHome Compiler (add-on). If you would like to use the latest version, I recommend re-flashing your ESP according to step 2 in [Getting Started](/docs/getting-started#step-2-install-firmware), and if desired, [re-adopting](/docs/advanced/firmware_changes#adopting-the-device) your device again in ESPHome compiler (add-on).
+This would break the **package_import** for existing configs for people in the ESPHome Compiler (add-on). If you would like to use the latest version, I recommend re-flashing your ESP according to step 2 in [Getting Started](/docs/getting-started#step-2---install-firmware), and if desired, [re-adopting](/docs/advanced/firmware_changes#adopting-the-device) your device again in ESPHome compiler (add-on).
 
 ### New config structure
 
@@ -43,7 +43,7 @@ This feature was already present in the old development branch, but never includ
 
 ### Building the firmware
 
-The firmware building process has undergone a significant rewrite, allowing the generation of firmware files tailored to various board types. These files are used in the [Getting Started](/docs/getting-started#step-2-install-firmware) section by ESP web tools.
+The firmware building process has undergone a significant rewrite, allowing the generation of firmware files tailored to various board types. These files are used in the [Getting Started](/docs/getting-started#step-2---install-firmware) section by ESP web tools.
 
 Moving forward, firmware builds will be tested on a weekly basis. This ensures that build problems with latest versions of ESPHome are identified more quickly, providing new users with up-to-date features and improvements in the future.
 
