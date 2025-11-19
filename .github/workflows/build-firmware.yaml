@@ -38,7 +38,7 @@ jobs:
       matrix: ${{ steps.prepare-matrix.outputs.matrix }}
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v5.0.1
       - name: ⤵️ Get changed files
         if: github.event_name == 'pull_request'
         id: changes
@@ -91,7 +91,7 @@ jobs:
       matrix: ${{fromJson(needs.prepare.outputs.matrix)}}
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v5.0.1
       - name: 🔍 Determine ref - ESPHome packages
         if: ${{ !contains(fromJSON('["release", "workflow_call"]'), github.event_name) }}
         run: |
