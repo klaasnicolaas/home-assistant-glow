@@ -44,7 +44,7 @@ jobs:
       - name: 🧪 Display structure of job
         run: ls -R
       - name: ⬆️ Upload project artifact
-        uses: actions/upload-artifact@v5.0.0
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: ${{ matrix.project }}
           path: files
