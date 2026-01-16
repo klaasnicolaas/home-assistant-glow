@@ -4,9 +4,6 @@ name: Linting
 # yamllint disable-line rule:truthy
 on:
   push:
-    paths:
-      - "**.yaml"
-      - "**.yml"
   pull_request:
     paths:
       - "**.yaml"
