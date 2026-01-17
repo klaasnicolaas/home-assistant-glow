@@ -57,12 +57,15 @@ Choose one of the listed microcontrollers, but keep in mind that the ESP32 is re
 
 ## Contributing
 
-This is an active open-source project. We are always open to people who want to use the code or contribute to it.
+We welcome contributions! Please read the [contribution guidelines](CONTRIBUTING.md) before submitting PRs.
 
-We've set up a separate document for our
-[contribution guidelines](CONTRIBUTING.md).
+Thanks to everyone who already contributed! ❤️
 
-Thank you for being involved! :heart_eyes:
+<a href="https://github.com/klaasnicolaas/home-assistant-glow/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=klaasnicolaas/home-assistant-glow" />
+</a>
+
+For a full list of all authors and contributors, check [the contributor's page][contributors-url].
 
 ## Disclamer
 
