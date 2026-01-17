@@ -4,7 +4,7 @@ title: How to set OTA password
 description: How to set an OTA password for your ESPHome device
 ---
 
-Since [release v4.1.0](/blog/release-4.1.0#esphome-ota-updates), the OTA component is in a separate (external) [package], so it is no longer in your config when you adopt the Home Assistant Glow in ESPHome Dashboard (add-on). Fortunately, the ESPHome platform has an ID under the OTA component so you can use [!extend]. This way, you can set the OTA password in your Glow configuration.
+Since [release v4.1.0](/blog/release-4.1.0#esphome-ota-updates), the OTA component is in a separate (external) [package], so it is no longer in your config when you adopt the Home Assistant Glow in ESPHome Builder (add-on). Fortunately, the ESPHome platform has an ID under the OTA component so you can use [!extend]. This way, you can set the OTA password in your Glow configuration.
 
 ```yaml title="your_glow_config.yaml"
 ota:

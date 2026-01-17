@@ -28,7 +28,7 @@ The easiest way to update the firmware of the Glow is through Home Assistant. Wh
 </p>
 
 :::note
-Since ESPHome 2024.6.x, the update component can directly retrieve firmware updates from the [glow-energy.io](https://glow-energy.io) manifest. Which has made updating even easier and eliminates the need to use ESPHome Dashboard (add-on) just for updates.
+Since ESPHome 2024.6.x, the update component can directly retrieve firmware updates from the [glow-energy.io](https://glow-energy.io) manifest. Which has made updating even easier and eliminates the need to use ESPHome Builder (add-on) just for updates.
 :::
 
 ## Glow Web Interface
@@ -47,17 +47,17 @@ If you are unable to update the firmware through Home Assistant, you can also up
 
 After the update is complete, the device will automatically reboot with the new firmware.
 
-## ESPHome Dashboard
+## ESPHome Builder
 
 _Level of Difficulty: **Advanced**_
 
-If you are using the ESPHome Dashboard add-on in Home Assistant, you can also update the firmware through the dashboard. This method is useful if you have adopted the firmware to your ESPHome Dashboard and know how to tweak the YAML configuration.
+If you are using the ESPHome Builder add-on in Home Assistant, you can also update the firmware through the dashboard. This method is useful if you have adopted the firmware to your ESPHome Builder and know how to tweak the YAML configuration.
 
 :::warning
-Adopting the device in ESPHome Dashboard will replace the stock firmware with a custom version managed by ESPHome. This means you will no longer receive automatic firmware updates from [glow-energy.io](https://glow-energy.io). You will need to manage updates through ESPHome going forward.
+Once you adopt a device in ESPHome Builder, you will no longer receive automatic firmware updates from [glow-energy.io](https://glow-energy.io). You will need to manage all firmware updates yourself through ESPHome Builder.
 :::
 
-1. Open the ESPHome Dashboard (add-on).
+1. Open the ESPHome Builder (add-on).
 2. If it is possible to update the firmware, you will see an update button at the device card (see image below).
 3. Click on the **UPDATE** button to start the process.
 4. Select **Wirelessly** to update the firmware over-the-air (OTA).
@@ -69,6 +69,6 @@ Once the update is complete, the device will automatically reboot with the new f
   <img 
     width="80%"
     src={require('@site/static/img/advanced/glow_update-esphome.png').default}
-    alt="Update firmware through ESPHome Dashboard (add-on)"
+    alt="Update firmware through ESPHome Builder (add-on)"
   />
 </p>
