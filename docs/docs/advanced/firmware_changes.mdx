@@ -18,12 +18,16 @@ Before making any changes to the firmware, you first need to adopt the device in
   <img src={require('@site/static/img/customization/take-control-esphome.png').default} />
 </p>
 
-Following the adoption steps will automatically:
+Following the **Take Control** steps will automatically:
 
 1. Create a unique ESPHome configuration file for your device.
 2. Set up a secure API encryption key, allowing communication between Home Assistant and your device.
 3. Configure the device's network settings, such as Wi-Fi credentials.
 4. Upload the customized firmware onto the Glow.
+
+:::warning
+Adopting the device in ESPHome Dashboard will replace the stock firmware with a custom version managed by ESPHome. This means you will no longer receive automatic firmware updates from [glow-energy.io](https://glow-energy.io). You will need to manage updates through ESPHome going forward.
+:::
 
 ## Component Structure
 
