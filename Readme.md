@@ -49,6 +49,7 @@ First, fill your 🛒 or see if you already have the components below.
 Choose one of the listed microcontrollers, but keep in mind that the ESP32 is recommended.
 
   - ESP32 (recommended) - [AliExpress](https://s.click.aliexpress.com/e/_DdAe4Fl) or [Banggood][esp32-bg-shop] or [AliExpress][esp32-ali-shop]
+  - ESP32-C3 - [AliExpress](https://s.click.aliexpress.com/e/_DFNCxYn) or [AliExpress][esp32c3-ali-shop]
   - ESP8266 - [AliExpress](https://s.click.aliexpress.com/e/_omR3PTr) or [Banggood][esp8266-bg-shop] or [AliExpress][esp8266-ali-shop]
 - Dupont Jumpers (female to female) - [AliExpress](https://s.click.aliexpress.com/e/_DmbrJsj) or [Banggood][dupont-jumpers-shop]
 - 3D-printed case (see the [case](https://glow-energy.io/docs/resources/cases) folder)
@@ -118,6 +119,7 @@ SOFTWARE.
 <!-- Hardware -->
 [esp32-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2FGeekcreit-ESP32-WiFi%2Bbluetooth-Development-Board-Ultra-Low-Power-Consumption-Dual-Cores-Pins-Unsoldered-p-1214159.html
 [esp32-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005970816555.html
+[esp32c3-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=%2Fitem%2F1005006391993583.html
 [esp8266-bg-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=%2Fnl%2FGeekcreit-NodeMcu-Lua-ESP8266-ESP-12F-WIFI-Development-Board-p-985891.html
 [esp8266-ali-shop]: https://tc.tradetracker.net/?c=15640&m=12&a=417111&r=&u=https%3A%2F%2Faliexpress.com%2Fitem%2F1005005977505151.html
 [dupont-jumpers-shop]: https://www.banggood.com/bang/?tt=16956_12_417111_&r=https%3A%2F%2Fnl.banggood.com%2F120pcs-20cm-Male-To-Female-Female-To-Female-Male-To-Male-Color-Breadboard-Jumper-Cable-Dupont-Wire-p-974006.html
