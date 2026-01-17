@@ -21,7 +21,7 @@ esphome:
   name: '${device_name}'
   comment: '${device_description}'
   name_add_mac_suffix: true
-  min_version: 2024.6.0
+  min_version: 2025.11.0
   project:
     name: "klaasnicolaas.home-assistant-glow"
     version: "${project_version}"
@@ -30,9 +30,9 @@ dashboard_import:
   package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp32.yaml@main
 
 esp32:
-  board: esp32dev
+  variant: esp32
   framework:
-    type: arduino
+    type: esp-idf
 
 packages:
   remote_package:
