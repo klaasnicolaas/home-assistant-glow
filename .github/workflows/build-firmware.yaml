@@ -80,31 +80,35 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - name: 📥 Download artifacts
-        uses: actions/download-artifact@v7.0.0
-        with:
-          path: artifacts
       - name: 💬 Comment on PR
         uses: actions/github-script@v7
         with:
           script: |
-            const fs = require('fs');
-            const artifacts = fs.readdirSync('artifacts');
+            // Get all artifacts from this workflow run
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
 
             let comment = '## 🎉 Firmware built successfully!\n\n';
-            comment += 'You can test the firmware by downloading the artifacts:\n\n';
+            comment += 'Download the firmware for your device and flash it using [ESPHome Web](https://web.esphome.io):\n\n';
 
-            artifacts.forEach(artifact => {
-              const device = artifact.replace('build-home-assistant-glow-', '');
-              comment += `- **${device}**: [Download artifact](${context.payload.repository.html_url}/actions/runs/${context.runId})\n`;
+            // Create download links for each device artifact
+            artifacts.data.artifacts.forEach(artifact => {
+              if (artifact.name.startsWith('build-home-assistant-glow-')) {
+                const device = artifact.name.replace('build-home-assistant-glow-', '');
+                const downloadUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}/artifacts/${artifact.id}`;
+                comment += `- **${device}**: [Download](${downloadUrl})\n`;
+              }
             });
 
             comment += '\n### 📝 Installation instructions\n';
-            comment += '1. Download the artifact for your device\n';
-            comment += '2. Extract the ZIP file\n';
-            comment += '3. Use [ESPHome Web](https://web.esphome.io) to upload the firmware\n';
+            comment += '1. Download and extract the ZIP file for your device\n';
+            comment += '2. Use the **factory.bin** file for a fresh install via [ESPHome Web](https://web.esphome.io)\n';
+            comment += '3. For OTA updates, you can use the other `.bin` files\n';
 
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
