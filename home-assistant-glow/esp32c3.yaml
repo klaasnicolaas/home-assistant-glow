@@ -1,0 +1,65 @@
+---
+# Home Assistant Glow
+#
+# Read your electricity meter by means of the pulse LED on your
+# meter, useful if you do not have a serial port (P1).
+# © Klaas Schoute
+#
+substitutions:
+  device_name: home-assistant-glow
+  friendly_name: Home Assistant Glow
+  project_version: "4.2.3"
+  device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP32-C3"
+
+  # Define the GPIO pins
+  pulse_pin: GPIO10
+  status_led: GPIO3
+  led_pin_red: GPIO0
+  led_pin_green: GPIO1
+
+esphome:
+  name: '${device_name}'
+  comment: '${device_description}'
+  name_add_mac_suffix: true
+  min_version: 2025.11.0
+  project:
+    name: "klaasnicolaas.home-assistant-glow"
+    version: "${project_version}"
+
+dashboard_import:
+  package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp32c3.yaml@main
+
+esp32:
+  variant: esp32c3
+  framework:
+    type: esp-idf
+
+packages:
+  remote_package:
+    url: https://github.com/klaasnicolaas/home-assistant-glow/
+    ref: "4.2.3"
+    files:
+      - components/basis.yaml
+      - components/updates.yaml
+      - components/status_led.yaml
+      - components/pulse_meter.yaml
+
+# Enable logging
+logger:
+
+# Allow provisioning Wi-Fi via serial
+improv_serial:
+
+wifi:
+  # Set up a wifi access point
+  ap:
+    ssid: '${friendly_name}'
+
+# In combination with the `ap` this allows the user
+# to provision wifi credentials to the device via WiFi AP.
+captive_portal:
+
+# Local Web Server running on port 80
+web_server:
+  id: esphome_web_server
+  version: 3
