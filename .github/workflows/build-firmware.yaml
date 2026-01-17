@@ -1,5 +1,5 @@
 ---
-# Test building ESPHome firmwares for the Home Assistant Glow project.
+# Build ESPHome firmwares for the Home Assistant Glow project.
 name: Build firmware
 
 on:
@@ -27,99 +27,90 @@ concurrency:
 
 env:
   RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/latest
-  FIRMWARES: |
-    home-assistant-glow
 
 jobs:
-  prepare:
-    name: Prepare matrix
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.prepare-matrix.outputs.matrix }}
-    steps:
-      - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v6.0.1
-      - name: ⤵️ Get changed files
-        if: github.event_name == 'pull_request'
-        id: changes
-        uses: masesgroup/retrieve-changed-files@v3
-      - name: 🚧 Prepare matrix
-        id: prepare-matrix
-        run: |-
-          # Set variables
-          matrix=""
-          fullRun=$(! [[ "${{ github.event_name }}" != "pull_request" || "${{ steps.changes.outputs.modified }}" == *".github/workflows/build-firmware.yaml"* ]]; echo $?)
-
-          # Iterate through firmwares and devices
-          for firmware in $FIRMWARES; do
-            for device in $firmware/*.yaml; do
-              # If pull_request event type and changed files do not contain the device, skip it
-              if [[ $fullRun -eq 0 && "${{ steps.changes.outputs.added_modified }}" != *"${device}"* ]]; then
-                continue
-              fi
-
-              # Extract device name from file path
-              device=${device##*/}
-              device=${device%.yaml}
-
-              # Set default version
-              version="latest"
-
-              # Build matrix entry
-              matrix="$matrix{\"firmware\":\"$firmware\",\"device\":\"$device\", \"version\":\"$version\"},"
-            done
-          done
-
-          # Remove trailing comma and format matrix
-          matrix=${matrix%?}
-          matrix="{\"include\":[$matrix]}"
-
-          # Output matrix to a file
-          echo matrix=$matrix >> $GITHUB_OUTPUT
-      - name: 🧪 Display generated matrix
-        run: |
-          echo "${{ steps.prepare-matrix.outputs.matrix }}"
-
   build:
-    name: ${{ matrix.firmware }} / ${{ matrix.device }}
-    if: ${{ needs.prepare.outputs.matrix != '{"include":[]}' }}
+    name: ${{ matrix.device }}
     runs-on: ubuntu-latest
-    needs: prepare
     strategy:
       max-parallel: 5
       fail-fast: false
-      matrix: ${{fromJson(needs.prepare.outputs.matrix)}}
+      matrix:
+        device: [esp32, esp8266]
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v6.0.1
-      - name: 🔍 Determine ref - ESPHome packages
+      - name: 🔍 Update ESPHome package ref for dev/PR builds
         if: ${{ !contains(fromJSON('["release", "workflow_call"]'), github.event_name) }}
         run: |
-          echo "ref: ${{ github.head_ref || github.ref_name }}"
-          sed -i "s|ref: .*|ref: \"${{ github.head_ref || github.ref_name }}\"|g" ${{ matrix.firmware }}/${{ matrix.device }}.yaml
-      - name: 🧪 Display changed YAML file
-        run: cat ${{ matrix.firmware }}/${{ matrix.device }}.yaml
+          # Update the ref in YAML to point to current branch for testing
+          sed -i "s|ref: .*|ref: \"${{ github.head_ref || github.ref_name }}\"|g" home-assistant-glow/${{ matrix.device }}.yaml
       - name: 🔨 Build firmware
         uses: esphome/build-action@v7.1.0
         id: esphome-build
         with:
-          yaml-file: ${{ matrix.firmware }}/${{ matrix.device }}.yaml
-          version: ${{ matrix.version || 'latest' }}
+          yaml-file: home-assistant-glow/${{ matrix.device }}.yaml
+          version: latest
           release-summary: "Check the release notes for more information."
           release-url: ${{ inputs.release-url || env.RELEASE_URL }}
-      - name: 🚚 Move generated files to output
+      - name: 🚚 Prepare output artifacts
         run: |
+          # Create output directory structure
           mkdir -p output/${{ matrix.device }}
           mv ${{ steps.esphome-build.outputs.name }}/* output/${{ matrix.device }}/
+
+          # Save version information
           echo ${{ steps.esphome-build.outputs.version }} > output/${{ matrix.device }}/version
           echo ${{ steps.esphome-build.outputs.project-version }} > output/${{ matrix.device }}/project_version
-      - name: 🔨 Alter path in manifest.json
-        run: |
-          sed -i 's/${{ steps.esphome-build.outputs.name }}\(\.[a-z]*\)\.bin/\/${{ matrix.firmware }}\/${{ matrix.device }}\/${{ steps.esphome-build.outputs.name }}\1.bin/' output/${{ matrix.device }}/manifest.json
-          cat output/${{ matrix.device }}/manifest.json
-      - name: ⬆️ Upload firmware / device artifact
+
+          # Update manifest.json paths for web deployment
+          sed -i 's|${{ steps.esphome-build.outputs.name }}\(\.[a-z]*\)\.bin|/home-assistant-glow/${{ matrix.device }}/${{ steps.esphome-build.outputs.name }}\1.bin|' output/${{ matrix.device }}/manifest.json
+      - name: ⬆️ Upload firmware artifact
         uses: actions/upload-artifact@v6.0.0
         with:
-          name: build-${{ matrix.firmware}}-${{ matrix.device }}
+          name: build-home-assistant-glow-${{ matrix.device }}
           path: output
           retention-days: 1
+
+  comment:
+    name: Comment on PR
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pull-requests: write
+    steps:
+      - name: 💬 Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Get all artifacts from this workflow run
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
+
+            let comment = '## 🎉 Firmware built successfully!\n\n';
+            comment += 'Download the firmware for your device and flash it using [ESPHome Web](https://web.esphome.io):\n\n';
+
+            // Create download links for each device artifact
+            artifacts.data.artifacts.forEach(artifact => {
+              if (artifact.name.startsWith('build-home-assistant-glow-')) {
+                const device = artifact.name.replace('build-home-assistant-glow-', '');
+                const downloadUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}/artifacts/${artifact.id}`;
+                comment += `- **${device}**: [Download](${downloadUrl})\n`;
+              }
+            });
+
+            comment += '\n### 📝 Installation instructions\n';
+            comment += '1. Download and extract the ZIP file for your device\n';
+            comment += '2. Use the **factory.bin** file for a fresh install via [ESPHome Web](https://web.esphome.io)\n';
+            comment += '3. For OTA updates, you can use the other `.bin` files\n';
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
