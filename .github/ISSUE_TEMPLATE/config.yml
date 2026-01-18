@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://glow-energy.io
+    about: Check out the documentation for guides and FAQs
+  - name: Discussions
+    url: https://github.com/klaasnicolaas/home-assistant-glow/discussions
+    about: Ask questions and discuss with the community

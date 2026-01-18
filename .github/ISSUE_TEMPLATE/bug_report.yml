@@ -1,0 +1,88 @@
+---
+name: Bug Report
+description: Report a bug or unexpected behavior
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the form below with as much detail as possible.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Which device are you using?
+      description: Select the ESP device you're experiencing issues with
+      options:
+        - ESP32
+        - ESP32-C3
+        - ESP8266
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Home Assistant Glow Version
+      description: What version of Home Assistant Glow are you running?
+      placeholder: e.g., 4.3.0
+    validations:
+      required: true
+
+  - type: input
+    id: esphome-version
+    attributes:
+      label: ESPHome Version
+      description: What version of ESPHome are you running?
+      placeholder: e.g., 2024.11.0
+    validations:
+      required: false
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+      placeholder: Tell us what you expected!
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Please copy and paste any relevant log output. This will be automatically formatted.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here (screenshots, meter type, etc.)
+    validations:
+      required: false
