@@ -15,8 +15,8 @@ on:
 
 jobs:
   build-firmware:
+    name: Build firmware
     uses: klaasnicolaas/home-assistant-glow/.github/workflows/build-firmware.yaml@main
-    name: Firmware
     with:
       release-url: ${{ github.event.release.html_url || inputs.release-url }}
 
@@ -32,7 +32,7 @@ jobs:
             name: Home Assistant Glow
     steps:
       - name: ⤵️ Download specific artifacts
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v7.0.0
         with:
           pattern: build-${{ matrix.project }}-*
           merge-multiple: true
@@ -44,7 +44,7 @@ jobs:
       - name: 🧪 Display structure of job
         run: ls -R
       - name: ⬆️ Upload project artifact
-        uses: actions/upload-artifact@v4.4.3
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: ${{ matrix.project }}
           path: files
@@ -57,9 +57,9 @@ jobs:
     needs: combined-manifests
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v6.0.1
       - name: ⬇️ Download all artifacts
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v7.0.0
         with:
           pattern: "!build-*"
           path: output
@@ -69,7 +69,7 @@ jobs:
         run: ls -R
 
       - name: 🏗️ Set up Node.js
-        uses: actions/setup-node@v4.0.4
+        uses: actions/setup-node@v6.2.0
         with:
           node-version: 20.x
       - name: 🏗️ Install Docusaurus dependencies
@@ -79,7 +79,7 @@ jobs:
         run: npm run build
         working-directory: docs
       - name: ⬆️ Upload pages artifacts
-        uses: actions/upload-pages-artifact@v3.0.1
+        uses: actions/upload-pages-artifact@v4.0.0
         with:
           path: docs/build
 

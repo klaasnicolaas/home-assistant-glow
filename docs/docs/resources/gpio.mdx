@@ -1,31 +1,31 @@
 ---
 id: gpio
 title: GPIO Pinout
-description: GPIO pinout of the ESP32 and ESP8266 boards
+description: GPIO pinout of the ESP32, ESP32-C3 and ESP8266 boards
 ---
 
 # GPIO Pinout
 
-In this section, you will find the GPIO pinout of the ESP32 and ESP8266 boards. The GPIO pins are used to connect the Photodiode and Status LED to the ESP board of your choice.
+In this section, you will find the GPIO pinout of the ESP32, ESP32-C3 and ESP8266 boards. The GPIO pins are used to connect the Photodiode and Status LED to the ESP board of your choice.
 
 ## Photodiode
 
 How the Photodiode is connected to the ESP board of your choice.
 
-| PHOTODIODE | ESP32        | ESP8266     |
-|------------|--------------|-------------|
-| A0         | NOT USING    | NOT USING   |
-| DO         | D26 (GPIO26) | D7 (GPIO13) |
-| VCC        | 3V3          | 3V3         |
-| GND        | GND          | GND         |
+| PHOTODIODE | ESP32        | ESP32-C3     | ESP8266     |
+|------------|--------------|--------------|-------------|
+| A0         | NOT USING    | NOT USING    | NOT USING   |
+| DO         | D26 (GPIO26) | D10 (GPIO10) | D7 (GPIO13) |
+| VCC        | 3V3          | 3V3          | 3V3         |
+| GND        | GND          | GND          | GND         |
 
 ## Status LED
 
 How the status LED is connected to the ESP board of your choice. For each measured pulse, the LED will briefly flash <span style={{ color: 'red' }}>*red*</span> and in case of no WiFi connection, the LED will continue to flash <span style={{ color: 'blue' }}>*blue*</span>.
 
-| LED    | ESP32      | ESP8266    |
-|--------|------------|------------|
-| RED    | D2 (GPIO2) | D4 (GPIO2) |
-| GREEN  | D4 (GPIO4) | D2 (GPIO4) |
-| BLUE   | D5 (GPIO5) | D1 (GPIO5) |
-| GND    | GND        | GND        |
+| LED    | ESP32      | ESP32-C3   | ESP8266    |
+|--------|------------|------------|------------|
+| RED    | D2 (GPIO2) | D0 (GPIO0) | D4 (GPIO2) |
+| GREEN  | D4 (GPIO4) | D1 (GPIO1) | D2 (GPIO4) |
+| BLUE   | D5 (GPIO5) | D3 (GPIO3) | D1 (GPIO5) |
+| GND    | GND        | GND        | GND        |
