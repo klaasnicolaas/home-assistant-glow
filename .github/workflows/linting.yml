@@ -1,0 +1,20 @@
+---
+name: Linting
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+  pull_request:
+    paths:
+      - "**.yaml"
+      - "**.yml"
+
+jobs:
+  yamllint:
+    name: yamllint
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v6.0.1
+      - name: 🚀 Run yamllint
+        run: yamllint --strict .

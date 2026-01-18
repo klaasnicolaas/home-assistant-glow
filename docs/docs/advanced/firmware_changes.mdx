@@ -8,22 +8,25 @@ description: Learn how to customize the firmware of the Glow using ESPHome.
 
 The Glow's firmware is built on [ESPHome](https://esphome.io), a platform designed for customization through simple YAML configurations. Whether you need to tweak the device's functionality or adapt it for different use cases, the process is straightforward.
 
-This guide will walk you through how to adopt the device and customize its firmware using the [ESPHome Compiler](https://esphome.io/guides/getting_started_hassio.html).
+This guide will walk you through how to adopt the device and customize its firmware using the [ESPHome Builder](https://esphome.io/guides/getting_started_hassio.html).
 
 ## Adopting the Device
 
-Before making any changes to the firmware, you first need to adopt the device into the ESPHome. Once your ESPHome Compiler is up and running, and the Glow is connected to your local network, you should see an option to adopt it.
+Before making any changes to the firmware, you first need to adopt the device into the ESPHome. Once your ESPHome Builder is up and running, and the Glow is connected to your local network, you should see an option to **Take Control** of the device.
 
 <p align="left">
-  <img src={require('@site/static/img/customization/adopt-esphome.png').default} />
+  <img src={require('@site/static/img/customization/take-control-esphome.png').default} />
 </p>
 
-Following the adoption steps will automatically:
+:::warning Important: What happens when you adopt the device
+Taking control of your Glow device will:
+- Replace the default firmware with a custom ESPHome configuration
+- Add an encryption key for secure API communication
+- Configure the device to use Wi-Fi credentials from your ESPHome secrets
+- **Stop automatic firmware updates** from [glow-energy.io](https://glow-energy.io)
 
-1. Create a unique ESPHome configuration file for your device.
-2. Set up a secure API encryption key, allowing communication between Home Assistant and your device.
-3. Configure the device's network settings, such as Wi-Fi credentials.
-4. Upload the customized firmware onto the Glow.
+After adoption, you will be responsible for managing firmware updates yourself through ESPHome Builder. You can always revert to the default firmware, but this will require re-installing the device.
+:::
 
 ## Component Structure
 
@@ -38,13 +41,25 @@ The firmware is designed to be flexible for different ESP boards by breaking it 
 
 ### Making Your First Customization
 
-Once your device is adopted, you can start customizing its behavior by editing the configuration files. In the ESPHome Compiler, click on **EDIT** next to the device to open the YAML editor, where you can modify the configuration directly.
+Once your device is adopted, you can start customizing its behavior by editing the configuration files. In the ESPHome Builder, click on **EDIT** next to the device to open the YAML editor, where you can modify the configuration directly.
 
 <p align="left">
   <img src={require('@site/static/img/customization/edit-device.png').default} />
 </p>
 
 The YAML configuration may seem short and incomplete because it relies on [remote packages][remote], which are loaded during the firmware build process. If you want to customize or modify anything, it's important to first find the used ESPHome component ID.
+
+### Finding Component IDs
+
+To customize a specific component, you need to know its ID. Here are the commonly used component IDs in Home Assistant Glow:
+
+- **sensor_energy_pulse_meter** - The main energy pulse meter sensor
+- **status_led** - The RGB status LED
+- **ota_esphome** - OTA update component
+
+You can find all component IDs by viewing the [component YAML files](https://github.com/klaasnicolaas/home-assistant-glow/tree/main/components) on GitHub.
+
+### Example Customization
 
 When you open the YAML editor, you'll see the default configuration for your Glow device. You can adjust this configuration or add new functionality by extending the existing components. For example, to change the behavior of the [pulse_meter], you can use the [!extend] feature to easily make the necessary changes.
 
@@ -55,6 +70,19 @@ sensor:
   - id: !extend sensor_energy_pulse_meter
     internal_filter: 100ms
 ```
+
+## Reverting to Default Firmware
+
+If you want to return to the default firmware and automatic updates from glow-energy.io, you can do so by re-installing the device:
+
+1. Navigate to [glow-energy.io](https://glow-energy.io) and follow the USB installation method
+2. This will overwrite your custom ESPHome configuration with the default firmware
+3. You will lose any custom modifications you made
+4. After re-installation, you will need to re-add the device to Home Assistant
+
+:::tip
+Before reverting, consider backing up your custom YAML configuration in case you want to use it again later.
+:::
 
 ## Helpful Resources
 
