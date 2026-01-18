@@ -45,6 +45,12 @@ jobs:
         run: |
           # Update the ref in YAML to point to current branch for testing
           sed -i "s|ref: .*|ref: \"${{ github.head_ref || github.ref_name }}\"|g" home-assistant-glow/${{ matrix.device }}.yaml
+
+          # For PRs from forks, also update the repository URL
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ] && [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
+            echo "Updating repository URL for fork: ${{ github.event.pull_request.head.repo.full_name }}"
+            sed -i "s|^\([[:space:]]*\)url: https://github.com/${{ github.repository }}/|\1url: https://github.com/${{ github.event.pull_request.head.repo.full_name }}/|g" home-assistant-glow/${{ matrix.device }}.yaml
+          fi
       - name: 🔨 Build firmware
         uses: esphome/build-action@v7.1.0
         id: esphome-build
