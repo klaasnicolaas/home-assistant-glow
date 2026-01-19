@@ -1,0 +1,48 @@
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Ask a Question
+
+        Have a question about Home Assistant Glow? Ask here!
+
+        **Before posting:**
+        - Check the [Documentation](https://glow-energy.io)
+        - Search existing discussions
+        - Review the [FAQ](https://glow-energy.io/docs/faq)
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Describe your question in detail...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device Type (if applicable)
+      description: Which ESP board are you asking about?
+      options:
+        - ESP32
+        - ESP32-C3
+        - ESP8266
+        - Not device-specific
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any relevant details that might help us answer your question
+      placeholder: |
+        - What you've tried so far
+        - Your current setup
+        - Error messages or logs
+    validations:
+      required: false
