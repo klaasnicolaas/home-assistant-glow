@@ -8,9 +8,9 @@ body:
         Have a question about Home Assistant Glow? Ask here!
 
         **Before posting:**
-        - Check the [Documentation](https://klaasnicolaas.github.io/home-assistant-glow/)
+        - Check the [Documentation](https://glow-energy.io)
         - Search existing discussions
-        - Review the [FAQ](/docs/faq/)
+        - Review the [FAQ](https://glow-energy.io/faq)
 
   - type: textarea
     id: question
