@@ -1,0 +1,69 @@
+labels: [showcase]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Share Your Setup!
+
+        Show off your Home Assistant Glow installation and help inspire others!
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Where is your device installed? (Country/Region)
+      placeholder: e.g., Netherlands, Amsterdam
+    validations:
+      required: false
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device Type
+      description: Which ESP board are you using?
+      options:
+        - ESP32
+        - ESP32-C3
+        - ESP8266
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: meter
+    attributes:
+      label: Smart Meter Model
+      description: What's your electricity meter brand/model?
+      placeholder: e.g., Kaifa MA105
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Setup Description
+      description: Tell us about your setup! How did you mount it? Any customizations?
+      placeholder: |
+        - Housing/enclosure used
+        - How you mounted the sensor
+        - Any custom modifications
+        - Integration with Home Assistant
+    validations:
+      required: true
+
+  - type: textarea
+    id: photos
+    attributes:
+      label: Photos
+      description: Share photos of your installation! (Drag and drop images here)
+      placeholder: Drag your images here...
+    validations:
+      required: false
+
+  - type: textarea
+    id: tips
+    attributes:
+      label: Tips & Tricks
+      description: Any advice for others building their own?
+    validations:
+      required: false
