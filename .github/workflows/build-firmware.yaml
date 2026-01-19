@@ -17,6 +17,10 @@ on:
       release-url:
         required: true
         type: string
+      release-summary:
+        required: false
+        type: string
+        default: "Check the release notes for more information."
   pull_request:
     branches-ignore:
       - renovate/docusaurus**
@@ -65,7 +69,7 @@ jobs:
         with:
           yaml-file: home-assistant-glow/${{ matrix.device }}.yaml
           version: latest
-          release-summary: "Check the release notes for more information."
+          release-summary: ${{ inputs.release-summary || 'Check the release notes for more information.' }}
           release-url: ${{ inputs.release-url || env.RELEASE_URL }}
       - name: 🚚 Prepare output artifacts
         run: |
