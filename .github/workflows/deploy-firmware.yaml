@@ -58,20 +58,20 @@ jobs:
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v6.0.1
-      - name: ⬇️ Download all artifacts
+      - name: ⬇️ Download artifact
         uses: actions/download-artifact@v7.0.0
         with:
-          pattern: "!build-*"
-          path: output
-      - name: 🗂️ Move firmware folders to static
-        run: mv output/* docs/static
+          name: home-assistant-glow
+          path: docs/static/home-assistant-glow
       - name: 🧪 Display structure of job
-        run: ls -R
+        run: ls -R docs/static
 
       - name: 🏗️ Set up Node.js
         uses: actions/setup-node@v6.2.0
         with:
-          node-version: 20.x
+          node-version: 24.x
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
       - name: 🏗️ Install Docusaurus dependencies
         run: npm install --frozen-lockfile --non-interactive
         working-directory: docs
