@@ -7,6 +7,10 @@ on:
     branches:
       - develop
       - release/**
+    paths:
+      - home-assistant-glow/**
+      - components/**
+      - .github/workflows/**
   workflow_dispatch:
   workflow_call:
     inputs:
@@ -16,6 +20,10 @@ on:
   pull_request:
     branches-ignore:
       - renovate/docusaurus**
+    paths:
+      - home-assistant-glow/**
+      - components/**
+      - .github/workflows/**
   # Every Monday at 4:00 UTC
   schedule:
     - cron: "0 4 * * 1"

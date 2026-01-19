@@ -11,7 +11,7 @@ on:
 
 jobs:
   yamllint:
-    name: yamllint
+    name: YAML Lint
     runs-on: ubuntu-latest
     steps:
       - name: ⤵️ Check out code from GitHub
