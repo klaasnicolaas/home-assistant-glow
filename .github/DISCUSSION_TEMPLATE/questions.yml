@@ -10,7 +10,7 @@ body:
         **Before posting:**
         - Check the [Documentation](https://glow-energy.io)
         - Search existing discussions
-        - Review the [FAQ](https://glow-energy.io/faq)
+        - Review the [FAQ](https://glow-energy.io/docs/faq)
 
   - type: textarea
     id: question
