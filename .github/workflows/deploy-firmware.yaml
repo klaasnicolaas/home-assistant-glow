@@ -12,6 +12,10 @@ on:
         description: "Release URL"
         required: true
         type: string
+      release-summary:
+        description: "Release summary/notes"
+        required: false
+        type: string
 
 jobs:
   build-firmware:
@@ -19,6 +23,7 @@ jobs:
     uses: klaasnicolaas/home-assistant-glow/.github/workflows/build-firmware.yaml@main
     with:
       release-url: ${{ github.event.release.html_url || inputs.release-url }}
+      release-summary: ${{ github.event.release.body || inputs.release-summary }}
 
   combined-manifests:
     name: Combine ${{ matrix.project }} manifests
@@ -73,7 +78,7 @@ jobs:
           cache: npm
           cache-dependency-path: docs/package-lock.json
       - name: 🏗️ Install Docusaurus dependencies
-        run: npm install --frozen-lockfile --non-interactive
+        run: npm ci
         working-directory: docs
       - name: 🚀 Build Docusaurus
         run: npm run build
