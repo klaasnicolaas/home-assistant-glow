@@ -51,7 +51,7 @@ jobs:
         device: [esp32, esp32c3, esp8266]
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
       - name: 🔍 Update ESPHome package ref for dev/PR builds
         if: ${{ !contains(fromJSON('["release", "workflow_call"]'), github.event_name) }}
         run: |
