@@ -126,7 +126,8 @@ jobs:
             let comment = '## 🎉 Firmware built successfully!\n\n';
             comment += 'Download the firmware for your device and flash it using [ESPHome Web](https://web.esphome.io):\n\n';
 
-            // Create download links for each device artifact
+            // Collect artifacts by device and variant
+            const devices = {};
             artifacts.data.artifacts.forEach(artifact => {
               if (artifact.name.startsWith('build-glow-')) {
                 // Artifact name format: build-glow-{variant}-{device}
@@ -134,9 +135,19 @@ jobs:
                 const variant = parts[0];
                 const device = parts.slice(1).join('-');
                 const downloadUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}/artifacts/${artifact.id}`;
-                comment += `- **${device}** (${variant}): [Download](${downloadUrl})\n`;
+                if (!devices[device]) devices[device] = {};
+                devices[device][variant] = downloadUrl;
               }
             });
+
+            // Build markdown table
+            comment += '| Device | Standard | Basic |\n';
+            comment += '|--------|----------|-------|\n';
+            for (const [device, variants] of Object.entries(devices)) {
+              const standard = variants.standard ? `[Download](${variants.standard})` : '-';
+              const basic = variants.basic ? `[Download](${variants.basic})` : '-';
+              comment += `| **${device}** | ${standard} | ${basic} |\n`;
+            }
 
             comment += '\n### 📝 Installation instructions\n';
             comment += '1. Download and extract the ZIP file for your device\n';
