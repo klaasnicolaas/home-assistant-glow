@@ -43,16 +43,16 @@ env:
 
 jobs:
   build:
-    name: ${{ matrix.device }}-${{ matrix.variant }}
+    name: ${{ matrix.device }} / ${{ matrix.variant }}
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
       fail-fast: false
       matrix:
         device: [esp32, esp32c3, esp8266]
-        variant: [default, basic]
+        variant: [standard, basic]
         include:
-          - variant: default
+          - variant: standard
             folder: home-assistant-glow
           - variant: basic
             folder: glow-basic
@@ -89,7 +89,7 @@ jobs:
           echo ${{ steps.esphome-build.outputs.version }} > output/$SUFFIX/version
           echo ${{ steps.esphome-build.outputs.project-version }} > output/$SUFFIX/project_version
           sed -i "s|${{ steps.esphome-build.outputs.name }}\(\.[a-z]*\)\.bin|/${{ matrix.folder }}/$SUFFIX/${{ steps.esphome-build.outputs.name }}\1.bin|" output/$SUFFIX/manifest.json
-          jq '. + {variant: "${{ matrix.variant }}"}' output/$SUFFIX/manifest.json > output/$SUFFIX/manifest.json.tmp
+          jq --arg variant "${{ matrix.variant }}" '. + {variant: $variant}' output/$SUFFIX/manifest.json > output/$SUFFIX/manifest.json.tmp
           mv output/$SUFFIX/manifest.json.tmp output/$SUFFIX/manifest.json
 
       - name: ⬆️ Upload firmware artifact

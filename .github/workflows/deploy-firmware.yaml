@@ -33,10 +33,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - variant: default
+          - variant: standard
             folder: home-assistant-glow
             name: Home Assistant Glow
-            pattern: build-glow-default-*
+            pattern: build-glow-standard-*
           - variant: basic
             folder: glow-basic
             name: Home Assistant Glow (basic)
