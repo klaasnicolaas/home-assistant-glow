@@ -66,11 +66,16 @@ jobs:
           echo "yaml=${{ matrix.folder }}/${{ matrix.device }}.yaml" >> $GITHUB_OUTPUT
       - name: 🔍 Update ESPHome package ref for dev/PR builds
         if: ${{ !contains(fromJSON('["release", "workflow_call"]'), github.event_name) }}
+        env:
+          HEAD_REF: ${{ github.head_ref || github.ref_name }}
+          PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          REPO: ${{ github.repository }}
+          YAML_FILE: ${{ steps.vars.outputs.yaml }}
         run: |
-          sed -i "s|ref: .*|ref: \"${{ github.head_ref || github.ref_name }}\"|g" "${{ steps.vars.outputs.yaml }}"
-          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ] && [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
-            echo "Updating repository URL for fork: ${{ github.event.pull_request.head.repo.full_name }}"
-            sed -i "s|^\([[:space:]]*\)url: https://github.com/${{ github.repository }}/|\1url: https://github.com/${{ github.event.pull_request.head.repo.full_name }}/|g" "${{ steps.vars.outputs.yaml }}"
+          sed -i "s|ref: .*|ref: \"${HEAD_REF}\"|g" "$YAML_FILE"
+          if [ "$PR_HEAD_REPO" != "$REPO" ] && [ -n "$PR_HEAD_REPO" ]; then
+            echo "Updating repository URL for fork: $PR_HEAD_REPO"
+            sed -i "s|^\([[:space:]]*\)url: https://github.com/${REPO}/|\1url: https://github.com/${PR_HEAD_REPO}/|g" "$YAML_FILE"
           fi
       - name: 🔨 Build firmware
         uses: esphome/build-action@v7.1.0
@@ -86,8 +91,8 @@ jobs:
           SUFFIX="${{ steps.vars.outputs.suffix }}"
           mkdir -p output/$SUFFIX
           mv ${{ steps.esphome-build.outputs.name }}/* output/$SUFFIX/
-          echo ${{ steps.esphome-build.outputs.version }} > output/$SUFFIX/version
-          echo ${{ steps.esphome-build.outputs.project-version }} > output/$SUFFIX/project_version
+          echo "${{ steps.esphome-build.outputs.version }}" > output/$SUFFIX/version
+          echo "${{ steps.esphome-build.outputs.project-version }}" > output/$SUFFIX/project_version
           sed -i "s|${{ steps.esphome-build.outputs.name }}\(\.[a-z]*\)\.bin|/${{ matrix.folder }}/$SUFFIX/${{ steps.esphome-build.outputs.name }}\1.bin|" output/$SUFFIX/manifest.json
           jq --arg variant "${{ matrix.variant }}" '. + {variant: $variant}' output/$SUFFIX/manifest.json > output/$SUFFIX/manifest.json.tmp
           mv output/$SUFFIX/manifest.json.tmp output/$SUFFIX/manifest.json
@@ -123,10 +128,13 @@ jobs:
 
             // Create download links for each device artifact
             artifacts.data.artifacts.forEach(artifact => {
-              if (artifact.name.startsWith('build-home-assistant-glow-')) {
-                const device = artifact.name.replace('build-home-assistant-glow-', '');
+              if (artifact.name.startsWith('build-glow-')) {
+                // Artifact name format: build-glow-{variant}-{device}
+                const parts = artifact.name.replace('build-glow-', '').split('-');
+                const variant = parts[0];
+                const device = parts.slice(1).join('-');
                 const downloadUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}/artifacts/${artifact.id}`;
-                comment += `- **${device}**: [Download](${downloadUrl})\n`;
+                comment += `- **${device}** (${variant}): [Download](${downloadUrl})\n`;
               }
             });
 
