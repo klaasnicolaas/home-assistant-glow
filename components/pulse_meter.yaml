@@ -56,11 +56,7 @@ sensor:
     pin: ${pulse_pin}
     on_raw_value:
       then:
-        - light.turn_on:
-            id: led_red
-        - delay: 0.2s
-        - light.turn_off:
-            id: led_red
+        - script.execute: on_pulse
     filters:
       # multiply value = (60 / imp value) * 1000
       # - multiply: 60

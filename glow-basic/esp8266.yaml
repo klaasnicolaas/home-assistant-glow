@@ -39,6 +39,11 @@ packages:
       - components/updates.yaml
       - components/pulse_meter.yaml
 
+# No LED in basic variant
+script:
+  - id: on_pulse
+    then: []
+
 # Enable logging
 logger:
 
