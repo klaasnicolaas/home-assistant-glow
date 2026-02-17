@@ -39,7 +39,7 @@ jobs:
             pattern: build-glow-standard-*
           - variant: basic
             folder: glow-basic
-            name: Home Assistant Glow (basic)
+            name: Glow Basic
             pattern: build-glow-basic-*
     steps:
       - name: ⤵️ Download variant artifacts

@@ -6,8 +6,8 @@
 # © Klaas Schoute
 #
 substitutions:
-  device_name: home-assistant-glow
-  friendly_name: Home Assistant Glow
+  device_name: glow-basic
+  friendly_name: Glow Basic
   project_version: "4.3.1"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP32 Generic (basic)"
   update_manifest_url: "https://glow-energy.io/glow-basic/manifest.json"
@@ -21,7 +21,7 @@ esphome:
   name_add_mac_suffix: true
   min_version: 2025.11.0
   project:
-    name: "klaasnicolaas.home-assistant-glow"
+    name: "klaasnicolaas.glow-basic"
     version: "${project_version}"
 
 dashboard_import:
