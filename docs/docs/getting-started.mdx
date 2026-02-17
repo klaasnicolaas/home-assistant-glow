@@ -6,30 +6,30 @@ description: 'Instruction to get started with the Home Assistant Glow'
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import ESPHomeButton from '@site/src/components/ESPWebTools';
+import FirmwareSelector from '@site/src/components/FirmwareSelector';
 import { faUsb } from '@fortawesome/free-brands-svg-icons';
 
 # Get started
 
 This guide will walk you through the steps needed to set up your new Home Assistant Glow. You'll go through connecting the hardware, installing the necessary software, and configuring the settings to get everything up and running smoothly.
 
-## Step 1 - Hardware
+## <span style={{backgroundColor: 'var(--ifm-color-primary)', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '999px', marginRight: '0.5rem', fontSize: '0.9em'}}>Step 1</span> Hardware
 
 To get started, you need the right hardware first, fill your 🛒 or see if you already have the items in house. Choose between an **ESP32** (recommended), **ESP32-C3**, or **ESP8266**.
 
-| Nr.  | Item     | Shops |  |  |
-|:-----|:---------|:------|:-|:-|
-|**1.**| ESP32 (recommended) | [AliExpress](https://s.click.aliexpress.com/e/_DdAe4Fl) | [AliExpress][esp32-ali-shop] | [Banggood][esp32-bg-shop] |
-|**1.**| ESP32-C3 | [AliExpress](https://s.click.aliexpress.com/e/_c33qKQuJ) | [AliExpress][esp32c3-ali-shop] | |
-|**1.**| ESP8266  | [AliExpress](https://s.click.aliexpress.com/e/_omR3PTr) | [AliExpress][esp8266-ali-shop] | [Banggood][esp8266-bg-shop] |
-|**2.**| Dupont Jumpers (female to female) | [AliExpress](https://s.click.aliexpress.com/e/_DmbrJsj) | [AliExpress][dupont-jumpers-ali-shop] | [Banggood][dupont-jumpers-bg-shop] |
-|**3.**| LM393 Photodiode | [AliExpress](https://s.click.aliexpress.com/e/_c3utxSRp) | [AliExpress][photodiode-ali-shop] | [Banggood][photodiode-bg-shop] |
-|**4.**| LED RGB 5mm 4 pin - kathode | [AliExpress](https://s.click.aliexpress.com/e/_c3H3JVT9) | [AliExpress][rgbled-ali-shop] | [Banggood][rgbled-bg-shop] |
+| Nr. | Item | Where to buy |
+|:----|:-----|:-------------|
+|**1.**| ESP32 (recommended) | [AliExpress](https://s.click.aliexpress.com/e/_DdAe4Fl) \| [AliExpress][esp32-ali-shop] \| [Banggood][esp32-bg-shop] |
+|**1.**| ESP32-C3 | [AliExpress](https://s.click.aliexpress.com/e/_c33qKQuJ) \| [AliExpress][esp32c3-ali-shop] |
+|**1.**| ESP8266 | [AliExpress](https://s.click.aliexpress.com/e/_omR3PTr) \| [AliExpress][esp8266-ali-shop] \| [Banggood][esp8266-bg-shop] |
+|**2.**| Dupont Jumpers (female to female) | [AliExpress](https://s.click.aliexpress.com/e/_DmbrJsj) \| [AliExpress][dupont-jumpers-ali-shop] \| [Banggood][dupont-jumpers-bg-shop] |
+|**3.**| LM393 Photodiode | [AliExpress](https://s.click.aliexpress.com/e/_c3utxSRp) \| [AliExpress][photodiode-ali-shop] \| [Banggood][photodiode-bg-shop] |
+|**4.**| LED RGB 5mm 4 pin - kathode | [AliExpress](https://s.click.aliexpress.com/e/_c3H3JVT9) \| [AliExpress][rgbled-ali-shop] \| [Banggood][rgbled-bg-shop] |
 
 If you would like to prototype, I can also recommend the following items:
 
-| Nr.  | Item     | Shop |
-|:-----|:---------|:-----|
+| Nr. | Item | Where to buy |
+|:----|:-----|:-------------|
 |**1.**| ESP32 Development Expansion Board (optional) | [AliExpress](https://s.click.aliexpress.com/e/_DdWH7ET) |
 
 :::note
@@ -38,7 +38,7 @@ Keep in mind that besides the photodiode board there are also boards in circulat
 
 How everything should be connected can be found on the [wiring diagram](/docs/resources/schematics). Once this is done, you can proceed to step 2.
 
-## Step 2 - Install firmware
+## <span style={{backgroundColor: 'var(--ifm-color-primary)', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '999px', marginRight: '0.5rem', fontSize: '0.9em'}}>Step 2</span> Install firmware
 
 Use the method below to provide your ESP with the correct firmware.
 
@@ -47,7 +47,7 @@ Use the method below to provide your ESP with the correct firmware.
 
 _Make sure this page is opened in a Chromium-based browser on a desktop. The software installation does not work with a tablet or phone._
 
-1. Click the blue **connect** button below to display a list of available USB devices.
+1. Choose your firmware variant below (Standard or Basic) and click the blue **Connect** button to display a list of available USB devices.
 2. To connect your ESP to your computer, follow these steps:
     - In the pop-up window, view the list of available USB devices.
     - Connect your ESP to your computer using a USB cable.
@@ -61,15 +61,19 @@ _Make sure this page is opened in a Chromium-based browser on a desktop. The sof
       - The Home Assistant Glow is now connected to your network.
 5. Congratulations 🎉 You have successfully installed the firmware on your Home Assistant Glow.
 
-  <ESPHomeButton />
+### Choose your firmware variant
+
+<FirmwareSelector />
+
   </TabItem>
 </Tabs>
 
-## Step 3 - Connect to Home Assistant
+## <span style={{backgroundColor: 'var(--ifm-color-primary)', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '999px', marginRight: '0.5rem', fontSize: '0.9em'}}>Step 3</span> Connect to Home Assistant
 
 There are two ways to connect the Glow to Home Assistant. You can do this during the firmware installation or later via auto discovery.
 
-### Option 1 - During firmware installation
+<Tabs>
+  <TabItem value="during-install" label="During firmware installation" default>
 
 1. Immediately after setting up your Wi-Fi network (from step 2), you will see a screen with the option **Add to Home Assistant**.
     - This opens the **My** link to Home Assistant (see image below).
@@ -79,14 +83,15 @@ There are two ways to connect the Glow to Home Assistant. You can do this during
 4. Congratulations 🎉 You have successfully added the Home Assistant Glow to your Home Assistant instance.
 
 <p align="left">
-  <img 
+  <img
     width="60%"
     src={require('@site/static/img/installation/my-link.png').default}
     alt='My link to Home Assistant'
   />
 </p>
 
-### Option 2 - Auto discovery
+  </TabItem>
+  <TabItem value="auto-discovery" label="Auto discovery">
 
 When the Home Assistant Glow is added to a network to which your Home Assistant instance is also connected, your device will automatically be recognized in Home Assistant.
 
@@ -96,18 +101,21 @@ When the Home Assistant Glow is added to a network to which your Home Assistant 
 4. Congratulations 🎉 You have successfully added the Home Assistant Glow to your Home Assistant instance.
 
 <p align="left">
-  <img 
+  <img
     width="40%"
     src={require('@site/static/img/installation/auto-discovery.png').default}
     alt='Auto discovery in Home Assistant'
   />
 </p>
 
+  </TabItem>
+</Tabs>
+
 :::note
 If you're prompted for an encryption key when adding the device, this means you may have accidentally adopted it in ESPHome Builder. The default firmware does not require an encryption key. See [FAQ: Encryption Key Required](/docs/faq/encryption_key_required) for more information.
 :::
 
-## Step 4 - Configure the Pulse Rate
+## <span style={{backgroundColor: 'var(--ifm-color-primary)', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '999px', marginRight: '0.5rem', fontSize: '0.9em'}}>Step 4</span> Configure the Pulse Rate
 
 To ensure that the Home Assistant Glow accurately measures energy consumption, you must set the correct pulse rate. The pulse rate refers to the number of pulses the energy meter sends per kilowatt-hour (kWh). Energy meters with a pulse LED will have an imp/kWh value indicated, such as 1000, 2000, etc.
 
@@ -115,30 +123,42 @@ By default, the Home Assistant Glow is configured to use a pulse rate of `1000`.
 
 There are two ways to adjust the pulse rate:
 
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1rem'}}>
+
+<div style={{border: '1px solid var(--ifm-color-emphasis-300)', borderRadius: '8px', padding: '1.5rem'}}>
+
 ### Option 1 - Via the web interface
 
 Access the web interface by navigating to the IP address of your Home Assistant Glow. Once there, you'll find a table with a row labeled **Pulse rate - imp/kWh**, where you can easily adjust the value in the column on the right.
 
 <p align="left">
-  <img 
-    width="80%"
+  <img
+    width="100%"
     src={require('@site/static/img/installation/pulse_rate-webserver.png').default}
     alt='Pulse rate in the web interface'
   />
 </p>
+
+</div>
+
+<div style={{border: '1px solid var(--ifm-color-emphasis-300)', borderRadius: '8px', padding: '1.5rem'}}>
 
 ### Option 2 - In Home Assistant
 
 1. Go to the device overview page of the Home Assistant Glow, via [**Settings** > **Devices & Services** > **ESPHome**](https://my.home-assistant.io/redirect/integration/?domain=esphome).
 2. Adjust the value for the entity **Pulse rate - imp/kWh**.
 
+</div>
+
+</div>
+
 For problems with the measurements, see the [FAQ page](/docs/faq).
 
-## Step 5 - Print the case
+## <span style={{backgroundColor: 'var(--ifm-color-primary)', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '999px', marginRight: '0.5rem', fontSize: '0.9em'}}>Step 5</span> Print the case
 
 The final step is to wrap everything up in a casing that you can print. The files for this can be found on the [case resources page](/docs/resources/cases). If you do not have a 3D printer, there are platforms where you could place a print job or mount the Home Assistant Glow in a creative way 🙃
 
-## Step 6 - Sit back and relax
+## <span style={{backgroundColor: 'var(--ifm-color-primary)', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '999px', marginRight: '0.5rem', fontSize: '0.9em'}}>Step 6</span> Sit back and relax
 
 Congratulations 🎉 You have gone successfully through everything to get started with the Home Assistant Glow 🌟 If you have any questions, please check the [FAQ page](/docs/faq) first and if you can't find the answer there, you can always ask your question on the [Github](https://github.com/klaasnicolaas/home-assistant-glow).
 
