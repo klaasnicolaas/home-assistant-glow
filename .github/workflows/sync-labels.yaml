@@ -19,6 +19,7 @@ jobs:
     name: ♻️ Sync labels
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pull-requests: write
       issues: write
     steps:
