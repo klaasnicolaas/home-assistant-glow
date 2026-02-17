@@ -38,8 +38,19 @@ _Level of Difficulty: **Medium**_
 If you are unable to update the firmware through Home Assistant, you can also update the firmware directly within the Glow's web interface. This method is useful if you are using the Glow as a standalone device or if you prefer to update the firmware manually.
 
 1. Download the latest firmware binary file for your device:
-    - Download for ESP32: [home-assistant-glow-esp32.ota.bin](https://glow-energy.io/home-assistant-glow/esp32/home-assistant-glow-esp32.ota.bin)
-    - Download for ESP8266: [home-assistant-glow-esp8266.ota.bin](https://glow-energy.io/home-assistant-glow/esp8266/home-assistant-glow-esp8266.ota.bin)
+
+    **Which variant do you need?**
+
+    Choose the variant that matches your hardware setup:
+
+    - **Standard** - For the complete Home Assistant Glow with RGB LED (recommended for most users)
+    - **Basic** - For minimal builds without LED hardware (only pulse sensor connected)
+
+    | Device | Standard | Basic |
+    |--------|---------|-------|
+    | **ESP32** | [Download](https://glow-energy.io/home-assistant-glow/esp32/home-assistant-glow-esp32.ota.bin) | [Download](https://glow-energy.io/glow-basic/esp32/glow-basic-esp32.ota.bin) |
+    | **ESP32-C3** | [Download](https://glow-energy.io/home-assistant-glow/esp32c3/home-assistant-glow-esp32c3.ota.bin) | [Download](https://glow-energy.io/glow-basic/esp32c3/glow-basic-esp32c3.ota.bin) |
+    | **ESP8266** | [Download](https://glow-energy.io/home-assistant-glow/esp8266/home-assistant-glow-esp8266.ota.bin) | [Download](https://glow-energy.io/glow-basic/esp8266/glow-basic-esp8266.ota.bin) |
 2. Navigate to the Glow's web interface, by entering the IP address of the device in your browser.
 3. At the bottom of the page, you will find the **OTA Update** section.
 4. Click on **Choose File** and select the firmware binary file you downloaded.

@@ -9,6 +9,7 @@ on:
       - release/**
     paths:
       - home-assistant-glow/**
+      - glow-basic/**
       - components/**
       - .github/workflows/**
   workflow_dispatch:
@@ -26,6 +27,7 @@ on:
       - renovate/docusaurus**
     paths:
       - home-assistant-glow/**
+      - glow-basic/**
       - components/**
       - .github/workflows/**
   # Every Monday at 4:00 UTC
@@ -33,7 +35,6 @@ on:
     - cron: "0 4 * * 1"
 
 concurrency:
-  # yamllint disable-line rule:line-length
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
@@ -42,51 +43,64 @@ env:
 
 jobs:
   build:
-    name: ${{ matrix.device }}
+    name: ${{ matrix.device }} / ${{ matrix.variant }}
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
       fail-fast: false
       matrix:
         device: [esp32, esp32c3, esp8266]
+        variant: [standard, basic]
+        include:
+          - variant: standard
+            folder: home-assistant-glow
+          - variant: basic
+            folder: glow-basic
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v6.0.2
+      - name: 🔧 Set build variables
+        id: vars
+        run: |
+          echo "suffix=${{ matrix.device }}" >> $GITHUB_OUTPUT
+          echo "yaml=${{ matrix.folder }}/${{ matrix.device }}.yaml" >> $GITHUB_OUTPUT
       - name: 🔍 Update ESPHome package ref for dev/PR builds
         if: ${{ !contains(fromJSON('["release", "workflow_call"]'), github.event_name) }}
+        env:
+          HEAD_REF: ${{ github.head_ref || github.ref_name }}
+          PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          REPO: ${{ github.repository }}
+          YAML_FILE: ${{ steps.vars.outputs.yaml }}
         run: |
-          # Update the ref in YAML to point to current branch for testing
-          sed -i "s|ref: .*|ref: \"${{ github.head_ref || github.ref_name }}\"|g" home-assistant-glow/${{ matrix.device }}.yaml
-
-          # For PRs from forks, also update the repository URL
-          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ] && [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
-            echo "Updating repository URL for fork: ${{ github.event.pull_request.head.repo.full_name }}"
-            sed -i "s|^\([[:space:]]*\)url: https://github.com/${{ github.repository }}/|\1url: https://github.com/${{ github.event.pull_request.head.repo.full_name }}/|g" home-assistant-glow/${{ matrix.device }}.yaml
+          sed -i "s|ref: .*|ref: \"${HEAD_REF}\"|g" "$YAML_FILE"
+          if [ "$PR_HEAD_REPO" != "$REPO" ] && [ -n "$PR_HEAD_REPO" ]; then
+            echo "Updating repository URL for fork: $PR_HEAD_REPO"
+            sed -i "s|^\([[:space:]]*\)url: https://github.com/${REPO}/|\1url: https://github.com/${PR_HEAD_REPO}/|g" "$YAML_FILE"
           fi
       - name: 🔨 Build firmware
         uses: esphome/build-action@v7.1.0
         id: esphome-build
         with:
-          yaml-file: home-assistant-glow/${{ matrix.device }}.yaml
+          yaml-file: ${{ steps.vars.outputs.yaml }}
           version: latest
           release-summary: ${{ inputs.release-summary || 'Check the release notes for more information.' }}
           release-url: ${{ inputs.release-url || env.RELEASE_URL }}
       - name: 🚚 Prepare output artifacts
         run: |
-          # Create output directory structure
-          mkdir -p output/${{ matrix.device }}
-          mv ${{ steps.esphome-build.outputs.name }}/* output/${{ matrix.device }}/
+          set -e
+          SUFFIX="${{ steps.vars.outputs.suffix }}"
+          mkdir -p output/$SUFFIX
+          mv ${{ steps.esphome-build.outputs.name }}/* output/$SUFFIX/
+          echo "${{ steps.esphome-build.outputs.version }}" > output/$SUFFIX/version
+          echo "${{ steps.esphome-build.outputs.project-version }}" > output/$SUFFIX/project_version
+          sed -i "s|${{ steps.esphome-build.outputs.name }}\(\.[a-z]*\)\.bin|/${{ matrix.folder }}/$SUFFIX/${{ steps.esphome-build.outputs.name }}\1.bin|" output/$SUFFIX/manifest.json
+          jq --arg variant "${{ matrix.variant }}" '. + {variant: $variant}' output/$SUFFIX/manifest.json > output/$SUFFIX/manifest.json.tmp
+          mv output/$SUFFIX/manifest.json.tmp output/$SUFFIX/manifest.json
 
-          # Save version information
-          echo ${{ steps.esphome-build.outputs.version }} > output/${{ matrix.device }}/version
-          echo ${{ steps.esphome-build.outputs.project-version }} > output/${{ matrix.device }}/project_version
-
-          # Update manifest.json paths for web deployment
-          sed -i 's|${{ steps.esphome-build.outputs.name }}\(\.[a-z]*\)\.bin|/home-assistant-glow/${{ matrix.device }}/${{ steps.esphome-build.outputs.name }}\1.bin|' output/${{ matrix.device }}/manifest.json
       - name: ⬆️ Upload firmware artifact
         uses: actions/upload-artifact@v6.0.0
         with:
-          name: build-home-assistant-glow-${{ matrix.device }}
+          name: build-glow-${{ matrix.variant }}-${{ matrix.device }}
           path: output
           retention-days: 7
 
@@ -112,14 +126,28 @@ jobs:
             let comment = '## 🎉 Firmware built successfully!\n\n';
             comment += 'Download the firmware for your device and flash it using [ESPHome Web](https://web.esphome.io):\n\n';
 
-            // Create download links for each device artifact
+            // Collect artifacts by device and variant
+            const devices = {};
             artifacts.data.artifacts.forEach(artifact => {
-              if (artifact.name.startsWith('build-home-assistant-glow-')) {
-                const device = artifact.name.replace('build-home-assistant-glow-', '');
+              if (artifact.name.startsWith('build-glow-')) {
+                // Artifact name format: build-glow-{variant}-{device}
+                const parts = artifact.name.replace('build-glow-', '').split('-');
+                const variant = parts[0];
+                const device = parts.slice(1).join('-');
                 const downloadUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}/artifacts/${artifact.id}`;
-                comment += `- **${device}**: [Download](${downloadUrl})\n`;
+                if (!devices[device]) devices[device] = {};
+                devices[device][variant] = downloadUrl;
               }
             });
+
+            // Build markdown table
+            comment += '| Device | Standard | Basic |\n';
+            comment += '|--------|----------|-------|\n';
+            for (const [device, variants] of Object.entries(devices)) {
+              const standard = variants.standard ? `[Download](${variants.standard})` : '-';
+              const basic = variants.basic ? `[Download](${variants.basic})` : '-';
+              comment += `| **${device}** | ${standard} | ${basic} |\n`;
+            }
 
             comment += '\n### 📝 Installation instructions\n';
             comment += '1. Download and extract the ZIP file for your device\n';

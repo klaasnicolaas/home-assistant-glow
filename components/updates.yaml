@@ -9,7 +9,7 @@ update:
   - platform: http_request
     id: update_http_request
     name: Firmware Update
-    source: https://glow-energy.io/home-assistant-glow/manifest.json
+    source: ${update_manifest_url}
 
 http_request:
   timeout: 10s

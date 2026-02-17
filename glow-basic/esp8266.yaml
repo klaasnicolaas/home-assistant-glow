@@ -1,22 +1,19 @@
 ---
-# Home Assistant Glow
+# Home Assistant Glow - basic (no status LED)
 #
 # Read your electricity meter by means of the pulse LED on your
 # meter, useful if you do not have a serial port (P1).
 # © Klaas Schoute
 #
 substitutions:
-  device_name: home-assistant-glow
-  friendly_name: Home Assistant Glow
+  device_name: glow-basic
+  friendly_name: Glow Basic
   project_version: "4.3.1"
-  device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP32-C3"
-  update_manifest_url: "https://glow-energy.io/home-assistant-glow/manifest.json"
+  device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP8266 Generic (basic)"
+  update_manifest_url: "https://glow-energy.io/glow-basic/manifest.json"
 
   # Define the GPIO pins
-  pulse_pin: GPIO10
-  status_led: GPIO3
-  led_pin_red: GPIO0
-  led_pin_green: GPIO1
+  pulse_pin: GPIO13
 
 esphome:
   name: '${device_name}'
@@ -24,16 +21,14 @@ esphome:
   name_add_mac_suffix: true
   min_version: 2025.11.0
   project:
-    name: "klaasnicolaas.home-assistant-glow"
+    name: "klaasnicolaas.glow-basic"
     version: "${project_version}"
 
 dashboard_import:
-  package_import_url: github://klaasnicolaas/home-assistant-glow/home-assistant-glow/esp32c3.yaml@main
+  package_import_url: github://klaasnicolaas/home-assistant-glow/glow-basic/esp8266.yaml@main
 
-esp32:
-  variant: esp32c3
-  framework:
-    type: esp-idf
+esp8266:
+  board: esp01_1m
 
 packages:
   remote_package:
@@ -42,8 +37,12 @@ packages:
     files:
       - components/basis.yaml
       - components/updates.yaml
-      - components/status_led.yaml
       - components/pulse_meter.yaml
+
+# No LED in basic variant
+script:
+  - id: on_pulse
+    then: []
 
 # Enable logging
 logger:

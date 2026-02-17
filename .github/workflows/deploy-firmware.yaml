@@ -26,33 +26,46 @@ jobs:
       release-summary: ${{ github.event.release.body || inputs.release-summary }}
 
   combined-manifests:
-    name: Combine ${{ matrix.project }} manifests
+    name: Organize ${{ matrix.folder }} firmware
     runs-on: ubuntu-latest
     needs: build-firmware
     strategy:
       fail-fast: false
       matrix:
         include:
-          - project: home-assistant-glow
+          - variant: standard
+            folder: home-assistant-glow
             name: Home Assistant Glow
+            pattern: build-glow-standard-*
+          - variant: basic
+            folder: glow-basic
+            name: Glow Basic
+            pattern: build-glow-basic-*
     steps:
-      - name: ⤵️ Download specific artifacts
+      - name: ⤵️ Download variant artifacts
         uses: actions/download-artifact@v7.0.0
         with:
-          pattern: build-${{ matrix.project }}-*
+          pattern: ${{ matrix.pattern }}
           merge-multiple: true
-          path: files
-      - name: 🔨 Generate device manifest.json
+          path: ${{ matrix.folder }}
+      - name: 🔨 Generate combined manifest
         run: |
-          version=$(cat files/*/project_version | sort -V | tail -n 1)
-          jq -s --arg version "$version" '{"name": "${{ matrix.name }}", "version": $version, "home_assistant_domain": "esphome", "builds":.}' files/*/manifest.json > files/manifest.json
-      - name: 🧪 Display structure of job
-        run: ls -R
-      - name: ⬆️ Upload project artifact
+          cd ${{ matrix.folder }}
+          version=$(cat */project_version | head -n 1)
+
+          jq -s --arg name "${{ matrix.name }}" --arg version "$version" '{
+            name: $name,
+            version: $version,
+            home_assistant_domain: "esphome",
+            builds: .
+          }' */manifest.json > manifest.json
+      - name: 🧪 Display structure
+        run: ls -R ${{ matrix.folder }}
+      - name: ⬆️ Upload organized artifact
         uses: actions/upload-artifact@v6.0.0
         with:
-          name: ${{ matrix.project }}
-          path: files
+          name: ${{ matrix.folder }}
+          path: ${{ matrix.folder }}
           retention-days: 1
 
   build-docs:
@@ -63,14 +76,13 @@ jobs:
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v6.0.2
-      - name: ⬇️ Download artifact
+      - name: ⬇️ Download firmware artifacts
         uses: actions/download-artifact@v7.0.0
         with:
-          name: home-assistant-glow
-          path: docs/static/home-assistant-glow
+          pattern: "*glow*"
+          path: docs/static
       - name: 🧪 Display structure of job
         run: ls -R docs/static
-
       - name: 🏗️ Set up Node.js
         uses: actions/setup-node@v6.2.0
         with:
