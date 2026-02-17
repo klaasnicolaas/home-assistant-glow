@@ -9,6 +9,9 @@ on:
       - "**.yaml"
       - "**.yml"
 
+permissions:
+  contents: read
+
 jobs:
   yamllint:
     name: YAML Lint
