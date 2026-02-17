@@ -22,9 +22,7 @@ script:
     then:
       - light.turn_on:
           id: led_red
-      - delay: 0.2s
-      - light.turn_off:
-          id: led_red
+          flash_length: 100ms
 
 # Status LED for connection
 status_led:
