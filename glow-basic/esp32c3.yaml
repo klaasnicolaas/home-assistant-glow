@@ -8,7 +8,7 @@
 substitutions:
   device_name: glow-basic
   friendly_name: Glow Basic
-  project_version: "4.3.1"
+  project_version: "4.4.0"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP32-C3 (basic)"
   update_manifest_url: "https://glow-energy.io/glow-basic/manifest.json"
 
@@ -35,7 +35,7 @@ esp32:
 packages:
   remote_package:
     url: https://github.com/klaasnicolaas/home-assistant-glow/
-    ref: "4.3.1"
+    ref: "4.4.0"
     files:
       - components/basis.yaml
       - components/updates.yaml
