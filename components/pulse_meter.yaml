@@ -55,9 +55,11 @@ sensor:
     accuracy_decimals: 0
     pin: ${pulse_pin}
     filters:
-      # multiply value = (60 / imp value) * 1000
-      # - multiply: 60
-      - lambda: return x * ((60.0 / id(select_pulse_rate).state) * 1000.0);
+      # multiply value = 1 / imp value
+      # - multiply: 0.001
+      - lambda: |-
+          id(persist_sensor_total_energy) = id(sensor_total_energy).raw_state; # write sensor_total_energy to flash
+          return x * (1.0 / id(select_pulse_rate).state);
 
     total:
       id: sensor_total_energy
@@ -85,6 +87,7 @@ sensor:
     state_class: total_increasing
     device_class: energy
     accuracy_decimals: 3
+    restore: True
     filters:
       # Multiplication factor from W to kW is 0.001
       - multiply: 0.001
