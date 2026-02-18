@@ -1,6 +1,7 @@
 ---
 name: Sync labels
 
+# yamllint disable-line rule:truthy
 on:
   push:
     # The default branch
@@ -10,15 +11,20 @@ on:
       - .github/labels.yml
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   labels:
     name: ♻️ Sync labels
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pull-requests: write
+      issues: write
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
       - name: 🚀 Run Label Syncer
         uses: micnncim/action-label-syncer@v1.3.0
         env:

@@ -9,12 +9,15 @@ on:
       - "**.yaml"
       - "**.yml"
 
+permissions:
+  contents: read
+
 jobs:
   yamllint:
     name: YAML Lint
     runs-on: ubuntu-latest
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
       - name: 🚀 Run yamllint
         run: yamllint --strict .

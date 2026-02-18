@@ -14,7 +14,7 @@ The default firmware available on this [website][website] does not include an en
 
 The most common scenario is:
 
-1. You added the Glow to the ESPHome Builder (add-on)
+1. You added the Glow to the ESPHome Builder (app)
 2. You clicked "Take Control" in ESPHome Builder
 3. ESPHome automatically installed custom firmware and added an `encryption` -> `key:` entry to your YAML configuration
 

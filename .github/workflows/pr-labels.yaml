@@ -9,13 +9,18 @@ on:
       - main
     types: [opened, labeled, unlabeled, synchronize]
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     name: Verify
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     steps:
       - name: 🏷 Verify PR has a valid label
-        uses: klaasnicolaas/action-pr-labels@v2.0.2
+        uses: klaasnicolaas/action-pr-labels@v3.1.0
         with:
           valid-labels: >-
             breaking-change, bugfix, documentation, enhancement, sync,

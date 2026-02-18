@@ -17,6 +17,13 @@ light:
     name: Red
     output: output_red
 
+script:
+  - id: on_pulse
+    then:
+      - light.turn_on:
+          id: led_red
+          flash_length: 100ms
+
 # Status LED for connection
 status_led:
   pin:
