@@ -98,7 +98,7 @@ jobs:
           mv output/$SUFFIX/manifest.json.tmp output/$SUFFIX/manifest.json
 
       - name: ⬆️ Upload firmware artifact
-        uses: actions/upload-artifact@v6.0.0
+        uses: actions/upload-artifact@v7.0.0
         with:
           name: build-glow-${{ matrix.variant }}-${{ matrix.device }}
           path: output
