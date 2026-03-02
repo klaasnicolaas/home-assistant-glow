@@ -62,7 +62,7 @@ jobs:
       - name: 🧪 Display structure
         run: ls -R ${{ matrix.folder }}
       - name: ⬆️ Upload organized artifact
-        uses: actions/upload-artifact@v6.0.0
+        uses: actions/upload-artifact@v7.0.0
         with:
           name: ${{ matrix.folder }}
           path: ${{ matrix.folder }}
