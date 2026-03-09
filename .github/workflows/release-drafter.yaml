@@ -21,6 +21,6 @@ jobs:
       pull-requests: write  # To add label to PR
     steps:
       - name: 🚀 Run Release Drafter
-        uses: release-drafter/release-drafter@v6.2.0
+        uses: release-drafter/release-drafter@v6.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
