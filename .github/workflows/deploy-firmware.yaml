@@ -112,7 +112,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: 🏗️ Setup Github Pages
-        uses: actions/configure-pages@v5.0.0
+        uses: actions/configure-pages@v6.0.0
       - name: 🚀 Deploy to Github Pages
         uses: actions/deploy-pages@v5.0.0
         id: deployment
