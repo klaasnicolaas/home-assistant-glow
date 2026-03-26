@@ -114,5 +114,5 @@ jobs:
       - name: 🏗️ Setup Github Pages
         uses: actions/configure-pages@v5.0.0
       - name: 🚀 Deploy to Github Pages
-        uses: actions/deploy-pages@v4.0.5
+        uses: actions/deploy-pages@v5.0.0
         id: deployment
