@@ -2,17 +2,6 @@ import Head from "@docusaurus/Head";
 import React, { useState } from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "esp-web-install-button": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & { manifest: string };
-    }
-  }
-}
-
 /**
  * Load the ESP Web Tools script
  */
