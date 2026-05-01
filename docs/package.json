@@ -15,7 +15,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "3.10.0",
+    "@docusaurus/core": "3.10.1",
     "@docusaurus/preset-classic": "3.10.0",
     "@easyops-cn/docusaurus-search-local": "^0.55.0",
     "@fortawesome/fontawesome-svg-core": "^7.0.0",
