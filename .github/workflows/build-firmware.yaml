@@ -78,7 +78,7 @@ jobs:
             sed -i "s|^\([[:space:]]*\)url: https://github.com/${REPO}/|\1url: https://github.com/${PR_HEAD_REPO}/|g" "$YAML_FILE"
           fi
       - name: 🔨 Build firmware
-        uses: esphome/build-action@v7.2.0
+        uses: esphome/build-action@v7.3.0
         id: esphome-build
         with:
           yaml-file: ${{ steps.vars.outputs.yaml }}
