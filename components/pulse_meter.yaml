@@ -13,7 +13,7 @@ number:
   - platform: template
     id: select_pulse_rate
     name: 'Pulse rate'
-    unit_of_measurement: imp/kWh
+    unit_of_measurement: imp per kWh
     optimistic: true
     mode: box
     min_value: 10
