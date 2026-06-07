@@ -2,13 +2,13 @@
 button:
   # Restart the ESP
   - platform: restart
-    name: "Restart - Glow"
+    name: 'Restart'
 
 # Sensors for ESP version and WIFI information
 text_sensor:
   # Installed version
   - platform: template
-    name: "Glow - Installed version"
+    name: 'Installed Version'
     id: glow_version
     icon: "mdi:label-outline"
     entity_category: diagnostic
@@ -18,20 +18,20 @@ text_sensor:
   # ESPHome version
   - platform: version
     hide_timestamp: true
-    name: '${friendly_name} - ESPHome Version'
+    name: 'ESPHome Version'
   # IP address and connected SSID
   - platform: wifi_info
     ip_address:
-      name: '${friendly_name} - IP Address'
+      name: 'IP Address'
       icon: mdi:wifi
     ssid:
-      name: '${friendly_name} - Connected SSID'
+      name: 'Connected SSID'
       icon: mdi:wifi-strength-2
 
 sensor:
   # WiFi signal
   - platform: wifi_signal
-    name: "${friendly_name} - WiFi Signal"
+    name: 'WiFi Signal'
     update_interval: 120s
 
 # Enable time component to reset energy at midnight
