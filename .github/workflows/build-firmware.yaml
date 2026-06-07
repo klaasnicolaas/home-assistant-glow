@@ -54,6 +54,7 @@ jobs:
         env:
           HEAD_REF: ${{ github.head_ref || github.ref_name }}
           PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
         run: |
           if [ "$PR_HEAD_REPO" != "$REPO" ] && [ -n "$PR_HEAD_REPO" ]; then
@@ -61,10 +62,16 @@ jobs:
           else
             PACKAGE_URL="https://github.com/${REPO}/"
           fi
+          if [ -n "$PR_NUMBER" ]; then
+            PROJECT_VERSION="pr-${PR_NUMBER}"
+          else
+            PROJECT_VERSION="dev-${GITHUB_SHA::7}"
+          fi
           {
             echo "substitutions<<EOF"
             echo "package_url=${PACKAGE_URL}"
             echo "package_ref=${HEAD_REF}"
+            echo "project_version=${PROJECT_VERSION}"
             echo "EOF"
           } >> $GITHUB_OUTPUT
 
