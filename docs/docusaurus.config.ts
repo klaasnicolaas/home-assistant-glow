@@ -4,6 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const organizationName = "klaasnicolaas";
 const projectName = "home-assistant-glow";
+const googleAnalyticsTrackingID = 'G-7519Z99G4C';
 
 const config: Config = {
   title: 'Home Assistant Glow 🌟',
@@ -57,9 +58,6 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
-        gtag: {
-          trackingID: 'G-7519Z99G4C',
-        }
       } satisfies Preset.Options,
     ],
   ],
@@ -172,7 +170,48 @@ const config: Config = {
         removeDefaultStopWordFilter: true,
         indexPages: true,
       },
-    ]
+    ],
+    function googleGtagPlugin() {
+      return {
+        name: 'google-gtag',
+        getClientModules() {
+          return ['./src/gtag-client.ts'];
+        },
+        injectHtmlTags() {
+          if (process.env.NODE_ENV !== 'production') {
+            return {};
+          }
+
+          return {
+            headTags: [
+              {
+                tagName: 'link',
+                attributes: {
+                  rel: 'preconnect',
+                  href: 'https://www.googletagmanager.com',
+                },
+              },
+              {
+                tagName: 'script',
+                attributes: {
+                  async: true,
+                  src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsTrackingID}`,
+                },
+              },
+              {
+                tagName: 'script',
+                innerHTML: `
+                  window.dataLayer = window.dataLayer || [];
+                  window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+                  window.gtag('js', new Date());
+                  window.gtag('config', '${googleAnalyticsTrackingID}');
+                `,
+              },
+            ],
+          };
+        },
+      };
+    },
   ],
 };
 

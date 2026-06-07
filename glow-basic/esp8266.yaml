@@ -8,9 +8,11 @@
 substitutions:
   device_name: glow-basic
   friendly_name: Glow Basic
-  project_version: "4.4.0"
+  project_version: "5.0.0"
   device_description: "Measure your energy consumption with the pulse LED on your smart meter - ESP8266 Generic (basic)"
   update_manifest_url: "https://glow-energy.io/glow-basic/manifest.json"
+  package_url: "https://github.com/klaasnicolaas/home-assistant-glow/"
+  package_ref: "${project_version}"
 
   # Define the GPIO pins
   pulse_pin: GPIO13
@@ -32,8 +34,8 @@ esp8266:
 
 packages:
   remote_package:
-    url: https://github.com/klaasnicolaas/home-assistant-glow/
-    ref: "4.4.0"
+    url: "${package_url}"
+    ref: "${package_ref}"
     files:
       - components/basis.yaml
       - components/updates.yaml

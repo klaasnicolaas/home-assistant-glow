@@ -1,0 +1,37 @@
+---
+id: internal_filter
+title: Internal Filter
+description: Learn how to adjust the internal filter of your Home Assistant Glow device to reduce ghost detections.
+---
+
+# Adjust the Internal Filter
+
+The Glow uses a pulse meter to track energy usage. In some situations, electrical noise or reflections near the meter's LED can cause false pulse detections, also known as **ghost pulses**. These show up as unrealistic power spikes (e.g. 1000 kW) in Home Assistant.
+
+The internal filter defines the minimum duration (in microseconds) a signal must be active before it is counted as a valid pulse. Increasing this value filters out short noise pulses, reducing ghost detections.
+
+The Glow defaults to `1000` **µs** (1 ms). If you are experiencing ghost detections, try increasing this value gradually.
+
+:::caution
+Setting the internal filter too high can cause real pulses to be missed, especially at high power consumption or with meters that have a high imp/kWh rate. A value up to **10000 µs** (10 ms) is a good starting point for most residential setups.
+:::
+
+You can adjust the value in 2 ways:
+
+### Option 1: Via the web interface
+
+Open the web server by going to the IP address of your Home Assistant Glow, where you will find the line **Internal Filter** in the table, and you can adjust it on the right.
+
+### Option 2: In Home Assistant
+
+1. Go to the device overview page of the Home Assistant Glow, via [**Settings** > **Devices & Services** > **ESPHome**](https://my.home-assistant.io/redirect/integration/?domain=esphome).
+2. Adjust the value for the entity **Internal Filter** under the configuration section.
+
+:::note
+Since the internal filter is now controlled at runtime via the **Internal Filter** entity, overriding `internal_filter` directly on the pulse meter sensor in your YAML configuration will no longer work. The entity value always takes precedence after boot. Use one of the two options above instead.
+:::
+
+## Useful resources
+
+- [Glow Energy - FAQ page](/docs/faq)
+- [ESPHome Pulse Meter documentation](https://esphome.io/components/sensor/pulse_meter.html)

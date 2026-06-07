@@ -43,7 +43,7 @@ jobs:
             pattern: build-glow-basic-*
     steps:
       - name: ⤵️ Download variant artifacts
-        uses: actions/download-artifact@v7.0.0
+        uses: actions/download-artifact@v8.0.1
         with:
           pattern: ${{ matrix.pattern }}
           merge-multiple: true
@@ -62,7 +62,7 @@ jobs:
       - name: 🧪 Display structure
         run: ls -R ${{ matrix.folder }}
       - name: ⬆️ Upload organized artifact
-        uses: actions/upload-artifact@v6.0.0
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: ${{ matrix.folder }}
           path: ${{ matrix.folder }}
@@ -75,16 +75,16 @@ jobs:
     needs: combined-manifests
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
       - name: ⬇️ Download firmware artifacts
-        uses: actions/download-artifact@v7.0.0
+        uses: actions/download-artifact@v8.0.1
         with:
           pattern: "*glow*"
           path: docs/static
       - name: 🧪 Display structure of job
         run: ls -R docs/static
       - name: 🏗️ Set up Node.js
-        uses: actions/setup-node@v6.2.0
+        uses: actions/setup-node@v6.4.0
         with:
           node-version: 24.x
           cache: npm
@@ -96,7 +96,7 @@ jobs:
         run: npm run build
         working-directory: docs
       - name: ⬆️ Upload pages artifacts
-        uses: actions/upload-pages-artifact@v4.0.0
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: docs/build
 
@@ -112,7 +112,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: 🏗️ Setup Github Pages
-        uses: actions/configure-pages@v5.0.0
+        uses: actions/configure-pages@v6.0.0
       - name: 🚀 Deploy to Github Pages
-        uses: actions/deploy-pages@v4.0.5
+        uses: actions/deploy-pages@v5.0.0
         id: deployment

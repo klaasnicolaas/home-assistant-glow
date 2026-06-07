@@ -12,7 +12,8 @@ number:
   # Set the pulse rate of the LED on your meter
   - platform: template
     id: select_pulse_rate
-    name: 'Pulse rate - imp/kWh'
+    name: 'Pulse rate'
+    unit_of_measurement: imp/kWh
     optimistic: true
     mode: box
     min_value: 10
@@ -20,6 +21,22 @@ number:
     step: 10
     restore_value: yes
     initial_value: 1000
+
+  # Set the internal filter of the pulse meter (in microseconds)
+  - platform: template
+    id: select_internal_filter
+    name: 'Internal Filter'
+    entity_category: config
+    unit_of_measurement: µs
+    optimistic: true
+    mode: box
+    min_value: 13
+    max_value: 100000
+    step: 1
+    restore_value: yes
+    initial_value: 1000
+    on_value:
+      - lambda: id(sensor_energy_pulse_meter).set_filter_us((uint32_t)x);
 
   # Reset total energy to given value
   - platform: template
@@ -47,7 +64,7 @@ sensor:
   # Pulse meter
   - platform: pulse_meter
     id: sensor_energy_pulse_meter
-    name: '${friendly_name} - Power Consumption'
+    name: 'Power Consumption'
     unit_of_measurement: W
     state_class: measurement
     device_class: power
@@ -61,7 +78,7 @@ sensor:
 
     total:
       id: sensor_total_energy
-      name: '${friendly_name} - Total Energy'
+      name: 'Total Energy'
       unit_of_measurement: kWh
       icon: mdi:circle-slice-3
       state_class: total_increasing
@@ -78,7 +95,7 @@ sensor:
   # Total day usage
   - platform: total_daily_energy
     id: sensor_total_daily_energy
-    name: '${friendly_name} - Daily Energy'
+    name: 'Daily Energy'
     power_id: sensor_energy_pulse_meter
     unit_of_measurement: kWh
     icon: mdi:circle-slice-3
