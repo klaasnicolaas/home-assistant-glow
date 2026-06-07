@@ -21,6 +21,7 @@ const sidebars: SidebarsConfig = {
       label: 'Configuration',
       items: [
         'configuration/pulse_rate',
+        'configuration/internal_filter',
         'configuration/rename',
         'configuration/energy_dashboard',
       ],
