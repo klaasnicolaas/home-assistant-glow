@@ -22,6 +22,22 @@ number:
     restore_value: yes
     initial_value: 1000
 
+  # Set the internal filter of the pulse meter (in microseconds)
+  - platform: template
+    id: select_internal_filter
+    name: 'Internal Filter'
+    entity_category: config
+    unit_of_measurement: µs
+    optimistic: true
+    mode: box
+    min_value: 13
+    max_value: 100000
+    step: 1
+    restore_value: yes
+    initial_value: 1000
+    on_value:
+      - lambda: id(sensor_energy_pulse_meter).set_filter_us((uint32_t)x);
+
   # Reset total energy to given value
   - platform: template
     id: select_reset_total

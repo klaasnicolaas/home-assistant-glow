@@ -63,13 +63,17 @@ You can find all component IDs by viewing the [component YAML files](https://git
 
 When you open the YAML editor, you'll see the default configuration for your Glow device. You can adjust this configuration or add new functionality by extending the existing components. For example, to change the behavior of the [pulse_meter], you can use the [!extend] feature to easily make the necessary changes.
 
-Here's an example of adding an [internal_filter] to the pulse meter configuration:
+Here's an example of increasing the accuracy of the total energy sensor to 5 decimal places:
 
 ```yaml title="your_glow_config.yaml"
 sensor:
-  - id: !extend sensor_energy_pulse_meter
-    internal_filter: 100ms
+  - id: !extend sensor_total_energy
+    accuracy_decimals: 5
 ```
+
+:::note
+Some settings, like the **internal filter**, are no longer configurable via YAML and must be adjusted through the Home Assistant UI or the built-in web interface. See the [Internal Filter](/docs/configuration/internal_filter) page for more information.
+:::
 
 ## Reverting to Default Firmware
 
@@ -86,13 +90,12 @@ Before reverting, consider backing up your custom YAML configuration in case you
 
 ## Helpful Resources
 
-- [ESPHome - Pulse Counter][pulse_meter]
+- [ESPHome - Pulse Meter][pulse_meter]
 - [ESPHome - Extend][!extend]
 - [ESPHome - OTA Updates][ota]
 - [ESPHome - Remote Packages][remote]
 
-[internal_filter]: https://esphome.io/components/sensor/pulse_counter.html?highlight=internal_filter
-[pulse_meter]: https://esphome.io/components/sensor/pulse_counter.html
+[pulse_meter]: https://esphome.io/components/sensor/pulse_meter.html
 [!extend]: https://esphome.io/components/packages.html#extend
 [ota]: https://esphome.io/components/ota/
 [remote]: https://esphome.io/components/packages.html#remote-git-packages
