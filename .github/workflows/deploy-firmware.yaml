@@ -116,3 +116,20 @@ jobs:
       - name: 🚀 Deploy to Github Pages
         uses: actions/deploy-pages@v5.0.0
         id: deployment
+
+  bluesky:
+    name: 🦋 Post to Bluesky
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    environment: release
+    needs: deploy
+    permissions: {}
+    steps:
+      - uses: myConsciousness/bluesky-post@v5
+        with:
+          text: |
+            ⬆️ ${{ github.event.release.tag_name }} of ${{ github.event.repository.name }} is out 🎉 #update @klaasnicolaas.nl @home-assistant.io #glow #energy #esphome #release
+
+            Check out the release notes here: ${{ github.event.release.html_url }}
+          identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
+          password: ${{ secrets.BLUESKY_PASSWORD }}
