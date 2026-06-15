@@ -1,1 +1,6 @@
+# Ignore the Claude AI directory
 .claude/
+
+# Ignore the build output directory
+docs/static/glow-basic
+docs/static/home-assistant-glow
