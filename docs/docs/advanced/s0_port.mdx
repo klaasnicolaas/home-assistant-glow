@@ -1,0 +1,71 @@
+---
+id: s0_port
+title: Using an S0 Port
+description: Learn how to connect and configure the Home Assistant Glow with an S0 pulse output instead of an optical sensor.
+---
+
+# Using an S0 Port
+
+The Home Assistant Glow is primarily designed to read the **optical pulse LED** on your electricity meter. However, some meters (particularly industrial or three-phase meters) do not have a visible pulse LED but instead provide an **S0 port** (defined in IEC 62053-31). This page explains how to connect the Glow to an S0 port and what to keep in mind.
+
+:::caution
+S0 port support is not a primary use case of the Home Assistant Glow. The hardware and default settings are optimised for optical pulse detection. The steps below describe a community-supported approach that requires some manual configuration.
+:::
+
+## What is an S0 Port?
+
+An S0 port is an open-collector (or open-drain) pulse output. Each pulse represents a fixed amount of energy consumed, for example one pulse per Wh at 1000 imp/kWh. The port works by briefly pulling the signal line LOW for at least 30 ms, then releasing it.
+
+Key S0 specifications (IEC 62053-31):
+
+| Parameter | Minimum |
+|---|---|
+| Pulse ON time (LOW) | 30 ms |
+| Pulse OFF time (HIGH) | 30 ms |
+
+## Wiring
+
+To connect an S0 port to the Glow, you need an external **pullup resistor** between the pulse pin and 3.3 V, because the S0 output can only pull the line LOW and cannot drive it HIGH.
+
+Connect the wires as follows:
+
+| S0 Terminal | ESP32 | Note |
+|---|---|---|
+| S0+ | GPIO26 | Pulse input pin |
+| S0- | GND | Common ground |
+
+Add a **4.7 kΩ to 10 kΩ** resistor between GPIO26 and 3.3 V. A lower resistance (e.g. 4.7 kΩ) provides better noise immunity on longer cable runs.
+
+:::important
+The ESP32, ESP32-C3, and ESP8266 all use 3.3 V logic levels. Never connect an S0 port that operates at 5 V or higher directly to a GPIO pin.
+:::
+
+## Adjusting the Internal Filter
+
+S0 connections can be susceptible to electrical noise, particularly with long cable runs or nearby switching equipment. With the default internal filter of **1000 µs** (1 ms), noise spikes between 1 ms and 30 ms can be counted as valid pulses, causing the total energy reading to drift higher than the actual meter over time.
+
+To reduce this effect, increase the internal filter to at least **50000 µs** (50 ms). This value has been reported to produce accurate readings in practice. It filters out noise spikes while still correctly counting all valid S0 pulses, which have a minimum cycle time of 60 ms (30 ms ON + 30 ms OFF).
+
+See the [Internal Filter](/docs/configuration/internal_filter) page for instructions on how to change this value.
+
+## Troubleshooting
+
+**Total energy reads higher than the actual meter**
+
+This is the most common issue with S0 connections and is caused by electrical noise being counted as extra pulses. Increase the internal filter value. A value of 50000 µs (50 ms) has been reported to work well for S0 connections.
+
+**No pulses detected**
+
+- Check that the pullup resistor is connected between the pulse pin and 3.3 V.
+- Verify the S0 polarity: S0+ to the pulse pin and S0- to GND.
+- Make sure the internal filter is not set higher than the minimum pulse ON time of your meter.
+
+**Power consumption reads incorrectly**
+
+Verify that the [pulse rate](/docs/configuration/pulse_rate) matches the imp/kWh value printed on your meter.
+
+## Useful Resources
+
+- [Adjust the Internal Filter](/docs/configuration/internal_filter)
+- [Adjust the Pulse Rate](/docs/configuration/pulse_rate)
+- [ESPHome Pulse Meter documentation](https://esphome.io/components/sensor/pulse_meter.html)

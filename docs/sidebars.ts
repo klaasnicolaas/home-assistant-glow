@@ -32,6 +32,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'advanced/firmware_changes',
         'advanced/firmware_updates',
+        'advanced/s0_port',
       ],
     },
     {
