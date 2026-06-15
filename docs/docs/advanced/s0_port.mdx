@@ -25,16 +25,16 @@ Key S0 specifications (IEC 62053-31):
 
 ## Wiring
 
-To connect an S0 port to the Glow, you need an external **pullup resistor** between the pulse pin and 3.3 V, because the S0 output can only pull the line LOW and cannot drive it HIGH.
+To connect an S0 port to the Glow, you need an external **pull-up resistor** between the pulse pin and 3.3 V, because the S0 output can only pull the line LOW and cannot drive it HIGH.
 
 Connect the wires as follows:
 
-| S0 Terminal | ESP32 | Note |
-|---|---|---|
-| S0+ | GPIO26 | Pulse input pin |
-| S0- | GND | Common ground |
+| S0 Terminal | ESP32 | ESP32-C3 | ESP8266 |
+|---|---|---|---|
+| S0+ | GPIO26 | GPIO10 | GPIO13 |
+| S0- | GND | GND | GND |
 
-Add a **4.7 kΩ to 10 kΩ** resistor between GPIO26 and 3.3 V. A lower resistance (e.g. 4.7 kΩ) provides better noise immunity on longer cable runs.
+Add a **4.7 kΩ to 10 kΩ** pull-up resistor between the pulse input pin and 3.3 V. A lower resistance (e.g. 4.7 kΩ) provides better noise immunity on longer cable runs.
 
 :::important
 The ESP32, ESP32-C3, and ESP8266 all use 3.3 V logic levels. Never connect an S0 port that operates at 5 V or higher directly to a GPIO pin.
@@ -44,7 +44,9 @@ The ESP32, ESP32-C3, and ESP8266 all use 3.3 V logic levels. Never connect an S0
 
 S0 connections can be susceptible to electrical noise, particularly with long cable runs or nearby switching equipment. With the default internal filter of **1000 µs** (1 ms), noise spikes between 1 ms and 30 ms can be counted as valid pulses, causing the total energy reading to drift higher than the actual meter over time.
 
-To reduce this effect, increase the internal filter to at least **50000 µs** (50 ms). This value has been reported to produce accurate readings in practice. It filters out noise spikes while still correctly counting all valid S0 pulses, which have a minimum cycle time of 60 ms (30 ms ON + 30 ms OFF).
+To reduce this effect, increase the internal filter. The internal filter defines the minimum time the signal must be active (LOW) before it is counted as a valid pulse. Per IEC 62053-31, the minimum S0 pulse ON time is 30 ms, so any filter value above that risks dropping valid pulses depending on your meter.
+
+A value of **50000 µs** (50 ms) has been reported to produce accurate readings in practice, but this depends on your meter sending pulses longer than 50 ms. If you notice pulses being missed, lower the filter and check your meter's documentation for the actual pulse duration.
 
 See the [Internal Filter](/docs/configuration/internal_filter) page for instructions on how to change this value.
 
@@ -56,7 +58,7 @@ This is the most common issue with S0 connections and is caused by electrical no
 
 **No pulses detected**
 
-- Check that the pullup resistor is connected between the pulse pin and 3.3 V.
+- Check that the pull-up resistor is connected between the pulse pin and 3.3 V.
 - Verify the S0 polarity: S0+ to the pulse pin and S0- to GND.
 - Make sure the internal filter is not set higher than the minimum pulse ON time of your meter.
 
