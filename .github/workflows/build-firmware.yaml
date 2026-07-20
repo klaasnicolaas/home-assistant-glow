@@ -92,7 +92,7 @@ jobs:
             folder: glow-basic
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
       - name: 🔨 Build firmware
         uses: esphome/build-action@v7.4.0
         id: esphome-build
