@@ -94,7 +94,7 @@ jobs:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v7.0.1
       - name: 🔨 Build firmware
-        uses: esphome/build-action@v7.4.0
+        uses: esphome/build-action@v8.0.0
         id: esphome-build
         with:
           yaml-file: ${{ matrix.folder }}/${{ matrix.device }}.yaml
