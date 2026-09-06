@@ -1,31 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "timezone": "Europe/Amsterdam",
-  "schedule": ["before 6am every weekday"],
-  "rebaseWhen": "behind-base-branch",
-  "dependencyDashboard": true,
-  "labels": ["dependencies"],
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
-  },
-  "commitMessagePrefix": "⬆️",
+  "extends": [
+    "github>klaasnicolaas/.github:renovate-base"
+  ],
   "packageRules": [
     {
-      "matchManagers": ["github-actions"],
-      "addLabels": ["github_actions"],
-      "rangeStrategy": "pin",
-      "extractVersion": "^(?<version>v\\d+\\.\\d+\\.\\d+)$",
-      "versioning": "regex:^v(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true
-    },
-    {
-      "matchManagers": ["npm"],
-      "matchUpdateTypes": ["patch"],
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
       "automerge": true
     }
   ]
