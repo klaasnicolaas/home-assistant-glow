@@ -125,7 +125,7 @@ jobs:
     needs: deploy
     permissions: {}
     steps:
-      - uses: myConsciousness/bluesky-post@v5
+      - uses: myConsciousness/bluesky-post@2d132869a6a51dea18183a26984a09f67744417e # v6
         with:
           text: |
             ⬆️ ${{ github.event.release.tag_name }} of ${{ github.event.repository.name }} is out 🎉 #update @klaasnicolaas.nl @home-assistant.io #glow #energy #esphome #release
