@@ -92,9 +92,9 @@ jobs:
             folder: glow-basic
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔨 Build firmware
-        uses: esphome/build-action@v8.1.0
+        uses: esphome/build-action@ae5408cdbc4f70692bf8e345c4982bca05a93667 # v8.1.0
         id: esphome-build
         with:
           yaml-file: ${{ matrix.folder }}/${{ matrix.device }}.yaml
@@ -114,7 +114,7 @@ jobs:
           mv output/${{ matrix.device }}/manifest.json.tmp output/${{ matrix.device }}/manifest.json
 
       - name: ⬆️ Upload firmware artifact
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: build-glow-${{ matrix.variant }}-${{ matrix.device }}
           path: output
@@ -129,7 +129,7 @@ jobs:
       pull-requests: write
     steps:
       - name: 💬 Comment on PR
-        uses: actions/github-script@v9.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             // Get all artifacts from this workflow run
